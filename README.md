@@ -39,6 +39,10 @@ Open the web browser to `http://localhost:8080/`
 
 Please contribute to the project if you think this can be done better in anyway even for this README :)
 
+## See also
+
+* [React + ES6 + Webpack で JSON Visual Editor を作ってみる - Qiita](http://qiita.com/ogaoga/items/1dae5586601e6900c3f1)
+
 ## License
 
 Copyright (c) 2016 ogaoga.org
