@@ -1,14 +1,8 @@
-# react-webpack-babel
-Simple React Webpack Babel Starter Kit
+# JSON Visual Editor
 
+> Web based JSON Editor powered by React.
 
-This is a simple [React](https://facebook.github.io/react/), [Webpack](http://webpack.github.io/) and [Babel](https://babeljs.io/) application with nothing else in it.
-
-### What's in it?
-
-Just a simple [index.jsx](./index.jsx), [webpack.config.js](./webpack.config.js) and [index.html](./public/index.html) file.
-
-### To run
+## To develop
 
 * You'll need to have [git](https://git-scm.com/) and [node](https://nodejs.org/en/) installed in your system.
 * Fork and clone the project:
@@ -44,3 +38,8 @@ If you want to run with webpack-dev-server simply run this command:
 Open the web browser to `http://localhost:8080/`
 
 Please contribute to the project if you think this can be done better in anyway even for this README :)
+
+## License
+
+Copyright (c) 2016 ogaoga.org
+Licensed under the [MIT License](LICENSE).
