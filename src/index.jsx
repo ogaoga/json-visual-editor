@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './styles/main.styl';
+import './styles/index.styl';
 import Page from './Page';
 
 export class App extends React.Component {
