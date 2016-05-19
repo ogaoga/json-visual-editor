@@ -1,21 +1,39 @@
-.container
-  display        flex
-  flex-direction row
-
-.column
-  margin  10px
-
-.json-column
-  flex-grow  1
-
-.data-column
-  flex-grow  1
-
-.ad-column
-  flex-basis auto
+body
+  background #fafafa
 
 footer
   text-align center
+  padding    10px 0
+  color      #ccc
+  background #222
 
-.json-text
-  width 100%
+.fillbox
+  position absolute
+  top      0
+  bottom   0
+  left     0
+  right    0
+
+main
+  &>div
+    @extend .fillbox
+
+section
+
+  &.json-text
+    position relative
+    textarea
+      @extend     .fillbox
+      resize      none
+      width       100%
+      height      100%
+      box-sizing  border-box
+      padding     8px
+      border      1px solid #ddd
+      box-shadow  2px 2px 2px 0 rgba(200,200,200,0.2) inset;
+      font-family Consolas, 'Courier New', Courier, Monaco, monospace
+      font-size   14px
+      line-height 1.2
+
+  &.visualized-data
+    overflow scroll
