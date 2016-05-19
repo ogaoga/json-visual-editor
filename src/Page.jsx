@@ -26,7 +26,6 @@ export default class Page extends React.Component {
           </div>
         </main>
         <footer>
-          <AdArea />
           <span>Copyright &copy; 2016 ogaoga.org</span>
         </footer>
       </div>
