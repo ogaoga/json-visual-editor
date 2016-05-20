@@ -4,10 +4,16 @@ import ReactDOM from 'react-dom';
 export default class ControlsArea extends React.Component {
 	render() {
 		return (
-      <div>
-        <span>Count: 0</span>
-        <button>Copy</button>
-        <button>Clear</button>
+      <div className="controls-area">
+        <div className="float-left">
+          <button className="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">Copy</button>
+        </div>
+        <div className="float-left">
+          <button className="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">Clear</button>
+        </div>
+        <div className="float-right control-count">
+          <span className="text-count">0</span>
+        </div>
       </div>
 		);
 	}

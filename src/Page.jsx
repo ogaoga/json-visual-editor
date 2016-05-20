@@ -1,10 +1,10 @@
-import React from 'react';
+import React    from 'react';
 import ReactDOM from 'react-dom';
 
-import TextArea from './TextArea';
-import ControlsArea from './ControlsArea';
+import TextArea       from './TextArea';
+import ControlsArea   from './ControlsArea';
 import VisualizedData from './VisualizedData';
-import AdArea from './AdArea';
+import AdArea         from './AdArea';
 
 export default class Page extends React.Component {
 	render() {
@@ -15,17 +15,16 @@ export default class Page extends React.Component {
 		        <h1 className="mdl-layout-title">JSON Visual Editor</h1>
           </div>
         </header>
-        <main className="container mdl-layout__content">
-          <section className="column json-column">
-            <TextArea />
-            <ControlsArea />
-          </section>
-			    <section className="column data-column">
-            <VisualizedData />
-          </section>
-			    <section className="column ad-column">
-            <AdArea />
-          </section>
+        <main className="mdl-layout__content">
+          <div className="mdl-grid">
+            <section className="json-text mdl-cell mdl-cell--4-col">
+              <TextArea />
+              <ControlsArea />
+            </section>
+            <section className="visualized-data mdl-cell mdl-cell--8-col">
+              <VisualizedData />
+            </section>
+          </div>
         </main>
         <footer>
           <span>Copyright &copy; 2016 ogaoga.org</span>
