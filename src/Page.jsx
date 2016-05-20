@@ -19,6 +19,7 @@ export default class Page extends React.Component {
           <div className="mdl-grid">
             <section className="json-text mdl-cell mdl-cell--4-col">
               <TextArea />
+              <ControlsArea />
             </section>
             <section className="visualized-data mdl-cell mdl-cell--8-col">
               <VisualizedData />

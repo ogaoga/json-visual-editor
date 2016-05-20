@@ -1,11 +1,7 @@
 body
   background #fafafa
 
-footer
-  text-align center
-  padding    10px 0
-  color      #ccc
-  background #222
+// common
 
 .fillbox
   position absolute
@@ -14,6 +10,15 @@ footer
   left     0
   right    0
 
+.float-left
+  float left
+  margin-right 10px
+.float-right
+  float right
+  margin-left 10px
+
+// Layout
+
 main
   &>div
     @extend .fillbox
@@ -21,19 +26,38 @@ main
 section
 
   &.json-text
+    $controlAreaHeight = 48px
     position relative
     textarea
-      @extend     .fillbox
+      position absolute
+      top      0
+      bottom   $controlAreaHeight
+      left     0
+      right    0
       resize      none
       width       100%
-      height      100%
       box-sizing  border-box
       padding     8px
       border      1px solid #ddd
       box-shadow  2px 2px 2px 0 rgba(200,200,200,0.2) inset;
       font-family Consolas, 'Courier New', Courier, Monaco, monospace
       font-size   14px
-      line-height 1.2
+
+    .controls-area
+      position   absolute
+      left       0
+      right      0
+      bottom     0
+      .control-count
+        color       #ccc
+        font-size   16px
+        font-weight bold
 
   &.visualized-data
     overflow scroll
+
+footer
+  text-align center
+  padding    10px 0
+  color      #ccc
+  background #222
