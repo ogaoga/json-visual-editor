@@ -1,21 +1,63 @@
-.container
-  display        flex
-  flex-direction row
+body
+  background #fafafa
 
-.column
-  margin  10px
+// common
 
-.json-column
-  flex-grow  1
+.fillbox
+  position absolute
+  top      0
+  bottom   0
+  left     0
+  right    0
 
-.data-column
-  flex-grow  1
+.float-left
+  float left
+  margin-right 10px
+.float-right
+  float right
+  margin-left 10px
 
-.ad-column
-  flex-basis auto
+// Layout
+
+main
+  &>div
+    @extend .fillbox
+
+section
+
+  &.json-text
+    $controlAreaHeight = 48px
+    position relative
+    textarea
+      position absolute
+      top      0
+      bottom   $controlAreaHeight
+      left     0
+      right    0
+      resize      none
+      width       100%
+      box-sizing  border-box
+      padding     8px
+      border      1px solid #ddd
+      box-shadow  2px 2px 2px 0 rgba(200,200,200,0.2) inset;
+      font-family Consolas, 'Courier New', Courier, Monaco, monospace
+      font-size   14px
+
+    .controls-area
+      position   absolute
+      left       0
+      right      0
+      bottom     0
+      .control-count
+        color       #ccc
+        font-size   16px
+        font-weight bold
+
+  &.visualized-data
+    overflow scroll
 
 footer
   text-align center
-
-.json-text
-  width 100%
+  padding    10px 0
+  color      #ccc
+  background #222
