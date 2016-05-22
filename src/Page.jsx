@@ -18,11 +18,11 @@ export default class Page extends React.Component {
         <main className="mdl-layout__content">
           <div className="mdl-grid">
             <section className="json-text mdl-cell mdl-cell--4-col">
-              <TextArea />
+              <TextArea data={this.props.data} updateData={this.props.updateData} />
               <ControlsArea />
             </section>
             <section className="visualized-data mdl-cell mdl-cell--8-col">
-              <VisualizedData />
+              <VisualizedData data={this.props.data} />
             </section>
           </div>
         </main>
