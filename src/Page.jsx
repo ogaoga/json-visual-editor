@@ -28,14 +28,12 @@ export default class Page extends React.Component {
         </main>
         <footer>
           <div>
-            <script type="text/javascript">
-              google_ad_client = "ca-pub-8657633193530659";
-              google_ad_slot = "9009078535";
-              google_ad_width = 728;
-              google_ad_height = 90;
-            </script>
-            <script type="text/javascript"
-                    src="//pagead2.googlesyndication.com/pagead/show_ads.js">
+            <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+            <ins className="adsbygoogle"
+                 data-ad-client="ca-pub-8657633193530659"
+                 data-ad-slot="9009078535"></ins>
+            <script>
+              (adsbygoogle = window.adsbygoogle || []).push({});
             </script>
           </div>
           <div>
