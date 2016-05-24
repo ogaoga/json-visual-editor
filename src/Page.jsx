@@ -28,6 +28,17 @@ export default class Page extends React.Component {
         </main>
         <footer>
           <div>
+            <script type="text/javascript">
+              google_ad_client = "ca-pub-8657633193530659";
+              google_ad_slot = "9009078535";
+              google_ad_width = 728;
+              google_ad_height = 90;
+            </script>
+            <script type="text/javascript"
+                    src="//pagead2.googlesyndication.com/pagead/show_ads.js">
+            </script>
+          </div>
+          <div>
             <span><a href="https://github.com/ogaoga/json-visual-editor">Source code on GitHub</a></span>
             <span> | </span>
             <span><a href="http://qiita.com/ogaoga/items/1dae5586601e6900c3f1">Development guide on Qiita</a></span>
