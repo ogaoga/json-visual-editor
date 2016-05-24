@@ -1,11 +1,13 @@
-import React from 'react';
+import React    from 'react';
 import ReactDOM from 'react-dom';
+
+import ObjectType   from './object/ObjectType';
 
 export default class VisualizedData extends React.Component {
 
 	render() {
 		return (
-      <div>{JSON.stringify(this.props.data)}</div>
+      <ObjectType data={this.props.data} />
 		);
 	}
 }

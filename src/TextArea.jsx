@@ -18,7 +18,7 @@ export default class TextArea extends React.Component {
         let data = JSON.parse(text);
         this.props.updateData(data);
       } catch(e) {
-        console.log('Not JSON: '+text);
+        console.log(e);
       }
     }).bind(this), 3000);
   }
