@@ -4,7 +4,7 @@ var loaders = require('./webpack.loaders');
 
 module.exports = {
 	entry: [
-		'./index.jsx' // Your appʼs entry point
+		'./src/index.jsx' // Your appʼs entry point
 	],
 	output: {
 		path: path.join(__dirname, 'public'),
