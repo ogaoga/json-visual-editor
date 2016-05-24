@@ -1,6 +1,7 @@
 # JSON Visual Editor
 
 > Web based JSON Editor powered by React.
+> http://ogaoga.github.io/json-visual-editor/
 
 ## To develop
 
