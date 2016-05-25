@@ -2,7 +2,6 @@ import React    from 'react';
 import ReactDOM from 'react-dom';
 
 import TextArea       from './TextArea';
-import ControlsArea   from './ControlsArea';
 import VisualizedData from './VisualizedData';
 import AdArea         from './AdArea';
 
@@ -19,7 +18,6 @@ export default class Page extends React.Component {
           <div className="mdl-grid">
             <section className="json-text mdl-cell mdl-cell--4-col">
               <TextArea data={this.props.data} updateData={this.props.updateData} />
-              <ControlsArea />
             </section>
             <section className="visualized-data mdl-cell mdl-cell--8-col">
               <VisualizedData data={this.props.data} />
