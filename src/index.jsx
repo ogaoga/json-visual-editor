@@ -15,7 +15,6 @@ export class App extends React.Component {
   }
 
   updateData(newData) {
-    console.log(newData);
     this.setState({data: newData});
   }
 
