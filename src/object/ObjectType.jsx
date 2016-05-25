@@ -18,7 +18,7 @@ export default class ObjectType extends React.Component {
       // Object or Array
       let rows = Object.keys(data).map((name) => {
         return (
-          <tr>
+          <tr key={name}>
             <th>{name}</th>
             <td><ObjectType data={data[name]} /></td>
           </tr>
