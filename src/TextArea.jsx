@@ -25,7 +25,8 @@ export default class TextArea extends React.Component {
 
 	render() {
 		return (
-      <textarea placeholder="Write JSON code here."
+      <textarea id="json-text"
+                placeholder="Write JSON code here."
                 defalutValue={this.state.text}
                 ref="jsonText"></textarea>
 		);
