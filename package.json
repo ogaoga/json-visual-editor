@@ -26,6 +26,7 @@
   },
   "homepage": "https://github.com/alicoding/react-webpack-babel#readme",
   "dependencies": {
+    "clipboard": "^1.5.10",
     "json-loader": "^0.5.4",
     "json5-loader": "^0.6.0",
     "jsx-loader": "^0.13.2",
