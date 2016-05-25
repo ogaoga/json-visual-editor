@@ -17,6 +17,14 @@ body
   float right
   margin-left 10px
 
+.monospace-font
+  font-family Consolas, 'Courier New', Courier, Monaco, monospace
+
+input[readonly]
+  cursor not-allowed
+  &~*
+    cursor not-allowed
+
 // Layout
 
 main
@@ -59,7 +67,7 @@ section
         font-weight bold
 
   &.visualized-data
-    overflow scroll
+    overflow  scroll
 
 footer
   text-align center
@@ -91,18 +99,25 @@ th
 
 // Type
 
-.string
-  color #933
+.string-type
+  color #833
 
-.number
-  color #393
+.number-type
+  color #338
+  @extend .monospace-font
 
-.boolean
-  color #339
+.boolean-type
+  color     #383
+  @extend   .monospace-font
+  input
+    margin-right 4px
+  span
+    font-size 14px
 
 .undefined
   color gray
 
 .null
-  color      gray
+  color      #999
+  @extend    .monospace-font
   font-style italic
