@@ -23,11 +23,16 @@ main
   &>div
     @extend .fillbox
 
+header
+  .mdl-layout__header-row
+    padding 0 20px
+
 section
 
   &.json-text
     $controlAreaHeight = 48px
-    position relative
+    position   relative
+    min-height 300px
     textarea
       position absolute
       top      0
