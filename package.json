@@ -1,16 +1,17 @@
 {
-  "name": "react-webpack-babel",
-  "version": "0.0.2",
-  "description": "React Webpack Babel Starter Kit",
+  "name": "json-visual-editor",
+  "version": "0.0.1",
+  "description": "Web based JSON Editor powered by React.",
   "main": "''",
   "scripts": {
     "build": "NODE_ENV=production webpack -p --config webpack.production.config.js --progress --profile --colors",
     "dev": "webpack-dev-server --progress --profile --colors --hot",
-    "deploy": "npm run build && gh-pages -d public"
+    "deploy": "npm run build && gh-pages -d public",
+    "test": "NODE_ENV=test mocha --compilers js:babel-core/register"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/alicoding/react-webpack-babel"
+    "url": "https://github.com/ogaoga/json-visual-editor"
   },
   "keywords": [
     "React",
@@ -19,12 +20,12 @@
     "Starter",
     "template"
   ],
-  "author": "Ali Al Dallal",
+  "author": "Tsutomu Ogasawara (ogaoga)",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/alicoding/react-webpack-babel/issues"
+    "url": "https://github.com/ogaoga/json-visual-editor/issues"
   },
-  "homepage": "https://github.com/alicoding/react-webpack-babel#readme",
+  "homepage": "http://ogaoga.github.io/json-visual-editor/",
   "dependencies": {
     "clipboard": "^1.5.10",
     "json-loader": "^0.5.4",
