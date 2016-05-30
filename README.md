@@ -1,7 +1,11 @@
 # JSON Visual Editor
 
 > Web based JSON Editor powered by React.
-> http://ogaoga.github.io/json-visual-editor/
+> https://ogaoga.github.io/json-visual-editor/
+
+[![Build Status][travis-image]][travis-url]
+
+![json-visual-editor](resources/json-visual-editor.png?raw=true)
 
 ## To develop
 
@@ -9,34 +13,40 @@
 * Fork and clone the project:
 
 ```
-> $ git clone https://github.com/alicoding/react-webpack-babel.git
+$ git clone https://github.com/ogaoga/json-visual-editor.git
 ```
 
 Then install the dependencies:
 
 ```
-> $ npm install
+$ npm install
 ```
 
 Install webpack and the development server:
 
 ```
-> $ npm i webpack-dev-server webpack -g
+$ npm install webpack-dev-server webpack -g
 ```
 
 You can simply run webpack build using this command: 
 
 ```
-> $ npm run build
+$ npm run build
 ```
 
 If you want to run with webpack-dev-server simply run this command: 
 
 ```
-> $ npm run dev
+$ npm run dev
 ```
 
 Open the web browser to `http://localhost:8080/`
+
+If you want to test simply run this command: 
+
+```
+$ npm test
+```
 
 Please contribute to the project if you think this can be done better in anyway even for this README :)
 
@@ -48,3 +58,6 @@ Please contribute to the project if you think this can be done better in anyway 
 
 Copyright (c) 2016 ogaoga.org
 Licensed under the [MIT License](LICENSE).
+
+[travis-image]: https://img.shields.io/travis/rakuten-frontend/bower-browser/master.svg?style=flat
+[travis-url]: https://travis-ci.org/rakuten-frontend/bower-browser
