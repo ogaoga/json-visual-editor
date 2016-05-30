@@ -61,3 +61,14 @@ Licensed under the [MIT License](LICENSE).
 
 [travis-image]: https://img.shields.io/travis/rakuten-frontend/bower-browser/master.svg?style=flat
 [travis-url]: https://travis-ci.org/rakuten-frontend/bower-browser
+
+## ToDo
+
+- [ ] 表示更新のロジックを変更。
+- [ ] ドラッグ＆ドロップで JSON 入力。
+- [ ] Format ボタン追加。
+- [ ] オブジェクトの折りたたみ。
+- [ ] 画像のプレビュー。
+- [ ] HTML での表示。
+- [ ] 編集機能。
+- [ ] バージョン番号の挿入。

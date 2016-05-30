@@ -14,6 +14,28 @@ export class App extends React.Component {
     this.updateData = this.updateData.bind(this);
   }
 
+  componentDidMount() {
+    let body = document.getElementsByTagName('body')[0];
+    body.addEventListener('drop', (e) => {
+      e.preventDefault();
+      if (e.target.id !== 'json-text') {
+        e.stopPropagation();
+      }
+    });
+    body.addEventListener('dragover', (e) => {
+      e.preventDefault();
+      return false;
+    });
+    body.addEventListener('dragenter', (e) => {
+      //console.log('dragenter', e);
+      body.classList.add('dragging');
+    });
+    body.addEventListener('dragleave', (e) => {
+      console.log('dragleave', e.target);
+      body.classList.remove('dragging');
+    });
+  }
+
   updateData(newData) {
     this.setState({data: newData});
   }
