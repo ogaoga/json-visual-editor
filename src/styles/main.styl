@@ -37,8 +37,10 @@ header
 
 body.dragging
   .json-text
-    .droppable-view
-      display flex
+    textarea
+      border        8px dotted #ccc
+      border-radius 8px
+      padding       1px
 
 section
 
@@ -60,22 +62,6 @@ section
       box-shadow  2px 2px 2px 0 rgba(200,200,200,0.2) inset;
       font-family Consolas, 'Courier New', Courier, Monaco, monospace
       font-size   14px
-
-    .droppable-view
-      position absolute
-      top      0
-      bottom   $controlAreaHeight
-      left     0
-      right    0
-      display         none
-      justify-content center
-      align-items     center
-      color           #999
-      background      #ddd
-      font-size       24px
-      border          5px dotted #999
-      border-radius   16px
-      margin          4px
 
     .controls-area
       position   absolute

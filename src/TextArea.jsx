@@ -66,9 +66,6 @@ export default class TextArea extends React.Component {
                   onChange={this.onChange}
                   onDrop={this.onDrop}
                   ref="jsonText"></textarea>
-        <div className="droppable-view">
-          <span>Drop JSON file here!</span>
-        </div>
         <ControlsArea text={this.state.text}
                       clearText={this.clearText} />
       </div>

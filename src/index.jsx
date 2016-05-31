@@ -8,31 +8,45 @@ export class App extends React.Component {
 
   constructor(props) {
     super(props);
+
+    // state
     this.state = {
       data: null
     };
+
+    // this binding
     this.updateData = this.updateData.bind(this);
+
+    // for drag event handling
+    this.previousEvent = null;
   }
 
   componentDidMount() {
     let body = document.getElementsByTagName('body')[0];
     body.addEventListener('drop', (e) => {
-      e.preventDefault();
       if (e.target.id !== 'json-text') {
+        e.preventDefault();
         e.stopPropagation();
       }
+      this.previousEvent = 'drop';
+      body.classList.remove('dragging');
     });
     body.addEventListener('dragover', (e) => {
+      if (this.previousEvent === 'dragenter') {
+        body.classList.add('dragging');
+      }
+      this.previousEvent = 'dragover';
       e.preventDefault();
       return false;
     });
     body.addEventListener('dragenter', (e) => {
-      //console.log('dragenter', e);
-      body.classList.add('dragging');
+      this.previousEvent = 'dragenter';
     });
     body.addEventListener('dragleave', (e) => {
-      console.log('dragleave', e.target);
-      body.classList.remove('dragging');
+      if (this.previousEvent === 'dragover') {
+        body.classList.remove('dragging');
+      }
+      this.previousEvent = 'dragleave';
     });
   }
 
