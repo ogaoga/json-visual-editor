@@ -15,28 +15,48 @@ export default class TextArea extends React.Component {
     this.onChange = this.onChange.bind(this);
     this.onDrop = this.onDrop.bind(this);
     this.clearText = this.clearText.bind(this);
+    this.resetTimeout = this.resetTimeout.bind(this);
+    // for timer
+    this.timeoutId = 0;
+  }
+
+  oneshotClass(target, className, timeout = 1000) {
+    target.classList.add(className);
+    setTimeout(() => {
+      target.classList.remove(className);
+    }, timeout);
   }
 
   updateData(text) {
+    // Set data
     this.setState({text: text});
-    try {
-      let data = JSON.parse(text);
-      this.props.updateData(data);
-    } catch(e) {
-      //console.log(e);
+    // Highlight textarea
+    let jsonText = this.refs.jsonText;
+    if (text.length > 0) {
+      try {
+        let data = JSON.parse(text);
+        this.props.updateData(data);
+        this.oneshotClass(jsonText, 'valid');
+      } catch(e) {
+        this.props.updateData(null);
+        this.oneshotClass(jsonText, 'invalid');
+      }
+    }
+    else {
       this.props.updateData(null);
     }
   }
 
-  componentDidMount() {
-    // Refresh
-    setInterval((() => {
+  resetTimeout() {
+    clearTimeout(this.timeoutId);
+    this.timeoutId = setTimeout(() => {
       let text = this.refs.jsonText.value;
       this.updateData(text);
-    }).bind(this), 3000);
+    }, 1000);
   }
 
   onChange(event) {
+    this.resetTimeout();
     this.setState({text: event.target.value});
   }
 
