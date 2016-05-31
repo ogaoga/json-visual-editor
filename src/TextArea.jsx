@@ -20,12 +20,29 @@ export default class TextArea extends React.Component {
     this.timeoutId = 0;
   }
 
+  oneshotClass(target, className, timeout = 1000) {
+    target.classList.add(className);
+    setTimeout(() => {
+      target.classList.remove(className);
+    }, timeout);
+  }
+
   updateData(text) {
+    // Set data
     this.setState({text: text});
-    try {
-      let data = JSON.parse(text);
-      this.props.updateData(data);
-    } catch(e) {
+    // Highlight textarea
+    let jsonText = this.refs.jsonText;
+    if (text.length > 0) {
+      try {
+        let data = JSON.parse(text);
+        this.props.updateData(data);
+        this.oneshotClass(jsonText, 'valid');
+      } catch(e) {
+        this.props.updateData(null);
+        this.oneshotClass(jsonText, 'invalid');
+      }
+    }
+    else {
       this.props.updateData(null);
     }
   }
