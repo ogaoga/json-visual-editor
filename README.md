@@ -72,4 +72,5 @@ Licensed under the [MIT License](LICENSE).
 - [ ] 画像のプレビュー。
 - [ ] HTML での表示。
 - [ ] 編集機能。
+- [ ] Chrome Web Store app build
 - [ ] バージョン番号の挿入。
