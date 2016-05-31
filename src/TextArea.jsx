@@ -61,7 +61,7 @@ export default class TextArea extends React.Component {
 		return (
       <div>
         <textarea id="json-text"
-                  placeholder="Write JSON code here."
+                  placeholder="Write JSON code or drop a JSON file here."
                   value={this.state.text}
                   onChange={this.onChange}
                   onDrop={this.onDrop}
