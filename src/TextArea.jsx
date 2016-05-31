@@ -15,6 +15,9 @@ export default class TextArea extends React.Component {
     this.onChange = this.onChange.bind(this);
     this.onDrop = this.onDrop.bind(this);
     this.clearText = this.clearText.bind(this);
+    this.resetTimeout = this.resetTimeout.bind(this);
+    // for timer
+    this.timeoutId = 0;
   }
 
   updateData(text) {
@@ -23,20 +26,20 @@ export default class TextArea extends React.Component {
       let data = JSON.parse(text);
       this.props.updateData(data);
     } catch(e) {
-      //console.log(e);
       this.props.updateData(null);
     }
   }
 
-  componentDidMount() {
-    // Refresh
-    setInterval((() => {
+  resetTimeout() {
+    clearTimeout(this.timeoutId);
+    this.timeoutId = setTimeout(() => {
       let text = this.refs.jsonText.value;
       this.updateData(text);
-    }).bind(this), 3000);
+    }, 1000);
   }
 
   onChange(event) {
+    this.resetTimeout();
     this.setState({text: event.target.value});
   }
 

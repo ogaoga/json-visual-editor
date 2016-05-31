@@ -64,13 +64,13 @@ Licensed under the [MIT License](LICENSE).
 
 ## ToDo
 
-- [ ] 表示更新のロジックを変更。
-- [x] ドラッグ＆ドロップで JSON 入力。
-- [ ] Firefox で <textarea> の高さが足りない。
-- [ ] Format ボタン追加。
-- [ ] オブジェクトの折りたたみ。
-- [ ] 画像のプレビュー。
-- [ ] HTML での表示。
-- [ ] 編集機能。
-- [ ] Chrome Web Store app build
-- [ ] バージョン番号の挿入。
+- [ ] Use ESLint.
+- [ ] bug: Height of <textarea> is not enough in Firefox.
+- [ ] Add Format button.
+- [ ] Collapse object.
+- [ ] Image preview.
+- [ ] HTML view.
+- [ ] Introduce Redux.
+- [ ] Edit feature.
+- [ ] Chrome Web Store app build.
+- [ ] Insert version number.
