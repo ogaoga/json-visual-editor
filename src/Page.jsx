@@ -6,7 +6,6 @@ import VisualizedData from './VisualizedData';
 import AdArea         from './AdArea';
 
 export default class Page extends React.Component {
-
 	render() {
 		return (
       <div className="mdl-layout mdl-js-layout mdl-layout--fixed-header">
@@ -15,7 +14,7 @@ export default class Page extends React.Component {
 		        <h1 className="mdl-layout-title">JSON Visual Editor</h1>
           </div>
         </header>
-        <main id="main-area" className="mdl-layout__content">
+        <main className="mdl-layout__content">
           <div className="mdl-grid">
             <section className="json-text mdl-cell mdl-cell--4-col mdl-cell--8-col-tablet">
               <TextArea data={this.props.data} updateData={this.props.updateData} />

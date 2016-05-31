@@ -65,7 +65,8 @@ Licensed under the [MIT License](LICENSE).
 ## ToDo
 
 - [ ] 表示更新のロジックを変更。
-- [ ] ドラッグ＆ドロップで JSON 入力。
+- [x] ドラッグ＆ドロップで JSON 入力。
+- [ ] Firefox で <textarea> の高さが足りない。
 - [ ] Format ボタン追加。
 - [ ] オブジェクトの折りたたみ。
 - [ ] 画像のプレビュー。
