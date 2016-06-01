@@ -70,6 +70,7 @@ Licensed under the [MIT License](LICENSE).
 - [ ] Collapse object.
 - [ ] Image preview.
 - [ ] HTML view.
+- [ ] Timestamp translation.
 - [ ] Introduce Redux.
 - [ ] Edit feature.
 - [ ] Chrome Web Store app build.
