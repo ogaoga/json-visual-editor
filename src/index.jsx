@@ -39,10 +39,10 @@ export class App extends React.Component {
       e.preventDefault();
       return false;
     });
-    body.addEventListener('dragenter', (e) => {
+    body.addEventListener('dragenter', () => {
       this.previousEvent = 'dragenter';
     });
-    body.addEventListener('dragleave', (e) => {
+    body.addEventListener('dragleave', () => {
       if (this.previousEvent === 'dragover') {
         body.classList.remove('dragging');
       }
@@ -54,11 +54,11 @@ export class App extends React.Component {
     this.setState({data: newData});
   }
 
-	render() {
-		return (
+  render() {
+    return (
 			<Page data={this.state.data} updateData={this.updateData} />
 		);
-	}
+  }
 }
 
-ReactDOM.render(<App/>, document.querySelector("#myApp"));
+ReactDOM.render(<App/>, document.querySelector('#myApp'));

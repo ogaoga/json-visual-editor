@@ -1,5 +1,4 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 
 import ControlsArea   from './ControlsArea';
 
@@ -7,7 +6,7 @@ export default class TextArea extends React.Component {
 
   constructor(props) {
     super(props);
-    let text = (props.data === null) ? "" : JSON.stringify(props.data)
+    let text = (props.data === null) ? '' : JSON.stringify(props.data);
     this.state = {
       text: text
     };
@@ -77,8 +76,8 @@ export default class TextArea extends React.Component {
     this.updateData('');
   }
 
-	render() {
-		return (
+  render() {
+    return (
       <div>
         <textarea id="json-text"
                   placeholder="Write JSON code or drop a JSON file here."
@@ -90,5 +89,5 @@ export default class TextArea extends React.Component {
                       clearText={this.clearText} />
       </div>
 		);
-	}
+  }
 }

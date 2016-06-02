@@ -1,5 +1,4 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import Clipboard from 'clipboard';
 
 export default class ControlsArea extends React.Component {
@@ -9,8 +8,8 @@ export default class ControlsArea extends React.Component {
     new Clipboard('#copy-to-clipboard');
   }
 
-	render() {
-		return (
+  render() {
+    return (
       <div className="controls-area">
         <div className="float-left">
           <button id="copy-to-clipboard"
@@ -28,5 +27,5 @@ export default class ControlsArea extends React.Component {
         </div>
       </div>
 		);
-	}
+  }
 }
