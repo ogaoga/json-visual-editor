@@ -1,6 +1,7 @@
 import React from 'react';
 
-import ControlsArea   from './ControlsArea';
+import ControlsArea from './ControlsArea';
+import SampleJson   from 'raw!./samples/simple.json';
 
 export default class TextArea extends React.Component {
 
@@ -15,6 +16,7 @@ export default class TextArea extends React.Component {
     this.onDrop = this.onDrop.bind(this);
     this.clearText = this.clearText.bind(this);
     this.resetTimeout = this.resetTimeout.bind(this);
+    this.pasteSample = this.pasteSample.bind(this);
     // for timer
     this.timeoutId = 0;
   }
@@ -76,6 +78,12 @@ export default class TextArea extends React.Component {
     this.updateData('');
   }
 
+  pasteSample() {
+    if (this.refs.jsonText.value != SampleJson) {
+      this.updateData(SampleJson);
+    }
+  }
+
   render() {
     return (
       <div>
@@ -86,7 +94,9 @@ export default class TextArea extends React.Component {
                   onDrop={this.onDrop}
                   ref="jsonText"></textarea>
         <ControlsArea text={this.state.text}
-                      clearText={this.clearText} />
+                      clearText={this.clearText}
+                      pasteSample={this.pasteSample}
+                      />
       </div>
 		);
   }

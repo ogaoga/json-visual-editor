@@ -22,6 +22,10 @@ export default class ControlsArea extends React.Component {
                   disabled={this.props.text.length==0}
                   onClick={this.props.clearText}>Clear</button>
         </div>
+        <div className="float-left">
+          <button className="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect"
+                  onClick={this.props.pasteSample}>Sample</button>
+        </div>
         <div className="float-right control-count">
           <span className="text-count">{this.props.text.length}</span>
         </div>
