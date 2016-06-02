@@ -89,5 +89,5 @@ export default class TextArea extends React.Component {
                       clearText={this.clearText} />
       </div>
 		);
-	}
+  }
 }
