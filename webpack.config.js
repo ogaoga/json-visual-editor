@@ -17,7 +17,14 @@ module.exports = {
 		extensions: ['', '.js', '.jsx']
 	},
 	module: {
-		loaders: loaders
+		loaders: loaders,
+    preLoaders: [
+      {
+        test: /\.jsx?$/,
+        exclude: /node_modules/,
+        loader: 'eslint-loader'
+      }
+    ]
 	},
 	devServer: {
 		contentBase: "./public",
