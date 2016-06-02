@@ -64,14 +64,19 @@ Licensed under the [MIT License](LICENSE).
 
 ## ToDo
 
-- [ ] Use ESLint.
-- [ ] bug: Height of <textarea> is not enough in Firefox.
+- [ ] Add style for number and boolean.
+- [ ] bug: Height of &lt;textarea&gt; is not enough in Firefox.
 - [ ] Add Format button.
 - [ ] Collapse object.
+- [ ] Show the number of elements.
 - [ ] Image preview.
 - [ ] HTML view.
 - [ ] Timestamp translation.
+- [ ] Implement test cases.
 - [ ] Introduce Redux.
 - [ ] Edit feature.
+- [ ] Sample data.
+- [ ] Cache to localStorage.
 - [ ] Chrome Web Store app build.
+- [ ] React Native
 - [ ] Insert version number.
