@@ -1,5 +1,4 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 
 import BooleanType from './BooleanType';
 import NumberType  from './NumberType';
@@ -7,14 +6,14 @@ import StringType  from './StringType';
 
 export default class ObjectType extends React.Component {
 
-	render() {
+  render() {
     let data = this.props.data;
     let result = null;
     if (data === null) {
       // null
       result = (<span className="null">null</span>);
     }
-   else if (typeof(data) === typeof({}) && data !== null) {
+    else if (typeof(data) === typeof({}) && data !== null) {
       // Object or Array
       let rows = Object.keys(data).map((name) => {
         return (
@@ -30,13 +29,13 @@ export default class ObjectType extends React.Component {
             {rows}
           </tbody>
         </table>
-	    );
+      );
     }
     else if (typeof(data) === typeof(1)) {
       // Number
       result = (<NumberType data={data} />);
     }
-    else if (typeof(data) === typeof("a")) {
+    else if (typeof(data) === typeof('a')) {
       // String
       result= (<StringType data={data} />);
     }
