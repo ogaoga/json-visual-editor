@@ -1,6 +1,8 @@
 import React from 'react';
 import Clipboard from 'clipboard';
 
+import OptionMenu from './OptionMenu';
+
 export default class ControlsArea extends React.Component {
 
   componentDidMount() {
@@ -34,11 +36,10 @@ export default class ControlsArea extends React.Component {
                   id="more-button">
             <i className="material-icons">more_vert</i>
           </button>
-          <ul className="mdl-menu mdl-menu--top-left mdl-js-menu mdl-js-ripple-effect"
-              data-mdl-for="more-button">
-            <li className="mdl-menu__item"
-                onClick={this.props.pasteSample}>Paste Sample JSON</li>
-          </ul>
+          <OptionMenu pasteSample={this.props.pasteSample}
+                      autoFormat={this.props.autoFormat}
+                      setAutoFormat={this.props.setAutoFormat}
+                      />
         </div>
         <div className="float-right control-count">
           <span className="text-count">{this.props.text.length}</span>

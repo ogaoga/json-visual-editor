@@ -9,7 +9,8 @@ export default class TextArea extends React.Component {
     super(props);
     let text = (props.data === null) ? '' : JSON.stringify(props.data);
     this.state = {
-      text: text
+      text: text,
+      autoFormat: false
     };
     // bind React.Component for this
     this.onChange = this.onChange.bind(this);
@@ -17,6 +18,7 @@ export default class TextArea extends React.Component {
     this.clearText = this.clearText.bind(this);
     this.resetTimeout = this.resetTimeout.bind(this);
     this.pasteSample = this.pasteSample.bind(this);
+    this.setAutoFormat = this.setAutoFormat.bind(this);
     // for timer
     this.timeoutId = 0;
   }
@@ -29,6 +31,9 @@ export default class TextArea extends React.Component {
   }
 
   updateData(text) {
+    if (this.state.autoFormat) {
+      text = JSON.stringify(JSON.parse(text), null, 2);
+    }
     // Set data
     this.setState({text: text});
     // Highlight textarea
@@ -84,6 +89,10 @@ export default class TextArea extends React.Component {
     }
   }
 
+  setAutoFormat(enabled) {
+    this.setState({autoFormat: enabled});
+  }
+
   render() {
     return (
       <div>
@@ -96,6 +105,8 @@ export default class TextArea extends React.Component {
         <ControlsArea text={this.state.text}
                       clearText={this.clearText}
                       pasteSample={this.pasteSample}
+                      autoFormat={this.state.autoFormat}
+                      setAutoFormat={this.setAutoFormat}
                       />
       </div>
 		);
