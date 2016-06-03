@@ -1,0 +1,19 @@
+{
+  "number":  123456,
+  "string":  "Hello, World!",
+  "null":    null,
+  "boolean": {
+    "true":    true,
+    "false":   false
+  },
+  "array": [
+    "apple",
+    "orange",
+    "banana"
+  ],
+  "object": {
+    "name":      "John",
+    "age":       32,
+    "isMarried": true
+  }
+}
