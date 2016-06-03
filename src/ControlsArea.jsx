@@ -37,7 +37,7 @@ export default class ControlsArea extends React.Component {
           <ul className="mdl-menu mdl-menu--top-left mdl-js-menu mdl-js-ripple-effect"
               data-mdl-for="more-button">
             <li className="mdl-menu__item"
-                onClick={this.props.pasteSample}>Paste Sample</li>
+                onClick={this.props.pasteSample}>Paste Sample JSON</li>
           </ul>
         </div>
         <div className="float-right control-count">
