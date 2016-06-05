@@ -31,8 +31,12 @@ export default class TextArea extends React.Component {
   }
 
   updateData(text) {
-    if (this.state.autoFormat) {
-      text = JSON.stringify(JSON.parse(text), null, 2);
+    if (text.length > 0 && this.state.autoFormat) {
+      try {
+        text = JSON.stringify(JSON.parse(text), null, 2);
+      } catch(e) {
+        // nop
+      }
     }
     // Set data
     this.setState({text: text});
