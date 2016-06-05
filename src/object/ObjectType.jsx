@@ -23,8 +23,12 @@ export default class ObjectType extends React.Component {
           </tr>
         );
       });
+      const headerLabel = rows.length.toString() + ' element' + ((rows.length>1) ? 's' : '');
       result = (
         <table>
+          <thead>
+            <tr><th colSpan="2">{headerLabel}</th></tr>
+          </thead>
           <tbody>
             {rows}
           </tbody>
