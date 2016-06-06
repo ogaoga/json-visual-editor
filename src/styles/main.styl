@@ -109,6 +109,25 @@ th
   text-align right
   background #eef
 
+thead
+  th
+    color           gray
+    font-weight     normal
+    background      #cce
+    vertical-align  middle
+    padding         0 4px
+    &.expand
+      text-align   left
+      border-right 0
+    &.objectType
+      text-align   right
+      border-left  0
+
+tbody
+  display none
+  &.expanded
+    display table-row-group
+
 // Type
 
 .string-type
@@ -151,3 +170,15 @@ th
     background-color #fff6fc
   100%
     background-color #ffffff
+
+
+// Components
+
+.component-expander
+  color      gray
+  i
+    transition transform 0.2s ease
+    transform rotateZ(-90deg)
+  &.expanded
+    i
+      transform rotateZ(0deg)

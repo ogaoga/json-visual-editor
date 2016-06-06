@@ -66,7 +66,6 @@ Licensed under the [MIT License](LICENSE).
 
 - [ ] Introduce Redux.
 - [ ] Collapse object.
-- [ ] Show the number of elements.
 - [ ] Image preview.
 - [ ] HTML view.
 - [ ] Timestamp translation.
