@@ -8,6 +8,7 @@ import StringType  from '../src/object/StringType.jsx'
 import NumberType  from '../src/object/NumberType.jsx'
 import BooleanType from '../src/object/BooleanType.jsx'
 import ObjectType  from '../src/object/ObjectType.jsx'
+import Expander    from '../src/Expander.jsx'
 
 let params = [
   {
@@ -25,7 +26,20 @@ let params = [
     actual: (<ObjectType data={[null, "abc", 123]} />),
     expected: (
       <table>
-        <tbody>
+        <thead>
+          <tr>
+            <th className="expand">
+              <Expander
+                defaultValue={true}
+                onChangeExpansion={function noRefCheck() {}}
+              />
+            </th>
+            <th className="objectType">
+              Array [3]
+            </th>
+          </tr>
+        </thead>
+        <tbody className="expanded">
           <tr>
             <th>0</th>
             <td>
