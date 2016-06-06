@@ -3,8 +3,25 @@ import React from 'react';
 import BooleanType from './BooleanType';
 import NumberType  from './NumberType';
 import StringType  from './StringType';
+import Expander    from '../Expander';
 
 export default class ObjectType extends React.Component {
+
+  constructor(props) {
+    super(props);
+
+    // state
+    this.state = {
+      expanded: true
+    };
+
+    // bind
+    this.onChangeExpansion = this.onChangeExpansion.bind(this);
+  }
+
+  onChangeExpansion(isExpanded) {
+    this.setState({expanded: isExpanded});
+  }
 
   render() {
     let data = this.props.data;
@@ -23,9 +40,21 @@ export default class ObjectType extends React.Component {
           </tr>
         );
       });
+      const typeLabel = Array.isArray(data) ? 'Array' : 'Object';
+      const headerLabel = '[' + rows.length.toString() + ']';
       result = (
         <table>
-          <tbody>
+          <thead>
+            <tr>
+              <th className="expand">
+                <Expander defaultValue={true} onChangeExpansion={this.onChangeExpansion} />
+              </th>
+              <th className="objectType">
+                {typeLabel} {headerLabel}
+              </th>
+            </tr>
+          </thead>
+          <tbody className={(this.state.expanded) ? 'expanded' : ''}>
             {rows}
           </tbody>
         </table>
