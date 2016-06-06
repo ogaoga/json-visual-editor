@@ -65,7 +65,7 @@ Licensed under the [MIT License](LICENSE).
 ## ToDo
 
 - [ ] Introduce Redux.
-- [ ] Collapse object.
+- [ ] Show level of depth.
 - [ ] Image preview.
 - [ ] HTML view.
 - [ ] Timestamp translation.
