@@ -7,7 +7,7 @@ export default class Expander extends React.Component {
 
     // state
     this.state = {
-      expanded: this.props.defaultValue
+      expanded: props.defaultValue
     };
 
     // bind

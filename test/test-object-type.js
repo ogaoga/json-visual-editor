@@ -65,8 +65,8 @@ let params = [
 ];
 
 describe('ObjectType Component', () => {
-  let renderer = createRenderer();
   params.forEach((param) => {
+    let renderer = createRenderer();
     it(param.title, () => {
       renderer.render(param.actual);
       let actualElement = renderer.getRenderOutput();
