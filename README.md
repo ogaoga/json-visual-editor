@@ -66,12 +66,10 @@ Licensed under the [MIT License](LICENSE).
 
 - [ ] Introduce Redux.
 - [ ] Show level of depth.
-- [ ] Image preview.
-- [ ] HTML view.
+- [ ] Cache to localStorage.
 - [ ] Timestamp translation.
 - [ ] Implement test cases.
 - [ ] Edit feature.
-- [ ] Cache to localStorage.
 - [ ] Chrome Web Store app build.
 - [ ] React Native
 - [ ] Insert version number.
