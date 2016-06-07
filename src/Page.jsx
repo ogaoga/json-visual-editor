@@ -10,6 +10,10 @@ export default class Page extends React.Component {
         <header className="mdl-layout__header">
           <div className="mdl-layout__header-row">
             <h1 className="mdl-layout-title">JSON Visual Editor</h1>
+            <div className="mdl-layout-spacer"></div>
+            <nav className="mdl-navigation">
+              <a className="mdl-navigation__link" href="https://github.com/ogaoga/json-visual-editor/issues/new"><i className="material-icons">feedback</i> Feedback</a>
+            </nav>
           </div>
         </header>
         <main className="mdl-layout__content">

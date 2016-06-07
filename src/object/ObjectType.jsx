@@ -47,7 +47,7 @@ export default class ObjectType extends React.Component {
           <thead>
             <tr>
               <th className="expand">
-                <Expander defaultValue={true} onChangeExpansion={this.onChangeExpansion} />
+                <Expander defaultValue={this.state.expanded} onChangeExpansion={this.onChangeExpansion} />
               </th>
               <th className="objectType">
                 {typeLabel} {headerLabel}

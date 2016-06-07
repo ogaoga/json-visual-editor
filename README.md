@@ -65,13 +65,11 @@ Licensed under the [MIT License](LICENSE).
 ## ToDo
 
 - [ ] Introduce Redux.
-- [ ] Collapse object.
-- [ ] Image preview.
-- [ ] HTML view.
+- [ ] Show level of depth.
+- [ ] Cache to localStorage.
 - [ ] Timestamp translation.
 - [ ] Implement test cases.
 - [ ] Edit feature.
-- [ ] Cache to localStorage.
 - [ ] Chrome Web Store app build.
 - [ ] React Native
 - [ ] Insert version number.
