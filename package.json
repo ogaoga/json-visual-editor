@@ -28,6 +28,7 @@
   "homepage": "http://ogaoga.github.io/json-visual-editor/",
   "dependencies": {
     "clipboard": "^1.5.10",
+    "is_js": "^0.8.0",
     "json-loader": "^0.5.4",
     "json5-loader": "^0.6.0",
     "jsx-loader": "^0.13.2",
