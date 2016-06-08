@@ -3,7 +3,7 @@ import './styles/index.styl';
 import '../node_modules/material-design-lite/material.min.js';
 import Page from './Page';
 
-export class App extends React.Component {
+class App extends React.Component {
 
   constructor(props) {
     super(props);
@@ -59,3 +59,5 @@ export class App extends React.Component {
 		);
   }
 }
+
+export default App

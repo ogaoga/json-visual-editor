@@ -3,7 +3,9 @@ import Clipboard from 'clipboard';
 
 import OptionMenu from './OptionMenu';
 
-export default class ControlsArea extends React.Component {
+import { clearText } from './actions'
+
+class ControlsArea extends React.Component {
 
   componentDidMount() {
     // init clipboard
@@ -11,12 +13,13 @@ export default class ControlsArea extends React.Component {
   }
 
   render() {
+    const { dispatch, isEmpty, textLength } = this.props
     return (
       <div className="controls-area">
         <div className="float-left">
           <button id="copy-to-clipboard"
                   data-clipboard-target="#json-text"
-                  disabled={this.props.text.length==0}
+                  disabled={isEmpty}
                   className="mdl-button mdl-js-button mdl-button--icon"
                   title="Copy">
             <i className="material-icons">content_copy</i>
@@ -24,8 +27,8 @@ export default class ControlsArea extends React.Component {
         </div>
         <div className="float-left">
           <button className="mdl-button mdl-js-button mdl-button--icon"
-                  disabled={this.props.text.length==0}
-                  onClick={this.props.clearText}
+                  disabled={isEmpty}
+                  onClick={() => dispatch(clearText())}
                   title="Clear">
             <i className="material-icons">delete</i>
           </button>
@@ -42,9 +45,21 @@ export default class ControlsArea extends React.Component {
                       />
         </div>
         <div className="float-right control-count">
-          <span className="text-count">{this.props.text.length}</span>
+          <span className="text-count">{textLength}</span>
         </div>
       </div>
 		);
   }
 }
+
+import { connect }   from 'react-redux'
+
+export default connect(
+  (state) => {
+    return {
+      textLength: state.text.length,
+      autoFormat: state.autoFormat,
+      isEmpty: state.text.length === 0
+    }
+  }
+)(ControlsArea)

@@ -1,20 +1,24 @@
 
 /*
-  {
+*/
+
+const initialState =  {
   data: null,
   text: '',
   autoFormat: false
-  }
-*/
+}
 
-const reducer = (state, action) => {
+const reducer = (state = initialState, action) => {
+
   switch (action.type) {
 
   case 'UPDATE_DATA':
     return state;
 
   case 'UPDATE_TEXT':
-    return state;
+    return Object.assign({}, state, {
+      text: action.newText
+    });
 
   case 'CLEAR_TEXT':
     return Object.assign({}, state, {

@@ -3,7 +3,7 @@ import React from 'react';
 import ControlsArea from './ControlsArea';
 import SampleJson   from 'raw!./samples/simple.json';
 
-export default class TextArea extends React.Component {
+class TextArea extends React.Component {
 
   constructor(props) {
     super(props);
@@ -67,7 +67,7 @@ export default class TextArea extends React.Component {
 
   onChange(event) {
     this.resetTimeout();
-    this.setState({text: event.target.value});
+    this.props.onTextChange(event.target.value)
   }
 
   onDrop(event) {
@@ -102,7 +102,7 @@ export default class TextArea extends React.Component {
       <div>
         <textarea id="json-text"
                   placeholder="Write JSON code or drop a JSON file here."
-                  value={this.state.text}
+                  value={this.props.text}
                   onChange={this.onChange}
                   onDrop={this.onDrop}
                   ref="jsonText"></textarea>
@@ -116,3 +116,21 @@ export default class TextArea extends React.Component {
 		);
   }
 }
+
+import { connect }   from 'react-redux'
+import { updateText } from './actions'
+
+export default connect(
+  (state) => {
+    return {
+      text: state.text
+    }
+  },
+  (dispatch) => {
+    return {
+      onTextChange: (text) => {
+        dispatch(updateText(text))
+      }
+    }
+  }
+)(TextArea)
