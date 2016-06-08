@@ -1,7 +1,4 @@
 
-/*
-*/
-
 const initialState =  {
   data: null,
   text: '',
