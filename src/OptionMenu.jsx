@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default class OptionMenu extends React.Component {
+class OptionMenu extends React.Component {
 
   render() {
     return (
@@ -11,10 +11,31 @@ export default class OptionMenu extends React.Component {
           Paste Sample JSON
         </li>
         <li className="mdl-menu__item"
-            onClick={this.props.setAutoFormat.bind(this, !this.props.autoFormat)}>
+            onClick={() => this.props.setAutoFormat(!this.props.autoFormat)} >
           {(this.props.autoFormat) ? 'Disable Auto Format' : 'Enable Auto Format'}
         </li>
       </ul>
 		);
   }
 }
+
+import { connect } from 'react-redux'
+import { setAutoFormat, pasteSample } from './actions'
+
+export default connect(
+  (state) => {
+    return {
+      autoFormat: state.autoFormat
+    }
+  },
+  (dispatch) => {
+    return {
+      setAutoFormat: (enabled) => {
+        dispatch(setAutoFormat(enabled))
+      },
+      pasteSample: () => {
+        dispatch(pasteSample())
+      }
+    }
+  }
+)(OptionMenu)

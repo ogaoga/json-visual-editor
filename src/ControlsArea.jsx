@@ -39,10 +39,7 @@ class ControlsArea extends React.Component {
                   id="more-button">
             <i className="material-icons">more_vert</i>
           </button>
-          <OptionMenu pasteSample={this.props.pasteSample}
-                      autoFormat={this.props.autoFormat}
-                      setAutoFormat={this.props.setAutoFormat}
-                      />
+          <OptionMenu />
         </div>
         <div className="float-right control-count">
           <span className="text-count">{textLength}</span>
@@ -58,7 +55,6 @@ export default connect(
   (state) => {
     return {
       textLength: state.text.length,
-      autoFormat: state.autoFormat,
       isEmpty: state.text.length === 0
     }
   }

@@ -1,24 +1,17 @@
 import React from 'react';
 
 import ControlsArea from './ControlsArea';
-import SampleJson   from 'raw!./samples/simple.json';
 
 class TextArea extends React.Component {
 
   constructor(props) {
     super(props);
-    let text = (props.data === null) ? '' : JSON.stringify(props.data);
-    this.state = {
-      text: text,
-      autoFormat: false
-    };
+
     // bind React.Component for this
     this.onChange = this.onChange.bind(this);
     this.onDrop = this.onDrop.bind(this);
     this.clearText = this.clearText.bind(this);
     this.resetTimeout = this.resetTimeout.bind(this);
-    this.pasteSample = this.pasteSample.bind(this);
-    this.setAutoFormat = this.setAutoFormat.bind(this);
     // for timer
     this.timeoutId = 0;
   }
@@ -30,16 +23,16 @@ class TextArea extends React.Component {
     }, timeout);
   }
 
-  updateData(text) {
-    if (text.length > 0 && this.state.autoFormat) {
+  updateData(text, autoFormat = false) {
+    // Format text
+    if (text.length > 0 && autoFormat) {
       try {
         text = JSON.stringify(JSON.parse(text), null, 2);
+        this.props.onTextChange(text)
       } catch(e) {
         // nop
       }
     }
-    // Set data
-    this.setState({text: text});
     // Highlight textarea
     let jsonText = this.refs.jsonText;
     if (text.length > 0) {
@@ -60,8 +53,8 @@ class TextArea extends React.Component {
   resetTimeout() {
     clearTimeout(this.timeoutId);
     this.timeoutId = setTimeout(() => {
-      let text = this.refs.jsonText.value;
-      this.updateData(text);
+      let text = this.refs.jsonText.value
+      this.updateData(text, this.props.autoFormat)
     }, 1000);
   }
 
@@ -87,16 +80,6 @@ class TextArea extends React.Component {
     this.updateData('');
   }
 
-  pasteSample() {
-    if (this.refs.jsonText.value != SampleJson) {
-      this.updateData(SampleJson);
-    }
-  }
-
-  setAutoFormat(enabled) {
-    this.setState({autoFormat: enabled});
-  }
-
   render() {
     return (
       <div>
@@ -106,12 +89,7 @@ class TextArea extends React.Component {
                   onChange={this.onChange}
                   onDrop={this.onDrop}
                   ref="jsonText"></textarea>
-        <ControlsArea text={this.state.text}
-                      clearText={this.clearText}
-                      pasteSample={this.pasteSample}
-                      autoFormat={this.state.autoFormat}
-                      setAutoFormat={this.setAutoFormat}
-                      />
+        <ControlsArea />
       </div>
 		);
   }
@@ -123,7 +101,8 @@ import { updateText } from './actions'
 export default connect(
   (state) => {
     return {
-      text: state.text
+      text: state.text,
+      autoFormat: state.autoFormat
     }
   },
   (dispatch) => {

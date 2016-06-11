@@ -1,4 +1,6 @@
 
+import SampleJson   from 'raw!../samples/simple.json';
+
 const initialState =  {
   data: null,
   text: '',
@@ -12,10 +14,11 @@ const reducer = (state = initialState, action) => {
   case 'UPDATE_DATA':
     return state;
 
-  case 'UPDATE_TEXT':
+  case 'UPDATE_TEXT': {
     return Object.assign({}, state, {
       text: action.newText
     });
+  }
 
   case 'CLEAR_TEXT':
     return Object.assign({}, state, {
@@ -26,7 +29,14 @@ const reducer = (state = initialState, action) => {
     return state;
 
   case 'PASTE_SAMPLE':
-    return state;
+    return Object.assign({}, state, {
+      text: SampleJson
+    })
+
+  case 'SET_AUTO_FORMAT':
+    return Object.assign({}, state, {
+      autoFormat: action.enabled
+    });
 
   default:
     return state;

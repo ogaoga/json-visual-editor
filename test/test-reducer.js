@@ -1,6 +1,6 @@
 import expect from 'expect';
 
-import {updateText, clearText} from '../src/actions'
+import {updateText, clearText, setAutoFormat} from '../src/actions'
 import reducer from '../src/reducers'
 
 const params = [
@@ -21,9 +21,26 @@ const params = [
       text: '',
       autoFormat: false
     }
-  }
+  },
+  {
+    title: 'setAutoFormat(true)',
+    action: setAutoFormat(true),
+    expected: {
+      data: null,
+      text: '',
+      autoFormat: true
+    }
+  },
+  {
+    title: 'setAutoFormat(false)',
+    action: setAutoFormat(false),
+    expected: {
+      data: null,
+      text: '',
+      autoFormat: false
+    }
+  },
 ]
-
 
 describe('reducer', () => {
 
