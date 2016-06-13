@@ -47,7 +47,7 @@ const params = [
     title: 'pasteSample()',
     action: pasteSample(),
     expected: {
-      data: null,
+      data: JSON.parse(SampleJson),
       text: SampleJson,
       autoFormat: false
     }

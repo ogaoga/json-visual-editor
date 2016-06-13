@@ -22,7 +22,8 @@ const reducer = (state = initialState, action) => {
 
   case 'CLEAR_TEXT':
     return Object.assign({}, state, {
-      text: ''
+      text: '',
+      data: null
     });
 
   case 'COPY_TEXT':
@@ -30,7 +31,8 @@ const reducer = (state = initialState, action) => {
 
   case 'PASTE_SAMPLE':
     return Object.assign({}, state, {
-      text: SampleJson
+      text: SampleJson,
+      data: JSON.parse(SampleJson)
     })
 
   case 'SET_AUTO_FORMAT':

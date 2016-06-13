@@ -1,3 +1,4 @@
+/*
 import React from 'react';
 import expect from 'expect';
 import {createRenderer} from 'react-addons-test-utils';
@@ -9,7 +10,21 @@ import BooleanType from '../src/object/BooleanType.jsx'
 import ObjectType  from '../src/object/ObjectType.jsx'
 import Expander    from '../src/Expander.jsx'
 
+import reducer from '../src/reducers'
+import { createStore } from 'redux'
+import { Provider }    from 'react-redux'
+const store = createStore(reducer)
+
 let params = [
+  {
+    title: 'Display true',
+    actual: (
+      <Provider store={store}>
+        <ObjectType />
+      </Provider>
+    ),
+    expected: (<BooleanType data={true} />)
+  },
   {
     title: 'Display true',
     actual: (<ObjectType data={true} />),
@@ -74,3 +89,4 @@ describe('ObjectType Component', () => {
     });
   });
 });
+*/
