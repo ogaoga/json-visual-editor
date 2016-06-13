@@ -10,7 +10,6 @@ class TextArea extends React.Component {
     // bind React.Component for this
     this.onChange = this.onChange.bind(this);
     this.onDrop = this.onDrop.bind(this);
-    this.clearText = this.clearText.bind(this);
     this.resetTimeout = this.resetTimeout.bind(this);
     // for timer
     this.timeoutId = 0;
@@ -74,10 +73,6 @@ class TextArea extends React.Component {
       }).bind(this);
       reader.readAsText(file);
     }
-  }
-
-  clearText() {
-    this.updateData('');
   }
 
   render() {
