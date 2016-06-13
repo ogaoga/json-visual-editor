@@ -1,4 +1,5 @@
 import expect from 'expect';
+import {describe, it} from 'mocha'
 
 import {updateText, setAutoFormat} from '../src/actions/index'
 
@@ -12,7 +13,7 @@ let params = [
     title: 'setAutoFormat',
     actual: setAutoFormat(true).type,
     expected: 'SET_AUTO_FORMAT'
-  },
+  }
 ];
 
 describe('actions', () => {

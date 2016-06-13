@@ -1,7 +1,10 @@
 import expect from 'expect';
+import {describe, it} from 'mocha'
 
-import {updateText, clearText, setAutoFormat} from '../src/actions'
+import {updateText, clearText, setAutoFormat, pasteSample} from '../src/actions'
 import reducer from '../src/reducers'
+
+import SampleJson   from 'raw!../src/samples/simple.json';
 
 const params = [
   {
@@ -40,6 +43,15 @@ const params = [
       autoFormat: false
     }
   },
+  {
+    title: 'pasteSample()',
+    action: pasteSample(),
+    expected: {
+      data: null,
+      text: SampleJson,
+      autoFormat: false
+    }
+  }
 ]
 
 describe('reducer', () => {

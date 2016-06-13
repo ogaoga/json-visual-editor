@@ -3,9 +3,8 @@ import expect from 'expect';
 import {createRenderer} from 'react-addons-test-utils';
 import expectJSX from 'expect-jsx';
 expect.extend(expectJSX);
+import {describe, it} from 'mocha'
 
-import StringType  from '../src/object/StringType.jsx'
-import NumberType  from '../src/object/NumberType.jsx'
 import BooleanType from '../src/object/BooleanType.jsx'
 import ObjectType  from '../src/object/ObjectType.jsx'
 import Expander    from '../src/Expander.jsx'
@@ -23,7 +22,7 @@ let params = [
   },
   {
     title: 'Display array',
-    actual: (<ObjectType data={[null, "abc", 123]} />),
+    actual: (<ObjectType data={[null, 'abc', 123]} />),
     expected: (
       <table>
         <thead>
