@@ -12,7 +12,9 @@ const reducer = (state = initialState, action) => {
   switch (action.type) {
 
   case 'UPDATE_DATA':
-    return state;
+    return Object.assign({}, state, {
+      data: action.newData
+    });
 
   case 'UPDATE_TEXT': {
     return Object.assign({}, state, {

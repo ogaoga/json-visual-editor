@@ -29,12 +29,12 @@ class TextArea extends React.Component {
         text = JSON.stringify(JSON.parse(text), null, 2);
         this.props.onTextChange(text)
       } catch(e) {
-        // nop
+        text = null
       }
     }
     // Highlight textarea
     let jsonText = this.refs.jsonText;
-    if (text.length > 0) {
+    if (text != null && text.length > 0) {
       try {
         let data = JSON.parse(text);
         this.props.updateData(data);
@@ -59,7 +59,7 @@ class TextArea extends React.Component {
 
   onChange(event) {
     this.resetTimeout();
-    this.props.onTextChange(event.target.value)
+    this.props.dispatch(updateText(event.target.value))
   }
 
   onDrop(event) {
@@ -91,7 +91,7 @@ class TextArea extends React.Component {
 }
 
 import { connect }   from 'react-redux'
-import { updateText } from './actions'
+import { updateText, updateData } from './actions'
 
 export default connect(
   (state) => {
@@ -104,6 +104,9 @@ export default connect(
     return {
       onTextChange: (text) => {
         dispatch(updateText(text))
+      },
+      updateData: (data) => {
+        dispatch(updateData(data))
       }
     }
   }
