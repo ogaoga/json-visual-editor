@@ -76,7 +76,8 @@ export default connect(
   (state) => {
     return {
       text: state.text,
-      autoFormat: state.autoFormat
+      autoFormat: state.autoFormat,
+      isValid: state.isValid
     }
   },
   (dispatch) => {

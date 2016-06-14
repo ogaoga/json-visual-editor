@@ -4,7 +4,8 @@ import SampleJson   from 'raw!../samples/simple.json';
 const initialState =  {
   data: null,
   text: '',
-  autoFormat: false
+  autoFormat: false,
+  isValid: false
 }
 
 const reducer = (state = initialState, action) => {
@@ -19,6 +20,7 @@ const reducer = (state = initialState, action) => {
   case 'SET_TEXT': {
     let text = action.newText || ''
     let data = state.data
+    let isValid = state.isValid
     if (text.length > 0) {
       try {
         // set data
@@ -27,17 +29,21 @@ const reducer = (state = initialState, action) => {
         if (state.autoFormat) {
           text = JSON.stringify(data, null, 2);
         }
+        isValid = true
       } catch(e) {
         data = null
+        isValid = false
       }
     }
     else {
       data = null
+      isValid = false
     }
     // return new state
     return Object.assign({}, state, {
       text: text,
-      data: data
+      data: data,
+      isValid: isValid
     });
   }
 
