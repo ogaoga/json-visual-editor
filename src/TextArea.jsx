@@ -27,7 +27,7 @@ class TextArea extends React.Component {
     if (text.length > 0 && autoFormat) {
       try {
         text = JSON.stringify(JSON.parse(text), null, 2);
-        this.props.onTextChange(text)
+        this.props.updateText(text)
       } catch(e) {
         text = null
       }
@@ -59,7 +59,7 @@ class TextArea extends React.Component {
 
   onChange(event) {
     this.resetTimeout();
-    this.props.dispatch(updateText(event.target.value))
+    this.props.updateText(event.target.value)
   }
 
   onDrop(event) {
@@ -102,7 +102,7 @@ export default connect(
   },
   (dispatch) => {
     return {
-      onTextChange: (text) => {
+      updateText: (text) => {
         dispatch(updateText(text))
       },
       updateData: (data) => {
