@@ -22,38 +22,17 @@ class TextArea extends React.Component {
     }, timeout);
   }
 
-  updateData(text, autoFormat = false) {
-    // Format text
-    if (text.length > 0 && autoFormat) {
-      try {
-        text = JSON.stringify(JSON.parse(text), null, 2);
-        this.props.updateText(text)
-      } catch(e) {
-        text = null
-      }
-    }
-    // Highlight textarea
-    let jsonText = this.refs.jsonText;
-    if (text != null && text.length > 0) {
-      try {
-        let data = JSON.parse(text);
-        this.props.updateData(data);
-        this.oneshotClass(jsonText, 'valid');
-      } catch(e) {
-        this.props.updateData(null);
-        this.oneshotClass(jsonText, 'invalid');
-      }
-    }
-    else {
-      this.props.updateData(null);
-    }
-  }
+  /*
+     // todo: flash
+     this.oneshotClass(jsonText, 'valid');
+     this.oneshotClass(jsonText, 'invalid');
+  */
 
   resetTimeout() {
     clearTimeout(this.timeoutId);
     this.timeoutId = setTimeout(() => {
       let text = this.refs.jsonText.value
-      this.updateData(text, this.props.autoFormat)
+      this.props.setText(text)
     }, 1000);
   }
 
@@ -69,7 +48,7 @@ class TextArea extends React.Component {
       var file = event.dataTransfer.files[0];
       var reader = new FileReader();
       reader.onload = (() => {
-        this.updateData(reader.result);
+        this.props.setText(reader.result)
       }).bind(this);
       reader.readAsText(file);
     }
@@ -91,7 +70,7 @@ class TextArea extends React.Component {
 }
 
 import { connect }   from 'react-redux'
-import { updateText, updateData } from './actions'
+import { updateText, setText } from './actions'
 
 export default connect(
   (state) => {
@@ -105,8 +84,8 @@ export default connect(
       updateText: (text) => {
         dispatch(updateText(text))
       },
-      updateData: (data) => {
-        dispatch(updateData(data))
+      setText: (text) => {
+        dispatch(setText(text))
       }
     }
   }

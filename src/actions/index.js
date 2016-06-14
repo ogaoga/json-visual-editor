@@ -12,6 +12,13 @@ export const updateText = (newText) => {
   }
 }
 
+export const setText = (newText) => {
+  return {
+    type: 'SET_TEXT',
+    newText
+  }
+}
+
 export const clearText = () => {
   return {
     type: 'CLEAR_TEXT'
