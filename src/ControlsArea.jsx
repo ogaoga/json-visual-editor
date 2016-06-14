@@ -1,5 +1,6 @@
 import React from 'react';
 import Clipboard from 'clipboard';
+import { saveAs } from 'file-saver';
 
 import OptionMenu from './OptionMenu';
 
@@ -8,6 +9,11 @@ export default class ControlsArea extends React.Component {
   componentDidMount() {
     // init clipboard
     new Clipboard('#copy-to-clipboard');
+  }
+
+  downloadJson(text) {
+    var blob = new Blob([text], {type: 'application/json;charset=utf-8'});
+    saveAs(blob, 'data.json');
   }
 
   render() {
@@ -20,6 +26,15 @@ export default class ControlsArea extends React.Component {
                   className="mdl-button mdl-js-button mdl-button--icon"
                   title="Copy">
             <i className="material-icons">content_copy</i>
+          </button>
+        </div>
+        <div className="float-left">
+          <button id="donwload"
+                  disabled={this.props.text.length==0}
+                  className="mdl-button mdl-js-button mdl-button--icon"
+                  onClick={() => this.downloadJson(this.props.text)}
+                  title="Download">
+            <i className="material-icons">file_download</i>
           </button>
         </div>
         <div className="float-left">
