@@ -8,14 +8,6 @@ class App extends React.Component {
   constructor(props) {
     super(props);
 
-    // state
-    this.state = {
-      data: null
-    };
-
-    // this binding
-    this.updateData = this.updateData.bind(this);
-
     // for drag event handling
     this.previousEvent = null;
   }
@@ -49,13 +41,9 @@ class App extends React.Component {
     });
   }
 
-  updateData(newData) {
-    this.setState({data: newData});
-  }
-
   render() {
     return (
-			<Page data={this.state.data} updateData={this.updateData} />
+			<Page />
 		);
   }
 }

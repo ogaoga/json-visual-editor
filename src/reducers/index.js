@@ -10,14 +10,7 @@ const initialState =  {
 
 const reducer = (state = initialState, action) => {
 
-  switch (action.type) {
-
-  case 'UPDATE_DATA':
-    return Object.assign({}, state, {
-      data: action.newData
-    });
-
-  case 'SET_TEXT': {
+  const _setText = (state, action) => {
     let text = action.newText || ''
     let data = state.data
     let isValid = state.isValid
@@ -39,6 +32,16 @@ const reducer = (state = initialState, action) => {
       data = null
       isValid = false
     }
+    return [text, data, isValid]
+  }
+
+  switch (action.type) {
+
+  /*
+   * Set and parse text, and update data
+   */
+  case 'SET_TEXT': {
+    const [text, data, isValid] = _setText(state, action)
     // return new state
     return Object.assign({}, state, {
       text: text,
@@ -47,6 +50,9 @@ const reducer = (state = initialState, action) => {
     });
   }
 
+  /*
+   * Just update the textarea.
+   */
   case 'UPDATE_TEXT': {
     return Object.assign({}, state, {
       text: action.newText
@@ -62,11 +68,15 @@ const reducer = (state = initialState, action) => {
   case 'COPY_TEXT':
     return state;
 
-  case 'PASTE_SAMPLE':
+  case 'PASTE_SAMPLE': {
+    action.newText = SampleJson
+    const [text, data, isValid] = _setText(state, action)
     return Object.assign({}, state, {
-      text: SampleJson,
-      data: JSON.parse(SampleJson)
+      text: text,
+      data: data,
+      isValid: isValid
     })
+  }
 
   case 'SET_AUTO_FORMAT':
     return Object.assign({}, state, {

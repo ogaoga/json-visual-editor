@@ -13,7 +13,8 @@ const params = [
     expected: {
       data: null,
       text: 'abc',
-      autoFormat: false
+      autoFormat: false,
+      isValid: false
     }
   },
   {
@@ -22,7 +23,8 @@ const params = [
     expected: {
       data: null,
       text: '',
-      autoFormat: false
+      autoFormat: false,
+      isValid: false
     }
   },
   {
@@ -31,7 +33,8 @@ const params = [
     expected: {
       data: null,
       text: '',
-      autoFormat: true
+      autoFormat: true,
+      isValid: false
     }
   },
   {
@@ -40,7 +43,8 @@ const params = [
     expected: {
       data: null,
       text: '',
-      autoFormat: false
+      autoFormat: false,
+      isValid: false
     }
   },
   {
@@ -49,7 +53,8 @@ const params = [
     expected: {
       data: JSON.parse(SampleJson),
       text: SampleJson,
-      autoFormat: false
+      autoFormat: false,
+      isValid: true
     }
   }
 ]

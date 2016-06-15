@@ -1,10 +1,3 @@
-export const updateData = (newData) => {
-  return {
-    type: 'UPDATE_DATA',
-    newData
-  }
-}
-
 export const updateText = (newText) => {
   return {
     type: 'UPDATE_TEXT',
