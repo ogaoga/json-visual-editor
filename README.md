@@ -59,8 +59,8 @@ Please contribute to the project if you think this can be done better in anyway 
 Copyright (c) 2016 ogaoga.org
 Licensed under the [MIT License](LICENSE).
 
-[travis-image]: https://img.shields.io/travis/rakuten-frontend/bower-browser/master.svg?style=flat
-[travis-url]: https://travis-ci.org/rakuten-frontend/bower-browser
+[travis-image]: https://img.shields.io/travis/ogaoga/json-visual-editor/develop.svg?style=flat
+[travis-url]: https://travis-ci.org/ogaoga/json-visual-editor
 
 ## ToDo
 
