@@ -5,7 +5,7 @@ const initialState =  {
   data: null,
   text: '',
   autoFormat: false,
-  isValid: false
+  valid: ''
 }
 
 const reducer = (state = initialState, action) => {
@@ -13,7 +13,7 @@ const reducer = (state = initialState, action) => {
   const _setText = (state, action) => {
     let text = action.newText || ''
     let data = state.data
-    let isValid = state.isValid
+    let valid = state.valid
     if (text.length > 0) {
       try {
         // set data
@@ -22,17 +22,17 @@ const reducer = (state = initialState, action) => {
         if (state.autoFormat) {
           text = JSON.stringify(data, null, 2);
         }
-        isValid = true
+        valid = 'valid'
       } catch(e) {
         data = null
-        isValid = false
+        valid = 'invalid'
       }
     }
     else {
       data = null
-      isValid = false
+      valid = 'invalid'
     }
-    return [text, data, isValid]
+    return [text, data, valid]
   }
 
   switch (action.type) {
@@ -41,12 +41,12 @@ const reducer = (state = initialState, action) => {
    * Set and parse text, and update data
    */
   case 'SET_TEXT': {
-    const [text, data, isValid] = _setText(state, action)
+    const [text, data, valid] = _setText(state, action)
     // return new state
     return Object.assign({}, state, {
       text: text,
       data: data,
-      isValid: isValid
+      valid: valid
     });
   }
 
@@ -70,17 +70,22 @@ const reducer = (state = initialState, action) => {
 
   case 'PASTE_SAMPLE': {
     action.newText = SampleJson
-    const [text, data, isValid] = _setText(state, action)
+    const [text, data, valid] = _setText(state, action)
     return Object.assign({}, state, {
       text: text,
       data: data,
-      isValid: isValid
+      valid: valid
     })
   }
 
   case 'SET_AUTO_FORMAT':
     return Object.assign({}, state, {
       autoFormat: action.enabled
+    });
+
+  case 'RESET_VALID':
+    return Object.assign({}, state, {
+      valid: ''
     });
 
   default:

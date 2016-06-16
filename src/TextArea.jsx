@@ -15,18 +15,15 @@ class TextArea extends React.Component {
     this.timeoutId = 0;
   }
 
-  oneshotClass(target, className, timeout = 1000) {
-    target.classList.add(className);
-    setTimeout(() => {
-      target.classList.remove(className);
-    }, timeout);
+  componentDidMount() {
+    // remove class when the animation end
+    this.refs.jsonText.addEventListener('animationend', (event) => {
+      if (event.animationName === 'invalidFrames' ||
+          event.animationName === 'validFrames') {
+        this.props.resetValid()
+      }
+    }, false)
   }
-
-  /*
-     // todo: flash
-     this.oneshotClass(jsonText, 'valid');
-     this.oneshotClass(jsonText, 'invalid');
-  */
 
   resetTimeout() {
     clearTimeout(this.timeoutId);
@@ -58,6 +55,7 @@ class TextArea extends React.Component {
     return (
       <div>
         <textarea id="json-text"
+                  className={this.props.valid}
                   placeholder="Write JSON code or drop a JSON file here."
                   value={this.props.text}
                   onChange={this.onChange}
@@ -70,14 +68,14 @@ class TextArea extends React.Component {
 }
 
 import { connect }   from 'react-redux'
-import { updateText, setText } from './actions'
+import { updateText, setText, resetValid } from './actions'
 
 export default connect(
   (state) => {
     return {
       text: state.text,
       autoFormat: state.autoFormat,
-      isValid: state.isValid
+      valid: state.valid
     }
   },
   (dispatch) => {
@@ -87,6 +85,9 @@ export default connect(
       },
       setText: (text) => {
         dispatch(setText(text))
+      },
+      resetValid: () => {
+        dispatch(resetValid())
       }
     }
   }

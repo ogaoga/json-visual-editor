@@ -36,3 +36,9 @@ export const setAutoFormat = (enabled) => {
     enabled
   }
 }
+
+export const resetValid = () => {
+  return {
+    type: 'RESET_VALID'
+  }
+}
