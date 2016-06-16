@@ -1,4 +1,3 @@
-/*
 import React from 'react';
 import expect from 'expect';
 import {createRenderer} from 'react-addons-test-utils';
@@ -15,15 +14,15 @@ import { createStore } from 'redux'
 import { Provider }    from 'react-redux'
 const store = createStore(reducer)
 
-let params = [
+const params = [
   {
-    title: 'Display true',
+    title: 'Prepare',
     actual: (
       <Provider store={store}>
         <ObjectType />
       </Provider>
     ),
-    expected: (<BooleanType data={true} />)
+    expected: (<ObjectType />)
   },
   {
     title: 'Display true',
@@ -75,6 +74,41 @@ let params = [
         </tbody>
       </table>
     )
+  },
+  {
+    title: 'Display object',
+    actual: (<ObjectType data={{abc: 123, 'xyz': 'abc'}} />),
+    expected: (
+      <table>
+        <thead>
+          <tr>
+            <th className="expand">
+              <Expander
+                defaultValue={true}
+                onChangeExpansion={function noRefCheck() {}}
+              />
+            </th>
+            <th className="objectType">
+              Object [2]
+            </th>
+          </tr>
+        </thead>
+        <tbody className="expanded">
+          <tr>
+            <th>abc</th>
+            <td>
+              <ObjectType data={123} />
+            </td>
+          </tr>
+          <tr>
+            <th>xyz</th>
+            <td>
+              <ObjectType data={'abc'} />
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    )
   }
 ];
 
@@ -89,4 +123,3 @@ describe('ObjectType Component', () => {
     });
   });
 });
-*/

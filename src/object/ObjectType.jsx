@@ -5,7 +5,7 @@ import NumberType  from './NumberType';
 import StringType  from './StringType';
 import Expander    from '../Expander';
 
-class ObjectType extends React.Component {
+export default class ObjectType extends React.Component {
 
   constructor(props) {
     super(props);
@@ -79,13 +79,3 @@ class ObjectType extends React.Component {
     return result;
   }
 }
-
-import { connect }   from 'react-redux'
-
-export default connect(
-  (state) => {
-    return {
-      data: state.data
-    }
-  }
-)(ObjectType)

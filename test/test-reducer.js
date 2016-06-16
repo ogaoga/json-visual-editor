@@ -1,7 +1,7 @@
 import expect from 'expect';
 import {describe, it} from 'mocha'
 
-import {updateText, clearText, setAutoFormat, pasteSample} from '../src/actions'
+import {updateText, clearText, setAutoFormat, pasteSample, setText} from '../src/actions'
 import reducer from '../src/reducers'
 
 import SampleJson   from 'raw!../src/samples/simple.json';
@@ -53,6 +53,36 @@ const params = [
     expected: {
       data: JSON.parse(SampleJson),
       text: SampleJson,
+      autoFormat: false,
+      isValid: true
+    }
+  },
+  {
+    title: 'setText (valid)',
+    action: setText('["xyz"]'),
+    expected: {
+      data: ['xyz'],
+      text: '["xyz"]',
+      autoFormat: false,
+      isValid: true
+    }
+  },
+  {
+    title: 'setText (invalid)',
+    action: setText('{abcde: "xyz"}'),
+    expected: {
+      data: null,
+      text: '{abcde: "xyz"}',
+      autoFormat: false,
+      isValid: false
+    }
+  },
+  {
+    title: 'setText (auto format = false)',
+    action: setText('[1, 2, 3]', true),
+    expected: {
+      data: [1, 2, 3],
+      text: '[1, 2, 3]',
       autoFormat: false,
       isValid: true
     }
