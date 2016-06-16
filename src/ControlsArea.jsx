@@ -32,7 +32,7 @@ class ControlsArea extends React.Component {
         </div>
         <div className="float-left">
           <button id="donwload"
-                  disabled={this.props.text.length==0}
+                  disabled={isEmpty}
                   className="mdl-button mdl-js-button mdl-button--icon"
                   onClick={() => this.downloadJson(this.props.text)}
                   title="Download">
