@@ -1,11 +1,12 @@
 
 import SampleJson   from 'raw!../samples/simple.json';
+import {ValidationClass} from '../Constants.js'
 
 const initialState =  {
   data: null,
   text: '',
   autoFormat: false,
-  valid: ''
+  valid: ValidationClass.None
 }
 
 const reducer = (state = initialState, action) => {
@@ -22,15 +23,15 @@ const reducer = (state = initialState, action) => {
         if (state.autoFormat) {
           text = JSON.stringify(data, null, 2);
         }
-        valid = 'valid'
+        valid = ValidationClass.Valid
       } catch(e) {
         data = null
-        valid = 'invalid'
+        valid = ValidationClass.Invalid
       }
     }
     else {
       data = null
-      valid = 'invalid'
+      valid = ValidationClass.Invalid
     }
     return [text, data, valid]
   }
@@ -85,7 +86,7 @@ const reducer = (state = initialState, action) => {
 
   case 'RESET_VALID':
     return Object.assign({}, state, {
-      valid: ''
+      valid: ValidationClass.None
     });
 
   default:

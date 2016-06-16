@@ -5,6 +5,7 @@ import {updateText, clearText, setAutoFormat, pasteSample, setText} from '../src
 import reducer from '../src/reducers'
 
 import SampleJson   from 'raw!../src/samples/simple.json';
+import {ValidationClass} from '../src/Constants.js'
 
 const params = [
   {
@@ -14,7 +15,7 @@ const params = [
       data: null,
       text: 'abc',
       autoFormat: false,
-      isValid: false
+      valid: ValidationClass.None
     }
   },
   {
@@ -24,7 +25,7 @@ const params = [
       data: null,
       text: '',
       autoFormat: false,
-      isValid: false
+      valid: ValidationClass.None
     }
   },
   {
@@ -34,7 +35,7 @@ const params = [
       data: null,
       text: '',
       autoFormat: true,
-      isValid: false
+      valid: ValidationClass.None
     }
   },
   {
@@ -44,7 +45,7 @@ const params = [
       data: null,
       text: '',
       autoFormat: false,
-      isValid: false
+      valid: ValidationClass.None
     }
   },
   {
@@ -54,7 +55,7 @@ const params = [
       data: JSON.parse(SampleJson),
       text: SampleJson,
       autoFormat: false,
-      isValid: true
+      valid: ValidationClass.Valid
     }
   },
   {
@@ -64,7 +65,7 @@ const params = [
       data: ['xyz'],
       text: '["xyz"]',
       autoFormat: false,
-      isValid: true
+      valid: ValidationClass.Valid
     }
   },
   {
@@ -74,7 +75,7 @@ const params = [
       data: null,
       text: '{abcde: "xyz"}',
       autoFormat: false,
-      isValid: false
+      valid: ValidationClass.Invalid
     }
   },
   {
@@ -84,7 +85,7 @@ const params = [
       data: [1, 2, 3],
       text: '[1, 2, 3]',
       autoFormat: false,
-      isValid: true
+      valid: ValidationClass.Valid
     }
   }
 ]
