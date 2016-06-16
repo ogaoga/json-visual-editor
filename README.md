@@ -64,7 +64,6 @@ Licensed under the [MIT License](LICENSE).
 
 ## ToDo
 
-- [ ] Introduce Redux.
 - [ ] Show level of depth.
 - [ ] Cache to localStorage.
 - [ ] Timestamp translation.
