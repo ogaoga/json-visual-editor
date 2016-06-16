@@ -1,8 +1,6 @@
 import React from 'react';
 import Clipboard from 'clipboard';
-
 import OptionMenu from './OptionMenu';
-
 import { clearText } from './actions'
 
 class ControlsArea extends React.Component {
