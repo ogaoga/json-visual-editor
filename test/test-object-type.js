@@ -3,14 +3,27 @@ import expect from 'expect';
 import {createRenderer} from 'react-addons-test-utils';
 import expectJSX from 'expect-jsx';
 expect.extend(expectJSX);
+import {describe, it} from 'mocha'
 
-import StringType  from '../src/object/StringType.jsx'
-import NumberType  from '../src/object/NumberType.jsx'
 import BooleanType from '../src/object/BooleanType.jsx'
 import ObjectType  from '../src/object/ObjectType.jsx'
 import Expander    from '../src/Expander.jsx'
 
-let params = [
+import reducer from '../src/reducers'
+import { createStore } from 'redux'
+import { Provider }    from 'react-redux'
+const store = createStore(reducer)
+
+const params = [
+  {
+    title: 'Prepare',
+    actual: (
+      <Provider store={store}>
+        <ObjectType />
+      </Provider>
+    ),
+    expected: (<ObjectType />)
+  },
   {
     title: 'Display true',
     actual: (<ObjectType data={true} />),
@@ -23,7 +36,7 @@ let params = [
   },
   {
     title: 'Display array',
-    actual: (<ObjectType data={[null, "abc", 123]} />),
+    actual: (<ObjectType data={[null, 'abc', 123]} />),
     expected: (
       <table>
         <thead>
@@ -56,6 +69,41 @@ let params = [
             <th>2</th>
             <td>
               <ObjectType data={123} />
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    )
+  },
+  {
+    title: 'Display object',
+    actual: (<ObjectType data={{abc: 123, 'xyz': 'abc'}} />),
+    expected: (
+      <table>
+        <thead>
+          <tr>
+            <th className="expand">
+              <Expander
+                defaultValue={true}
+                onChangeExpansion={function noRefCheck() {}}
+              />
+            </th>
+            <th className="objectType">
+              Object [2]
+            </th>
+          </tr>
+        </thead>
+        <tbody className="expanded">
+          <tr>
+            <th>abc</th>
+            <td>
+              <ObjectType data={123} />
+            </td>
+          </tr>
+          <tr>
+            <th>xyz</th>
+            <td>
+              <ObjectType data={'abc'} />
             </td>
           </tr>
         </tbody>

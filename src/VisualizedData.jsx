@@ -1,12 +1,20 @@
-import React    from 'react';
+import React      from 'react';
+import ObjectType from './object/ObjectType';
 
-import ObjectType   from './object/ObjectType';
-
-export default class VisualizedData extends React.Component {
-
+class VisualizedData extends React.Component {
   render() {
     return (
       <ObjectType data={this.props.data} />
 		);
   }
 }
+
+import { connect }   from 'react-redux'
+
+export default connect(
+  (state) => {
+    return {
+      data: state.data
+    }
+  }
+)(VisualizedData)

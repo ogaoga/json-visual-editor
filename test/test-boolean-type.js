@@ -3,6 +3,7 @@ import expect from 'expect';
 import {createRenderer} from 'react-addons-test-utils';
 import expectJSX from 'expect-jsx';
 expect.extend(expectJSX);
+import {describe, it} from 'mocha'
 
 import BooleanType from '../src/object/BooleanType.jsx'
 

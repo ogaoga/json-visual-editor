@@ -1,73 +1,41 @@
 import React from 'react';
 
 import ControlsArea from './ControlsArea';
-import SampleJson   from 'raw!./samples/simple.json';
 
-export default class TextArea extends React.Component {
+class TextArea extends React.Component {
 
   constructor(props) {
     super(props);
-    let text = (props.data === null) ? '' : JSON.stringify(props.data);
-    this.state = {
-      text: text,
-      autoFormat: false
-    };
+
     // bind React.Component for this
     this.onChange = this.onChange.bind(this);
     this.onDrop = this.onDrop.bind(this);
-    this.clearText = this.clearText.bind(this);
     this.resetTimeout = this.resetTimeout.bind(this);
-    this.pasteSample = this.pasteSample.bind(this);
-    this.setAutoFormat = this.setAutoFormat.bind(this);
     // for timer
     this.timeoutId = 0;
   }
 
-  oneshotClass(target, className, timeout = 1000) {
-    target.classList.add(className);
-    setTimeout(() => {
-      target.classList.remove(className);
-    }, timeout);
-  }
-
-  updateData(text) {
-    if (text.length > 0 && this.state.autoFormat) {
-      try {
-        text = JSON.stringify(JSON.parse(text), null, 2);
-      } catch(e) {
-        // nop
+  componentDidMount() {
+    // remove class when the animation end
+    this.refs.jsonText.addEventListener('animationend', (event) => {
+      if (event.animationName === 'invalidFrames' ||
+          event.animationName === 'validFrames') {
+        this.props.resetValid()
       }
-    }
-    // Set data
-    this.setState({text: text});
-    // Highlight textarea
-    let jsonText = this.refs.jsonText;
-    if (text.length > 0) {
-      try {
-        let data = JSON.parse(text);
-        this.props.updateData(data);
-        this.oneshotClass(jsonText, 'valid');
-      } catch(e) {
-        this.props.updateData(null);
-        this.oneshotClass(jsonText, 'invalid');
-      }
-    }
-    else {
-      this.props.updateData(null);
-    }
+    }, false)
   }
 
   resetTimeout() {
     clearTimeout(this.timeoutId);
     this.timeoutId = setTimeout(() => {
-      let text = this.refs.jsonText.value;
-      this.updateData(text);
+      let text = this.refs.jsonText.value
+      this.props.setText(text)
     }, 1000);
   }
 
   onChange(event) {
     this.resetTimeout();
-    this.setState({text: event.target.value});
+    this.props.updateText(event.target.value)
   }
 
   onDrop(event) {
@@ -77,42 +45,50 @@ export default class TextArea extends React.Component {
       var file = event.dataTransfer.files[0];
       var reader = new FileReader();
       reader.onload = (() => {
-        this.updateData(reader.result);
+        this.props.setText(reader.result)
       }).bind(this);
       reader.readAsText(file);
     }
-  }
-
-  clearText() {
-    this.updateData('');
-  }
-
-  pasteSample() {
-    if (this.refs.jsonText.value != SampleJson) {
-      this.updateData(SampleJson);
-    }
-  }
-
-  setAutoFormat(enabled) {
-    this.setState({autoFormat: enabled});
   }
 
   render() {
     return (
       <div>
         <textarea id="json-text"
+                  className={this.props.valid}
                   placeholder="Write JSON code or drop a JSON file here."
-                  value={this.state.text}
+                  value={this.props.text}
                   onChange={this.onChange}
                   onDrop={this.onDrop}
                   ref="jsonText"></textarea>
-        <ControlsArea text={this.state.text}
-                      clearText={this.clearText}
-                      pasteSample={this.pasteSample}
-                      autoFormat={this.state.autoFormat}
-                      setAutoFormat={this.setAutoFormat}
-                      />
+        <ControlsArea />
       </div>
 		);
   }
 }
+
+import { connect }   from 'react-redux'
+import { updateText, setText, resetValid } from './actions'
+
+export default connect(
+  (state) => {
+    return {
+      text: state.text,
+      autoFormat: state.autoFormat,
+      valid: state.valid
+    }
+  },
+  (dispatch) => {
+    return {
+      updateText: (text) => {
+        dispatch(updateText(text))
+      },
+      setText: (text) => {
+        dispatch(setText(text))
+      },
+      resetValid: () => {
+        dispatch(resetValid())
+      }
+    }
+  }
+)(TextArea)

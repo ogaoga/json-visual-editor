@@ -29,8 +29,15 @@ module.exports = {
       "single"
     ],
     "semi": [
-      "error",
-      "always"
+      0
+    ],
+    "no-unused-vars": [
+      1,
+      {
+        "vars": "all",
+        "args": "after-used",
+        "varsIgnorePattern": "React"
+      }
     ],
     "react/jsx-uses-vars": 2,
     "no-console": 1

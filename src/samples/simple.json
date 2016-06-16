@@ -1,12 +1,12 @@
 {
-  "number":  123456,
-  "string":  "Hello, World!",
-  "URL":     "https://github.com/ogaoga/json-visual-editor",
-  "image":   "https://raw.githubusercontent.com/ogaoga/json-visual-editor/develop/resources/json-visual-editor.png",
-  "null":    null,
+  "number": 123456,
+  "string": "Hello, World!",
+  "URL": "https://github.com/ogaoga/json-visual-editor",
+  "image": "https://raw.githubusercontent.com/ogaoga/json-visual-editor/develop/resources/json-visual-editor.png",
+  "null": null,
   "boolean": {
-    "true":    true,
-    "false":   false
+    "true": true,
+    "false": false
   },
   "array": [
     "apple",
@@ -14,8 +14,8 @@
     "banana"
   ],
   "object": {
-    "name":      "John",
-    "age":       32,
+    "name": "John",
+    "age": 32,
     "isMarried": true
   }
 }
