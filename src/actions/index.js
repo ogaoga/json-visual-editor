@@ -1,44 +1,46 @@
+import {Actions} from '../Constants.js'
+
 export const updateText = (newText) => {
   return {
-    type: 'UPDATE_TEXT',
+    type: Actions.UpdateText,
     newText
   }
 }
 
 export const setText = (newText) => {
   return {
-    type: 'SET_TEXT',
+    type: Actions.SetText,
     newText
   }
 }
 
 export const clearText = () => {
   return {
-    type: 'CLEAR_TEXT'
+    type: Actions.ClearText
   }
 }
 
 export const copyText = () => {
   return {
-    type: 'COPY_TEXT'
+    type: Actions.CopyText
   }
 }
 
 export const pasteSample = () => {
   return {
-    type: 'PASTE_SAMPLE'
+    type: Actions.PasteSample
   }
 }
 
 export const setAutoFormat = (enabled) => {
   return {
-    type: 'SET_AUTO_FORMAT',
+    type: Actions.SetAutoFormat,
     enabled
   }
 }
 
 export const resetValid = () => {
   return {
-    type: 'RESET_VALID'
+    type: Actions.ResetValid
   }
 }

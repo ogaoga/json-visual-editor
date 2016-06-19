@@ -1,6 +1,6 @@
 
 import SampleJson   from 'raw!../samples/simple.json';
-import {ValidationClass} from '../Constants.js'
+import {ValidationClass, Actions} from '../Constants.js'
 
 const initialState =  {
   data: null,
@@ -41,7 +41,7 @@ const reducer = (state = initialState, action) => {
   /*
    * Set and parse text, and update data
    */
-  case 'SET_TEXT': {
+  case Actions.SetText: {
     const [text, data, valid] = _setText(state, action)
     // return new state
     return Object.assign({}, state, {
@@ -54,22 +54,22 @@ const reducer = (state = initialState, action) => {
   /*
    * Just update the textarea.
    */
-  case 'UPDATE_TEXT': {
+  case Actions.UpdateText: {
     return Object.assign({}, state, {
       text: action.newText
     });
   }
 
-  case 'CLEAR_TEXT':
+  case Actions.ClearText:
     return Object.assign({}, state, {
       text: '',
       data: null
     });
 
-  case 'COPY_TEXT':
+  case Actions.CopyText:
     return state;
 
-  case 'PASTE_SAMPLE': {
+  case Actions.PasteSample: {
     action.newText = SampleJson
     const [text, data, valid] = _setText(state, action)
     return Object.assign({}, state, {
@@ -79,12 +79,12 @@ const reducer = (state = initialState, action) => {
     })
   }
 
-  case 'SET_AUTO_FORMAT':
+  case Actions.SetAutoFormat:
     return Object.assign({}, state, {
       autoFormat: action.enabled
     });
 
-  case 'RESET_VALID':
+  case Actions.ResetValid:
     return Object.assign({}, state, {
       valid: ValidationClass.None
     });
