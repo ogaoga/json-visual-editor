@@ -1,18 +1,44 @@
 import expect from 'expect';
 import {describe, it} from 'mocha'
 
-import {updateText, setAutoFormat} from '../src/actions/index'
+import {updateText, setText, clearText, copyText, pasteSample, setAutoFormat, resetValid} from '../src/actions/index'
+import {Actions} from '../src/Constants.js'
 
 let params = [
   {
     title: 'updateText',
     actual: updateText('abc').type,
-    expected: 'UPDATE_TEXT'
+    expected: Actions.UpdateText
+  },
+  {
+    title: 'setText',
+    actual: setText('abc').type,
+    expected: Actions.SetText
+  },
+  {
+    title: 'clearText',
+    actual: clearText().type,
+    expected: Actions.ClearText
+  },
+  {
+    title: 'copyText',
+    actual: copyText().type,
+    expected: Actions.CopyText
+  },
+  {
+    title: 'pasteSample',
+    actual: pasteSample().type,
+    expected: Actions.PasteSample
   },
   {
     title: 'setAutoFormat',
     actual: setAutoFormat(true).type,
-    expected: 'SET_AUTO_FORMAT'
+    expected: Actions.SetAutoFormat
+  },
+  {
+    title: 'resetValid',
+    actual: resetValid().type,
+    expected: Actions.ResetValid
   }
 ];
 
