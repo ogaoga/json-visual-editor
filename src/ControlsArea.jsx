@@ -69,7 +69,8 @@ export default connect(
   (state) => {
     return {
       textLength: state.text.length,
-      isEmpty: state.text.length === 0
+      isEmpty: state.text.length === 0,
+      text: state.text
     }
   }
 )(ControlsArea)
