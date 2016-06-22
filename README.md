@@ -64,7 +64,6 @@ Licensed under the [MIT License](LICENSE).
 
 ## ToDo
 
-- [x] Replace leterals of action with constants.
 - [ ] Show level of depth.
 - [ ] Cache to localStorage.
 - [ ] Timestamp translation.
