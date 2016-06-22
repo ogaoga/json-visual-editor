@@ -65,7 +65,6 @@ Licensed under the [MIT License](LICENSE).
 ## ToDo
 
 - [ ] Show level of depth.
-- [ ] Cache to localStorage.
 - [ ] Timestamp translation.
 - [ ] Implement test cases.
 - [ ] Edit feature.
