@@ -44,3 +44,11 @@ export const resetValid = () => {
     type: Actions.ResetValid
   }
 }
+
+export const setExpanded = (expanded, position) => {
+  return {
+    type: Actions.SetExpanded,
+    expanded,
+    position
+  }
+}

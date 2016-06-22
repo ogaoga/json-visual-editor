@@ -15,7 +15,8 @@ const params = [
       data: null,
       text: 'abc',
       autoFormat: false,
-      valid: ValidationClass.None
+      valid: ValidationClass.None,
+      expanded: {}
     }
   },
   {
@@ -25,7 +26,8 @@ const params = [
       data: null,
       text: '',
       autoFormat: false,
-      valid: ValidationClass.None
+      valid: ValidationClass.None,
+      expanded: {}
     }
   },
   {
@@ -35,7 +37,8 @@ const params = [
       data: null,
       text: '',
       autoFormat: true,
-      valid: ValidationClass.None
+      valid: ValidationClass.None,
+      expanded: {}
     }
   },
   {
@@ -45,7 +48,8 @@ const params = [
       data: null,
       text: '',
       autoFormat: false,
-      valid: ValidationClass.None
+      valid: ValidationClass.None,
+      expanded: {}
     }
   },
   {
@@ -55,7 +59,8 @@ const params = [
       data: JSON.parse(SampleJson),
       text: SampleJson,
       autoFormat: false,
-      valid: ValidationClass.Valid
+      valid: ValidationClass.Valid,
+      expanded: {}
     }
   },
   {
@@ -65,7 +70,8 @@ const params = [
       data: ['xyz'],
       text: '["xyz"]',
       autoFormat: false,
-      valid: ValidationClass.Valid
+      valid: ValidationClass.Valid,
+      expanded: {}
     }
   },
   {
@@ -75,7 +81,8 @@ const params = [
       data: null,
       text: '{abcde: "xyz"}',
       autoFormat: false,
-      valid: ValidationClass.Invalid
+      valid: ValidationClass.Invalid,
+      expanded: {}
     }
   },
   {
@@ -85,7 +92,8 @@ const params = [
       data: [1, 2, 3],
       text: '[1, 2, 3]',
       autoFormat: false,
-      valid: ValidationClass.Valid
+      valid: ValidationClass.Valid,
+      expanded: {}
     }
   }
 ]

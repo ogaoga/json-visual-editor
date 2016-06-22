@@ -6,7 +6,8 @@ const initialState =  {
   data: null,
   text: '',
   autoFormat: false,
-  valid: ValidationClass.None
+  valid: ValidationClass.None,
+  expanded: {}
 }
 
 const reducer = (state = initialState, action) => {

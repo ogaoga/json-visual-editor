@@ -1,7 +1,7 @@
 import expect from 'expect';
 import {describe, it} from 'mocha'
 
-import {updateText, setText, clearText, copyText, pasteSample, setAutoFormat, resetValid} from '../src/actions/index'
+import {updateText, setText, clearText, copyText, pasteSample, setAutoFormat, resetValid, setExpanded} from '../src/actions/index'
 import {Actions} from '../src/Constants.js'
 
 let params = [
@@ -39,6 +39,11 @@ let params = [
     title: 'resetValid',
     actual: resetValid().type,
     expected: Actions.ResetValid
+  },
+  {
+    title: 'setExpanded',
+    actual: setExpanded().type,
+    expected: Actions.SetExpanded
   }
 ];
 
