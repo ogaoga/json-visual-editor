@@ -1,31 +1,27 @@
 import React from 'react';
 
-export default class Expander extends React.Component {
+class Expander extends React.Component {
 
   constructor(props) {
     super(props);
-
-    // state
-    this.state = {
-      expanded: props.defaultValue
-    };
 
     // bind
     this.onClick = this.onClick.bind(this);
   }
 
   onClick() {
-    const newValue = !this.state.expanded;
-    this.setState({expanded: newValue});
-    if ('onChangeExpansion' in this.props) {
-      this.props.onChangeExpansion(newValue);
-    }
+    this.props.toggleExpanded(this.props.pos)
+    this.forceUpdate()
   }
 
   render() {
+    let newClass = 'expanded'
+    if (this.props.pos in this.props.expanded) {
+      newClass = this.props.expanded[this.props.pos] ? 'expanded' : ''
+    }
     const classes = [
       'component-expander',
-      (this.state.expanded) ? 'expanded' : ''
+      newClass
     ].join(' ');
     return (
       <a href="#" className={classes} onClick={this.onClick}>
@@ -35,3 +31,21 @@ export default class Expander extends React.Component {
   }
 
 }
+
+import { connect }     from 'react-redux'
+import { toggleExpanded } from './actions'
+
+export default connect(
+  (state) => {
+    return {
+      expanded: state.expanded
+    }
+  },
+  (dispatch) => {
+    return {
+      toggleExpanded: (position) => {
+        dispatch(toggleExpanded(position))
+      }
+    }
+  }
+)(Expander)

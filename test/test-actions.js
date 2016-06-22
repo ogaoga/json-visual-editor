@@ -1,7 +1,7 @@
 import expect from 'expect';
 import {describe, it} from 'mocha'
 
-import {updateText, setText, clearText, copyText, pasteSample, setAutoFormat, resetValid, setExpanded} from '../src/actions/index'
+import {updateText, setText, clearText, copyText, pasteSample, setAutoFormat, resetValid, setExpanded, toggleExpanded} from '../src/actions/index'
 import {Actions} from '../src/Constants.js'
 
 let params = [
@@ -44,6 +44,11 @@ let params = [
     title: 'setExpanded',
     actual: setExpanded().type,
     expected: Actions.SetExpanded
+  },
+  {
+    title: 'toggleExpanded',
+    actual: toggleExpanded().type,
+    expected: Actions.ToggleExpanded
   }
 ];
 

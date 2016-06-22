@@ -4,8 +4,8 @@ import ObjectType from './object/ObjectType';
 class VisualizedData extends React.Component {
   render() {
     return (
-      <ObjectType data={this.props.data} />
-		);
+      <ObjectType data={this.props.data} pos="root" expanded={this.props.expanded} />
+		)
   }
 }
 
@@ -14,7 +14,8 @@ import { connect }   from 'react-redux'
 export default connect(
   (state) => {
     return {
-      data: state.data
+      data: state.data,
+      expanded: state.expanded
     }
   }
 )(VisualizedData)

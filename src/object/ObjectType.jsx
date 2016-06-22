@@ -7,22 +7,6 @@ import Expander    from '../Expander';
 
 export default class ObjectType extends React.Component {
 
-  constructor(props) {
-    super(props);
-
-    // state
-    this.state = {
-      expanded: true
-    };
-
-    // bind
-    this.onChangeExpansion = this.onChangeExpansion.bind(this);
-  }
-
-  onChangeExpansion(isExpanded) {
-    this.setState({expanded: isExpanded});
-  }
-
   render() {
     let data = this.props.data;
     let result = null;
@@ -36,25 +20,29 @@ export default class ObjectType extends React.Component {
         return (
           <tr key={name}>
             <th>{name}</th>
-            <td><ObjectType data={data[name]} /></td>
+            <td><ObjectType data={data[name]} pos={this.props.pos + '-' + name} expanded={this.props.expanded} /></td>
           </tr>
         );
       });
       const typeLabel = Array.isArray(data) ? 'Array' : 'Object';
       const headerLabel = '[' + rows.length.toString() + ']';
+      let tbodyClass = 'expanded'
+      if (this.props.pos in this.props.expanded) {
+        tbodyClass = this.props.expanded[this.props.pos] ? 'expanded' : ''
+      }
       result = (
         <table>
           <thead>
             <tr>
               <th className="expand">
-                <Expander defaultValue={this.state.expanded} onChangeExpansion={this.onChangeExpansion} />
+                <Expander pos={this.props.pos} />
               </th>
               <th className="objectType">
                 {typeLabel} {headerLabel}
               </th>
             </tr>
           </thead>
-          <tbody className={(this.state.expanded) ? 'expanded' : ''}>
+          <tbody className={tbodyClass}>
             {rows}
           </tbody>
         </table>

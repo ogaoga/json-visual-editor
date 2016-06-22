@@ -12,5 +12,6 @@ export const Actions = {
   PasteSample: 'PASTE_SAMPLE',
   SetAutoFormat: 'SET_AUTO_FORMAT',
   ResetValid: 'RESET_VALID',
-  SetExpanded: 'SET_EXPANDED'
+  SetExpanded: 'SET_EXPANDED',
+  ToggleExpanded: 'TOGGLE_EXPANDED'
 }

@@ -90,6 +90,20 @@ const reducer = (state = initialState, action) => {
       valid: ValidationClass.None
     });
 
+  case Actions.ToggleExpanded: {
+    const pos = action.position
+    let expanded = state.expanded || {}
+    if (pos in expanded) {
+      expanded[pos] = !expanded[pos]
+    }
+    else {
+      expanded[pos] = false
+    }
+    return Object.assign({}, state, {
+      expanded: expanded
+    })
+  }
+
   default:
     return state;
   }

@@ -52,3 +52,10 @@ export const setExpanded = (expanded, position) => {
     position
   }
 }
+
+export const toggleExpanded = (position) => {
+  return {
+    type: Actions.ToggleExpanded,
+    position
+  }
+}
