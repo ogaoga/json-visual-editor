@@ -6,7 +6,8 @@ const initialState =  {
   data: null,
   text: '',
   autoFormat: false,
-  valid: ValidationClass.None
+  valid: ValidationClass.None,
+  isTextareaClose: false
 }
 
 const reducer = (state = initialState, action) => {
@@ -87,6 +88,21 @@ const reducer = (state = initialState, action) => {
   case Actions.ResetValid:
     return Object.assign({}, state, {
       valid: ValidationClass.None
+    });
+
+  case Actions.OpenTextarea:
+    return Object.assign({}, state, {
+      isTextareaClose: false
+    });
+
+  case Actions.CloseTextarea:
+    return Object.assign({}, state, {
+      isTextareaClose: true
+    });
+
+  case Actions.ToggleTextarea:
+    return Object.assign({}, state, {
+      isTextareaClose: !state.isTextareaClose
     });
 
   default:
