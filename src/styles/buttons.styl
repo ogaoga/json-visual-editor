@@ -1,0 +1,12 @@
+
+#expand-button
+  transition transform 0.2s
+  transform  rotateZ(90deg)
+  &.open
+    transform rotateZ(270deg)
+
+@media (max-width: 839px) and (min-width: 480px)
+  #expand-button
+    transform  rotateZ(180deg)
+    &.open
+      transform rotateZ(90deg)
