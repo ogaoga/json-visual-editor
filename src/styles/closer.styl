@@ -1,0 +1,18 @@
+
+.json-text
+  #expand-button
+    transition transform 0.2s
+    transform  scale(1, 1) rotateZ(90deg)
+.json-text.closed
+  #expand-button
+    //transform rotateZ(270deg)
+    transform  scale(-1, 1) rotateZ(90deg)
+
+@media (max-width: 839px) and (min-width: 480px)
+  .json-text
+    #expand-button
+      transition transform 0.2s
+      transform scale(1, 1) rotateZ(180deg)
+  .json-text.closed
+    #expand-button
+      transform  scale(1, -1) rotateZ(180deg)

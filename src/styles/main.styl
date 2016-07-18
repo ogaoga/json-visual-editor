@@ -46,27 +46,31 @@ section
 
   &.json-text
     $controlAreaHeight = 48px
-    position   relative
-    min-height 300px
-    textarea
-      position absolute
-      top      0
-      bottom   $controlAreaHeight
-      left     0
-      right    0
-      resize      none
-      width       100%
-      box-sizing  border-box
-      padding     8px
-      border      1px solid #ddd
-      box-shadow  2px 2px 2px 0 rgba(200,200,200,0.2) inset;
-      font-family Consolas, 'Courier New', Courier, Monaco, monospace
-      font-size   14px
-      background-color #ffffff
-      &.valid
-        animation validFrames 1s ease-in-out
-      &.invalid
-        animation invalidFrames 1s ease-in-out
+    display     flex
+    align-items center;
+    position    relative
+    min-height  300px
+    .textarea-column
+      width 100%
+      textarea
+        position absolute
+        top      0
+        bottom   $controlAreaHeight
+        left     0
+        right    20px
+        resize      none
+        width       100%
+        box-sizing  border-box
+        padding     8px
+        border      1px solid #ddd
+        box-shadow  2px 2px 2px 0 rgba(200,200,200,0.2) inset;
+        font-family Consolas, 'Courier New', Courier, Monaco, monospace
+        font-size   14px
+        background-color #ffffff
+        &.valid
+          animation validFrames 1s ease-in-out
+        &.invalid
+          animation invalidFrames 1s ease-in-out
 
     .controls-area
       position   absolute

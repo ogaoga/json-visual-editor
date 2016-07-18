@@ -3,7 +3,7 @@ import Clipboard from 'clipboard';
 import { saveAs } from 'file-saver';
 
 import OptionMenu from './OptionMenu';
-import { clearText, toggleTextarea } from './actions'
+import { clearText } from './actions'
 
 class ControlsArea extends React.Component {
 
@@ -52,15 +52,6 @@ class ControlsArea extends React.Component {
                   title="More"
                   id="more-button">
             <i className="material-icons">more_vert</i>
-          </button>
-          <OptionMenu />
-        </div>
-        <div className="float-left">
-          <button className="mdl-button mdl-js-button mdl-button--icon"
-                  title="More"
-                  onClick={() => dispatch(toggleTextarea())}
-                  id="expand-button">
-            <i className="material-icons">expand_more</i>
           </button>
           <OptionMenu />
         </div>

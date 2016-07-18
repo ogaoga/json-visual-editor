@@ -2,6 +2,7 @@ import React    from 'react';
 
 import TextArea       from './TextArea';
 import VisualizedData from './VisualizedData';
+import Closer         from './Closer';
 
 class Page extends React.Component {
   render() {
@@ -24,6 +25,7 @@ class Page extends React.Component {
           <div className="mdl-grid">
             <section className={classLabel}>
               <TextArea />
+              <Closer />
             </section>
             <section className="visualized-data mdl-cell mdl-cell--8-col mdl-cell--8-col-tablet">
               <VisualizedData />
