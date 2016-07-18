@@ -1,7 +1,8 @@
 import expect from 'expect';
 import {describe, it} from 'mocha'
 
-import {updateText, setText, clearText, copyText, pasteSample, setAutoFormat, resetValid} from '../src/actions/index'
+import {updateText, setText, clearText, copyText, pasteSample, setAutoFormat, resetValid,
+        openTextarea, closeTextarea, toggleTextarea} from '../src/actions/index'
 import {Actions} from '../src/Constants.js'
 
 let params = [
@@ -39,6 +40,21 @@ let params = [
     title: 'resetValid',
     actual: resetValid().type,
     expected: Actions.ResetValid
+  },
+  {
+    title: 'openTextarea',
+    actual: openTextarea().type,
+    expected: Actions.OpenTextarea
+  },
+  {
+    title: 'closeTextarea',
+    actual: closeTextarea().type,
+    expected: Actions.CloseTextarea
+  },
+  {
+    title: 'toggleTextarea',
+    actual: toggleTextarea().type,
+    expected: Actions.ToggleTextarea
   }
 ];
 
