@@ -6,9 +6,17 @@ import Closer         from './Closer';
 
 class Page extends React.Component {
   render() {
-    let classLabel = 'json-text mdl-cell mdl-cell--4-col mdl-cell--8-col-tablet'
+    let classes = {
+      jsonText:   ['json-text',       'mdl-cell', 'mdl-cell--8-col-tablet'],
+      visualized: ['visualized-data', 'mdl-cell', 'mdl-cell--8-col-tablet']
+    }
     if (this.props.isTextareaClose) {
-      classLabel += ' closed'
+      classes.jsonText.push(  'closed', 'mdl-cell--1-col')
+      classes.visualized.push('closed', 'mdl-cell--11-col')
+    }
+    else {
+      classes.jsonText.push(  'mdl-cell--4-col')
+      classes.visualized.push('mdl-cell--8-col')
     }
     return (
       <div className="mdl-layout mdl-js-layout mdl-layout--fixed-header">
@@ -23,11 +31,11 @@ class Page extends React.Component {
         </header>
         <main className="mdl-layout__content">
           <div className="mdl-grid">
-            <section className={classLabel}>
+            <section className={classes.jsonText.join(' ')}>
               <TextArea />
               <Closer />
             </section>
-            <section className="visualized-data mdl-cell mdl-cell--8-col mdl-cell--8-col-tablet">
+            <section className={classes.visualized.join(' ')}>
               <VisualizedData />
             </section>
           </div>

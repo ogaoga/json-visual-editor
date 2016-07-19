@@ -1,7 +1,7 @@
 
-
 $closer-margin = -25px
 
+// for close button
 .json-text
   #expand-button
     margin-right  $closer-margin
@@ -13,6 +13,7 @@ $closer-margin = -25px
     transform  scale(-1, 1) rotateZ(90deg)
 
 @media (max-width: 839px) and (min-width: 480px)
+  // for close button
   .json-text
     flex-direction column
     #expand-button
@@ -23,3 +24,10 @@ $closer-margin = -25px
   .json-text.closed
     #expand-button
       transform  scale(1, -1) rotateZ(180deg)
+
+  // for closing animation
+  .json-text
+    transition  min-height 0.2s
+    min-height  300px
+    &.closed
+      min-height  100px
