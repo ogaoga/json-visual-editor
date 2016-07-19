@@ -44,3 +44,21 @@ export const resetValid = () => {
     type: Actions.ResetValid
   }
 }
+
+export const openTextarea = () => {
+  return {
+    type: Actions.OpenTextarea
+  }
+}
+
+export const closeTextarea = () => {
+  return {
+    type: Actions.CloseTextarea
+  }
+}
+
+export const toggleTextarea = () => {
+  return {
+    type: Actions.ToggleTextarea
+  }
+}

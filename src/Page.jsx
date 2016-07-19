@@ -2,9 +2,22 @@ import React    from 'react';
 
 import TextArea       from './TextArea';
 import VisualizedData from './VisualizedData';
+import Closer         from './Closer';
 
-export default class Page extends React.Component {
+class Page extends React.Component {
   render() {
+    let classes = {
+      jsonText:   ['json-text',       'mdl-cell', 'mdl-cell--8-col-tablet'],
+      visualized: ['visualized-data', 'mdl-cell', 'mdl-cell--8-col-tablet']
+    }
+    if (this.props.isTextareaClose) {
+      classes.jsonText.push(  'closed', 'mdl-cell--1-col')
+      classes.visualized.push('closed', 'mdl-cell--11-col')
+    }
+    else {
+      classes.jsonText.push(  'mdl-cell--4-col')
+      classes.visualized.push('mdl-cell--8-col')
+    }
     return (
       <div className="mdl-layout mdl-js-layout mdl-layout--fixed-header">
         <header className="mdl-layout__header">
@@ -18,10 +31,11 @@ export default class Page extends React.Component {
         </header>
         <main className="mdl-layout__content">
           <div className="mdl-grid">
-            <section className="json-text mdl-cell mdl-cell--4-col mdl-cell--8-col-tablet">
+            <section className={classes.jsonText.join(' ')}>
               <TextArea />
+              <Closer />
             </section>
-            <section className="visualized-data mdl-cell mdl-cell--8-col mdl-cell--8-col-tablet">
+            <section className={classes.visualized.join(' ')}>
               <VisualizedData />
             </section>
           </div>
@@ -40,3 +54,13 @@ export default class Page extends React.Component {
 		);
   }
 }
+
+import { connect }   from 'react-redux'
+
+export default connect(
+  (state) => {
+    return {
+      isTextareaClose: state.isTextareaClose
+    }
+  }
+)(Page)
