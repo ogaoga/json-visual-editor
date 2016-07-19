@@ -1,16 +1,23 @@
 
+
+$closer-margin = -25px
+
 .json-text
   #expand-button
+    margin-right  $closer-margin
+    margin-bottom 0
     transition transform 0.2s
     transform  scale(1, 1) rotateZ(90deg)
 .json-text.closed
   #expand-button
-    //transform rotateZ(270deg)
     transform  scale(-1, 1) rotateZ(90deg)
 
 @media (max-width: 839px) and (min-width: 480px)
   .json-text
+    flex-direction column
     #expand-button
+      margin-right  0
+      margin-bottom $closer-margin
       transition transform 0.2s
       transform scale(1, 1) rotateZ(180deg)
   .json-text.closed
