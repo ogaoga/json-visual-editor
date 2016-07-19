@@ -53,6 +53,7 @@ Please contribute to the project if you think this can be done better in anyway 
 ## See also
 
 * [React + ES6 + Webpack で JSON Visual Editor を作ってみる - Qiita](http://qiita.com/ogaoga/items/1dae5586601e6900c3f1)
+* [React + ES6 + Webpack で JSON Visual Editor を作ってみる（Redux 導入編） - Qiita](http://qiita.com/ogaoga/items/e3f7e6d1d3aeb61351f5)
 
 ## License
 
@@ -64,6 +65,7 @@ Licensed under the [MIT License](LICENSE).
 
 ## ToDo
 
+- [ ] Add Close/Open button for text area.
 - [ ] Show level of depth.
 - [ ] Timestamp translation.
 - [ ] Implement test cases.

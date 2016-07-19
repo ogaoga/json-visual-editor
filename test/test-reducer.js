@@ -1,92 +1,100 @@
 import expect from 'expect';
 import {describe, it} from 'mocha'
 
-import {updateText, clearText, setAutoFormat, pasteSample, setText} from '../src/actions'
+import {updateText, clearText, setAutoFormat, pasteSample, setText, openTextarea, closeTextarea, toggleTextarea} from '../src/actions'
 import reducer from '../src/reducers'
 
 import SampleJson   from 'raw!../src/samples/simple.json';
 import {ValidationClass} from '../src/Constants.js'
 
+const defaults = {
+  data: null,
+  text: '',
+  autoFormat: false,
+  valid: ValidationClass.None,
+  isTextareaClose: false
+}
+
 const params = [
   {
     title: 'updateText',
     action: updateText('abc'),
-    expected: {
-      data: null,
-      text: 'abc',
-      autoFormat: false,
-      valid: ValidationClass.None
-    }
+    expected: Object.assign({}, defaults, {
+      text: 'abc'
+    })
   },
   {
     title: 'clearText',
     action: clearText(),
-    expected: {
-      data: null,
-      text: '',
-      autoFormat: false,
-      valid: ValidationClass.None
-    }
+    expected: defaults
   },
   {
     title: 'setAutoFormat(true)',
     action: setAutoFormat(true),
-    expected: {
-      data: null,
-      text: '',
-      autoFormat: true,
-      valid: ValidationClass.None
-    }
+    expected: Object.assign({}, defaults, {
+      autoFormat: true
+    })
   },
   {
     title: 'setAutoFormat(false)',
     action: setAutoFormat(false),
-    expected: {
-      data: null,
-      text: '',
-      autoFormat: false,
-      valid: ValidationClass.None
-    }
+    expected: defaults
   },
   {
     title: 'pasteSample()',
     action: pasteSample(),
-    expected: {
+    expected: Object.assign({}, defaults, {
       data: JSON.parse(SampleJson),
       text: SampleJson,
-      autoFormat: false,
       valid: ValidationClass.Valid
-    }
+    })
   },
   {
     title: 'setText (valid)',
     action: setText('["xyz"]'),
-    expected: {
+    expected: Object.assign({}, defaults, {
       data: ['xyz'],
       text: '["xyz"]',
-      autoFormat: false,
       valid: ValidationClass.Valid
-    }
+    })
   },
   {
     title: 'setText (invalid)',
     action: setText('{abcde: "xyz"}'),
-    expected: {
-      data: null,
+    expected: Object.assign({}, defaults, {
       text: '{abcde: "xyz"}',
-      autoFormat: false,
       valid: ValidationClass.Invalid
-    }
+    })
   },
   {
     title: 'setText (auto format = false)',
     action: setText('[1, 2, 3]', true),
-    expected: {
+    expected: Object.assign({}, defaults, {
       data: [1, 2, 3],
       text: '[1, 2, 3]',
-      autoFormat: false,
       valid: ValidationClass.Valid
-    }
+    })
+  },
+  {
+    title: 'openTextarea',
+    action: openTextarea(),
+    expected: Object.assign({}, defaults, {
+      isTextareaClose: false
+    })
+  },
+  {
+    title: 'closeTextarea',
+    action: closeTextarea(),
+    expected: Object.assign({}, defaults, {
+      isTextareaClose: true
+    })
+  },
+  {
+    title: 'toggleTextarea (false -> true)',
+    action: toggleTextarea(),
+    expected: Object.assign({}, defaults, {
+      isTextareaClose: true
+    })
   }
 ]
 
@@ -96,7 +104,8 @@ describe('reducer', () => {
 
   params.forEach((param) => {
     it(param.title, () => {
-      expect(reducer(state, param.action)).toEqual(param.expected);
+      let result = reducer(state, param.action)
+      expect(result).toEqual(param.expected);
     });
   });
 });

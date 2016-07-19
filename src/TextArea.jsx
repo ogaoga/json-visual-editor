@@ -53,7 +53,7 @@ class TextArea extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className="textarea-column">
         <textarea id="json-text"
                   className={this.props.valid}
                   placeholder="Write JSON code or drop a JSON file here."
