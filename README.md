@@ -65,10 +65,9 @@ Licensed under the [MIT License](LICENSE).
 
 ## ToDo
 
-- [ ] Add Close/Open button for text area.
+- [ ] Fix a bug of drop area indicator.
 - [ ] Show level of depth.
 - [ ] Timestamp translation.
-- [ ] Implement test cases.
 - [ ] Edit feature.
 - [ ] Chrome Web Store app build.
 - [ ] React Native
