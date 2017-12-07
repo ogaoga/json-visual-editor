@@ -1,5 +1,5 @@
 
-import SampleJson   from 'raw!../samples/simple.json';
+import SampleJson   from 'raw-loader!../samples/simple.json';
 import {ValidationClass, Actions} from '../Constants.js'
 
 const initialState =  {

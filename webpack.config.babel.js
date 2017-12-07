@@ -14,10 +14,18 @@ module.exports = {
 		filename: 'bundle.js'
 	},
 	resolve: {
-		extensions: ['.js', '.jsx']
+		extensions: ['', '.js', '.jsx']
 	},
 	module: {
-		rules: loaders
+		loaders: loaders,
+    rules: [
+      {
+        test: /\.jsx?$/,
+        exclude: /node_modules/,
+        loader: 'eslint-loader',
+        enforce: 'pre'
+      }
+    ]
 	},
 	devServer: {
 		contentBase: "./public",
@@ -26,6 +34,6 @@ module.exports = {
 			inline: true
 		},
 	plugins: [
-		new webpack.NoEmitOnErrorsPlugin()
+		new webpack.NoErrorsPlugin()
 	]
 };
