@@ -62,7 +62,7 @@ const params = [
           <tr>
             <th>1</th>
             <td>
-              <ObjectType data={"abc"} />
+              <ObjectType data={'abc'} />
             </td>
           </tr>
           <tr>
