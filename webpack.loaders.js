@@ -2,7 +2,13 @@ module.exports = [
 	{
 		test: /\.jsx?$/,
 		exclude: /(node_modules|bower_components)/,
-		use: ['eslint-loader', 'react-hot-loader/webpack', 'babel-loader'],
+		use: ['eslint-loader'],
+    enforce: 'pre'
+ 	},
+	{
+		test: /\.jsx?$/,
+		exclude: /(node_modules|bower_components)/,
+		use: ['react-hot-loader/webpack', 'babel-loader']
 	},
 	{
 		test  : /\.styl$/,

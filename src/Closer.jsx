@@ -7,14 +7,16 @@ class Closer extends React.Component {
     const { dispatch } = this.props
     return (
       <div className="closer">
-        <button className="mdl-button mdl-js-button mdl-button--icon"
-                title="Open/Close text area"
-                onClick={() => dispatch(toggleTextarea())}
-                id="expand-button">
+        <button
+          className="mdl-button mdl-js-button mdl-button--icon"
+          title="Open/Close text area"
+          onClick={() => dispatch(toggleTextarea())}
+          id="expand-button"
+        >
           <i className="material-icons">expand_more</i>
         </button>
       </div>
-		);
+    );
   }
 }
 

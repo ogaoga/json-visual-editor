@@ -51,7 +51,7 @@ class Page extends React.Component {
           </div>
         </footer>
       </div>
-		);
+    );
   }
 }
 

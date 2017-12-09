@@ -55,15 +55,15 @@ class TextArea extends React.Component {
     return (
       <div className="textarea-column">
         <textarea id="json-text"
-                  className={this.props.valid}
-                  placeholder="Write JSON code or drop a JSON file here."
-                  value={this.props.text}
-                  onChange={this.onChange}
-                  onDrop={this.onDrop}
-                  ref="jsonText"></textarea>
+          className={this.props.valid}
+          placeholder="Write JSON code or drop a JSON file here."
+          value={this.props.text}
+          onChange={this.onChange}
+          onDrop={this.onDrop}
+          ref="jsonText"></textarea>
         <ControlsArea />
       </div>
-		);
+    );
   }
 }
 
