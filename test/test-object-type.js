@@ -1,20 +1,19 @@
 import React from 'react';
 import expect from 'expect';
 import ShallowRenderer from 'react-test-renderer/shallow';
-import expectJSX from 'expect-jsx';
-expect.extend(expectJSX);
 import {describe, it} from 'mocha'
 
 import BooleanType from '../src/object/BooleanType.jsx'
 import ObjectType  from '../src/object/ObjectType.jsx'
 import Expander    from '../src/Expander.jsx'
 
-import reducer from '../src/reducers'
-import { createStore } from 'redux'
-import { Provider }    from 'react-redux'
-const store = createStore(reducer)
+//import reducer from '../src/reducers'
+//import { createStore } from 'redux'
+//import { Provider }    from 'react-redux'
+//const store = createStore(reducer)
 
 const params = [
+  /*
   {
     title: 'Prepare',
     actual: (
@@ -24,6 +23,7 @@ const params = [
     ),
     expected: (<ObjectType />)
   },
+  */
   {
     title: 'Display true',
     actual: (<ObjectType data={true} />),
@@ -44,7 +44,7 @@ const params = [
             <th className="expand">
               <Expander
                 defaultValue={true}
-                onChangeExpansion={function noRefCheck() {}}
+                onChangeExpansion={function onChangeExpansion() {}}
               />
             </th>
             <th className="objectType">
@@ -85,7 +85,7 @@ const params = [
             <th className="expand">
               <Expander
                 defaultValue={true}
-                onChangeExpansion={function noRefCheck() {}}
+                onChangeExpansion={function onChangeExpansion() {}}
               />
             </th>
             <th className="objectType">
@@ -119,7 +119,7 @@ describe('ObjectType Component', () => {
       renderer.render(param.actual);
       let actualElement = renderer.getRenderOutput();
       let expectedElement = param.expected;
-      expect(actualElement).toEqualJSX(expectedElement);
+      expect(actualElement).toEqual(expectedElement);
     });
   });
 });

@@ -1,8 +1,6 @@
 import React from 'react';
 import expect from 'expect';
 import ShallowRenderer from 'react-test-renderer/shallow';
-import expectJSX from 'expect-jsx';
-expect.extend(expectJSX);
 import {describe, it} from 'mocha'
 
 import Expander from '../src/Expander.jsx'
@@ -12,7 +10,7 @@ let params = [
     title: 'Display expander (expaneded).',
     actual: (<Expander defaultValue={true} />),
     expected: (
-      <a href="#" className="component-expander expanded" onClick={function noRefCheck() {}}>
+      <a href="#" className="component-expander expanded" onClick={function onClick() {}}>
         <i className="material-icons">expand_more</i>
       </a>
     )
@@ -21,7 +19,7 @@ let params = [
     title: 'Display expander (closeed).',
     actual: (<Expander defaultValue={false} />),
     expected: (
-      <a href="#" className="component-expander " onClick={function noRefCheck() {}}>
+      <a href="#" className="component-expander " onClick={function onClick() {}}>
         <i className="material-icons">expand_more</i>
       </a>
     )
@@ -36,7 +34,7 @@ describe('Expander Component', () => {
       renderer.render(param.actual);
       let actualElement = renderer.getRenderOutput();
       let expectedElement = param.expected;
-      expect(actualElement).toEqualJSX(expectedElement);
+      expect(actualElement).toEqual(expectedElement);
     });
   });
 });

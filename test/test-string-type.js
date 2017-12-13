@@ -49,7 +49,7 @@ describe('StringType Component', () => {
       renderer.render(param.actual);
       let actualElement = renderer.getRenderOutput();
       let expectedElement = param.expected;
-      expect(actualElement).toEqualJSX(expectedElement);
+      expect(actualElement).toEqual(expectedElement);
     });
   });
 });

@@ -1,8 +1,6 @@
 import React from 'react';
 import expect from 'expect';
 import ShallowRenderer from 'react-test-renderer/shallow';
-import expectJSX from 'expect-jsx';
-expect.extend(expectJSX);
 import {describe, it} from 'mocha'
 
 import BooleanType from '../src/object/BooleanType.jsx'
@@ -37,7 +35,7 @@ describe('BooleanType Component', () => {
       renderer.render(param.actual);
       const actualElement = renderer.getRenderOutput();
       let expectedElement = param.expected;
-      expect(actualElement).toEqualJSX(expectedElement);
+      expect(actualElement).toEqual(expectedElement);
     });
   });
 });

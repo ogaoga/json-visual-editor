@@ -14,9 +14,6 @@ export default class ObjectType extends React.Component {
     this.state = {
       expanded: true
     };
-
-    // bind
-    this.onChangeExpansion = this.onChangeExpansion.bind(this);
   }
 
   onChangeExpansion(isExpanded) {
@@ -47,10 +44,10 @@ export default class ObjectType extends React.Component {
           <thead>
             <tr>
               <th className="expand">
-                <Expander defaultValue={this.state.expanded} onChangeExpansion={this.onChangeExpansion} />
+                <Expander defaultValue={this.state.expanded} onChangeExpansion={(flag)=>this.onChangeExpansion(flag)} />
               </th>
               <th className="objectType">
-                {typeLabel} {headerLabel}
+                {`${typeLabel} ${headerLabel}`}
               </th>
             </tr>
           </thead>
