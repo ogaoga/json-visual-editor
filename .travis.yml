@@ -3,7 +3,3 @@ sudo: false
 node_js:
   - 'stable'
   - 'lts/*'
-  
-notifications:
-    slack: ogaoga:hK7wXv8uHDskMsOBxC0B2Jjx
-
