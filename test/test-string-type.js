@@ -43,8 +43,8 @@ let params = [
 ];
 
 describe('StringType Component', () => {
-  const renderer = new ShallowRenderer();
   params.forEach((param) => {
+    const renderer = new ShallowRenderer();
     it(param.title, () => {
       renderer.render(param.actual);
       let actualElement = renderer.getRenderOutput();

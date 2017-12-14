@@ -29,8 +29,8 @@ let params = [
 ];
 
 describe('BooleanType Component', () => {
-  const renderer = new ShallowRenderer();
   params.forEach((param) => {
+    const renderer = new ShallowRenderer();
     it(param.title, () => {
       renderer.render(param.actual);
       const actualElement = renderer.getRenderOutput();
