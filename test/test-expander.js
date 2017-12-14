@@ -1,7 +1,9 @@
 import React from 'react';
 import expect from 'expect';
-import ShallowRenderer from 'react-test-renderer/shallow';
 import {describe, it} from 'mocha'
+import Enzyme from 'enzyme';
+import Adapter from 'enzyme-adapter-react-16';
+Enzyme.configure({ adapter: new Adapter() });
 
 import Expander from '../src/Expander.jsx'
 
@@ -26,15 +28,12 @@ let params = [
   }
 ];
 
-
 describe('Expander Component', () => {
   params.forEach((param) => {
-    const renderer = new ShallowRenderer();
     it(param.title, () => {
-      renderer.render(param.actual);
-      let actualElement = renderer.getRenderOutput();
-      let expectedElement = param.expected;
-      expect(actualElement).toEqual(expectedElement);
+      const actual = Enzyme.shallow(param.actual).html();
+      const expected = Enzyme.shallow(param.expected).html();
+      expect(actual).toEqual(expected);
     });
   });
 });

@@ -1,19 +1,20 @@
 import React from 'react';
 import expect from 'expect';
-import ShallowRenderer from 'react-test-renderer/shallow';
 import {describe, it} from 'mocha'
+import Enzyme from 'enzyme';
+import Adapter from 'enzyme-adapter-react-16';
+Enzyme.configure({ adapter: new Adapter() });
 
 import BooleanType from '../src/object/BooleanType.jsx'
 import ObjectType  from '../src/object/ObjectType.jsx'
 import Expander    from '../src/Expander.jsx'
 
-//import reducer from '../src/reducers'
-//import { createStore } from 'redux'
-//import { Provider }    from 'react-redux'
-//const store = createStore(reducer)
+import reducer from '../src/reducers'
+import { createStore } from 'redux'
+import { Provider }    from 'react-redux'
+const store = createStore(reducer)
 
 const params = [
-  /*
   {
     title: 'Prepare',
     actual: (
@@ -23,7 +24,6 @@ const params = [
     ),
     expected: (<ObjectType />)
   },
-  */
   {
     title: 'Display true',
     actual: (<ObjectType data={true} />),
@@ -114,12 +114,10 @@ const params = [
 
 describe('ObjectType Component', () => {
   params.forEach((param) => {
-    const renderer = new ShallowRenderer();
     it(param.title, () => {
-      renderer.render(param.actual);
-      let actualElement = renderer.getRenderOutput();
-      let expectedElement = param.expected;
-      expect(actualElement).toEqual(expectedElement);
+      const actual = Enzyme.shallow(param.actual).html();
+      const expected = Enzyme.shallow(param.expected).html();
+      expect(actual).toEqual(expected);
     });
   });
 });
