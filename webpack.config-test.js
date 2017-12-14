@@ -1,6 +1,4 @@
 var nodeExternals = require('webpack-node-externals');
-var loaders = require('./webpack.loaders');
-
 var webpack = require('webpack');
 var path = require('path');
 var loaders = require('./webpack.loaders');
@@ -17,17 +15,10 @@ module.exports = {
 		filename: 'bundle.js'
 	},
 	resolve: {
-		extensions: ['', '.js', '.jsx']
+		extensions: ['.js', '.jsx']
 	},
 	module: {
-		loaders: loaders,
-    preLoaders: [
-      {
-        test: /\.jsx?$/,
-        exclude: /node_modules/,
-        loader: 'eslint-loader'
-      }
-    ]
+		loaders: loaders
 	},
 	devServer: {
 		contentBase: "./public",
@@ -36,6 +27,6 @@ module.exports = {
 			inline: true
 		},
 	plugins: [
-		new webpack.NoErrorsPlugin()
+    new webpack.NoEmitOnErrorsPlugin()
 	]
 };

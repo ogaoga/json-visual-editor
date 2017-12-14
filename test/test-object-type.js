@@ -1,9 +1,9 @@
 import React from 'react';
 import expect from 'expect';
-import {createRenderer} from 'react-addons-test-utils';
-import expectJSX from 'expect-jsx';
-expect.extend(expectJSX);
 import {describe, it} from 'mocha'
+import Enzyme from 'enzyme';
+import Adapter from 'enzyme-adapter-react-16';
+Enzyme.configure({ adapter: new Adapter() });
 
 import BooleanType from '../src/object/BooleanType.jsx'
 import ObjectType  from '../src/object/ObjectType.jsx'
@@ -44,7 +44,7 @@ const params = [
             <th className="expand">
               <Expander
                 defaultValue={true}
-                onChangeExpansion={function noRefCheck() {}}
+                onChangeExpansion={function onChangeExpansion() {}}
               />
             </th>
             <th className="objectType">
@@ -62,7 +62,7 @@ const params = [
           <tr>
             <th>1</th>
             <td>
-              <ObjectType data={"abc"} />
+              <ObjectType data={'abc'} />
             </td>
           </tr>
           <tr>
@@ -85,7 +85,7 @@ const params = [
             <th className="expand">
               <Expander
                 defaultValue={true}
-                onChangeExpansion={function noRefCheck() {}}
+                onChangeExpansion={function onChangeExpansion() {}}
               />
             </th>
             <th className="objectType">
@@ -114,12 +114,10 @@ const params = [
 
 describe('ObjectType Component', () => {
   params.forEach((param) => {
-    let renderer = createRenderer();
     it(param.title, () => {
-      renderer.render(param.actual);
-      let actualElement = renderer.getRenderOutput();
-      let expectedElement = param.expected;
-      expect(actualElement).toEqualJSX(expectedElement);
+      const actual = Enzyme.shallow(param.actual).html();
+      const expected = Enzyme.shallow(param.expected).html();
+      expect(actual).toEqual(expected);
     });
   });
 });

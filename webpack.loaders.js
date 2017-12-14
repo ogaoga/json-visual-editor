@@ -2,11 +2,17 @@ module.exports = [
 	{
 		test: /\.jsx?$/,
 		exclude: /(node_modules|bower_components)/,
-		loaders: ['react-hot', 'babel'],
+		use: ['eslint-loader'],
+    enforce: 'pre'
+ 	},
+	{
+		test: /\.jsx?$/,
+		exclude: /(node_modules|bower_components)/,
+		use: ['react-hot-loader/webpack', 'babel-loader']
 	},
 	{
 		test  : /\.styl$/,
-		loader: 'style!css!stylus'
+		loader: 'style-loader!css-loader!stylus-loader'
 	},
 	{
 		test: /\.eot(\?v=\d+\.\d+\.\d+)?$/,

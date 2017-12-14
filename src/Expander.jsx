@@ -9,9 +9,6 @@ export default class Expander extends React.Component {
     this.state = {
       expanded: props.defaultValue
     };
-
-    // bind
-    this.onClick = this.onClick.bind(this);
   }
 
   onClick() {
@@ -28,7 +25,7 @@ export default class Expander extends React.Component {
       (this.state.expanded) ? 'expanded' : ''
     ].join(' ');
     return (
-      <a href="#" className={classes} onClick={this.onClick}>
+      <a href="#" className={classes} onClick={(event)=>this.onClick(event)}>
         <i className="material-icons">expand_more</i>
       </a>
     );

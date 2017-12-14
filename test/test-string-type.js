@@ -1,6 +1,6 @@
 import React from 'react';
 import expect from 'expect';
-import {createRenderer} from 'react-addons-test-utils';
+import ShallowRenderer from 'react-test-renderer/shallow';
 import expectJSX from 'expect-jsx';
 expect.extend(expectJSX);
 import {describe, it} from 'mocha'
@@ -44,12 +44,12 @@ let params = [
 
 describe('StringType Component', () => {
   params.forEach((param) => {
-    let renderer = createRenderer();
+    const renderer = new ShallowRenderer();
     it(param.title, () => {
       renderer.render(param.actual);
       let actualElement = renderer.getRenderOutput();
       let expectedElement = param.expected;
-      expect(actualElement).toEqualJSX(expectedElement);
+      expect(actualElement).toEqual(expectedElement);
     });
   });
 });

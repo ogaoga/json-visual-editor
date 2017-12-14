@@ -4,7 +4,7 @@ import {describe, it} from 'mocha'
 import {updateText, clearText, setAutoFormat, pasteSample, setText, openTextarea, closeTextarea, toggleTextarea} from '../src/actions'
 import reducer from '../src/reducers'
 
-import SampleJson   from 'raw!../src/samples/simple.json';
+import SampleJson   from 'raw-loader!../src/samples/simple.json';
 import {ValidationClass} from '../src/Constants.js'
 
 const defaults = {

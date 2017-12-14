@@ -5,7 +5,7 @@ class VisualizedData extends React.Component {
   render() {
     return (
       <ObjectType data={this.props.data} />
-		);
+    );
   }
 }
 
