@@ -14,6 +14,11 @@ export default class ObjectType extends React.Component {
     this.state = {
       expanded: true
     };
+
+    // props
+    this.level = props.level || 0;
+    this.maxLevel = 5;
+    this.nextLevel = this.level == this.maxLevel ? 0 : this.level + 1
   }
 
   onChangeExpansion(isExpanded) {
@@ -33,7 +38,7 @@ export default class ObjectType extends React.Component {
         return (
           <tr key={name}>
             <th>{name}</th>
-            <td><ObjectType data={data[name]} /></td>
+            <td><ObjectType data={data[name]} level={this.nextLevel} /></td>
           </tr>
         );
       });
@@ -41,7 +46,7 @@ export default class ObjectType extends React.Component {
       const headerLabel = '[' + rows.length.toString() + ']';
       result = (
         <table>
-          <thead>
+          <thead data-level={this.level}>
             <tr>
               <th className="expand">
                 <Expander defaultValue={this.state.expanded} onChangeExpansion={(flag)=>this.onChangeExpansion(flag)} />
