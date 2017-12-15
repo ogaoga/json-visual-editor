@@ -47,7 +47,7 @@ class Page extends React.Component {
             <span><a href="http://qiita.com/ogaoga/items/1dae5586601e6900c3f1">Development guide on Qiita</a></span>
           </div>
           <div>
-            <span>Copyright &copy; 2016 ogaoga.org</span>
+            <span>Copyright &copy; 2016 - 2017 ogaoga.org</span>
           </div>
         </footer>
       </div>
