@@ -112,13 +112,12 @@ td
 
 th
   text-align right
-  background #eef
+  background #eee
 
 thead
   th
     color           gray
     font-weight     normal
-    background      #cce
     vertical-align  middle
     padding         0 4px
     &.expand
@@ -127,6 +126,12 @@ thead
     &.objectType
       text-align   right
       border-left  0
+
+$colorPalette = (#C5BEE4 #BECDE4 #C5E4BE #DBE4BE #E4D5BE #E4BEBE)
+
+for i in (0..5)
+  thead[data-level=\"{i}\"] tr th
+    background $colorPalette[i]
 
 tbody
   display none

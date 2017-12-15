@@ -17,5 +17,18 @@
     "name": "John",
     "age": 32,
     "isMarried": true
+  },
+  "nested objects": {
+    "object": {
+      "object": {
+        "object": {
+          "object": {
+            "object": {
+              "color": "red"
+            }
+          }
+        }
+      }
+    }
   }
 }

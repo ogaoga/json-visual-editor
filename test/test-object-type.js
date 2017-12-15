@@ -39,7 +39,7 @@ const params = [
     actual: (<ObjectType data={[null, 'abc', 123]} />),
     expected: (
       <table>
-        <thead>
+        <thead data-level="0">
           <tr>
             <th className="expand">
               <Expander
@@ -80,7 +80,7 @@ const params = [
     actual: (<ObjectType data={{abc: 123, 'xyz': 'abc'}} />),
     expected: (
       <table>
-        <thead>
+        <thead data-level="0">
           <tr>
             <th className="expand">
               <Expander
