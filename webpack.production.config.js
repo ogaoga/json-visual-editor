@@ -14,7 +14,7 @@ module.exports = {
 		extensions: ['.js', '.jsx']
 	},
 	module: {
-		loaders: loaders
+		rules: loaders
 	},
   plugins: [
     new webpack.DefinePlugin({
@@ -22,5 +22,6 @@ module.exports = {
         'NODE_ENV': JSON.stringify('production')
       }
     })
-  ]
+  ],
+  mode: 'production',
 };

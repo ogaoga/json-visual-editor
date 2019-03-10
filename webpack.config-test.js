@@ -18,7 +18,7 @@ module.exports = {
 		extensions: ['.js', '.jsx']
 	},
 	module: {
-		loaders: loaders
+		rules: loaders
 	},
 	devServer: {
 		contentBase: "./public",
@@ -28,5 +28,6 @@ module.exports = {
 		},
 	plugins: [
     new webpack.NoEmitOnErrorsPlugin()
-	]
+	],
+  mode: 'development',
 };
