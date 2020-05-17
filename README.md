@@ -9,8 +9,8 @@
 
 ## To develop
 
-* You'll need to have [git](https://git-scm.com/) and [node](https://nodejs.org/en/) installed in your system.
-* Fork and clone the project:
+- You'll need to have [git](https://git-scm.com/) and [node](https://nodejs.org/en/) installed in your system.
+- Fork and clone the project:
 
 ```
 $ git clone https://github.com/ogaoga/json-visual-editor.git
@@ -28,13 +28,13 @@ Install webpack and the development server:
 $ npm install webpack-dev-server webpack -g
 ```
 
-You can simply run webpack build using this command: 
+You can simply run webpack build using this command:
 
 ```
 $ npm run build
 ```
 
-If you want to run with webpack-dev-server simply run this command: 
+If you want to run with webpack-dev-server simply run this command:
 
 ```
 $ npm start
@@ -42,7 +42,7 @@ $ npm start
 
 Open the web browser to `http://localhost:8080/`
 
-If you want to test simply run this command: 
+If you want to test simply run this command:
 
 ```
 $ npm test
@@ -52,8 +52,8 @@ Please contribute to the project if you think this can be done better in anyway 
 
 ## See also
 
-* [React + ES6 + Webpack で JSON Visual Editor を作ってみる - Qiita](http://qiita.com/ogaoga/items/1dae5586601e6900c3f1)
-* [React + ES6 + Webpack で JSON Visual Editor を作ってみる（Redux 導入編） - Qiita](http://qiita.com/ogaoga/items/e3f7e6d1d3aeb61351f5)
+- [React + ES6 + Webpack で JSON Visual Editor を作ってみる - Qiita](http://qiita.com/ogaoga/items/1dae5586601e6900c3f1)
+- [React + ES6 + Webpack で JSON Visual Editor を作ってみる（Redux 導入編） - Qiita](http://qiita.com/ogaoga/items/e3f7e6d1d3aeb61351f5)
 
 ## License
 
@@ -64,6 +64,16 @@ Licensed under the [MIT License](LICENSE).
 [travis-url]: https://travis-ci.org/ogaoga/json-visual-editor
 
 ## ToDo
+
+### for version 2.0.0
+
+- [ ] Replace the environment with create-react-app
+- [ ] Use latest packages to fix vulnerability
+- [ ] Use TypeScript
+- [ ] Use Redux Toolkit
+- [ ] Use Prettier
+
+### issues and features to be implemented
 
 - [ ] Fix a bug of drop area indicator.
 - [ ] Show level of depth.
