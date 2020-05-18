@@ -1,5 +1,6 @@
 import React from 'react';
-
+import { connect } from 'react-redux';
+import { updateText, setText, resetValid } from './actions';
 import ControlsArea from './ControlsArea';
 
 class TextArea extends React.Component {
@@ -66,9 +67,6 @@ class TextArea extends React.Component {
     );
   }
 }
-
-import { connect }   from 'react-redux'
-import { updateText, setText, resetValid } from './actions'
 
 export default connect(
   (state) => {

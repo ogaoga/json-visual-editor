@@ -1,4 +1,6 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { setAutoFormat, pasteSample } from './actions';
 
 class OptionMenu extends React.Component {
 
@@ -15,9 +17,6 @@ class OptionMenu extends React.Component {
     );
   }
 }
-
-import { connect } from 'react-redux'
-import { setAutoFormat, pasteSample } from './actions'
 
 export default connect(
   (state) => {

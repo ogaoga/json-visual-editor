@@ -18,7 +18,7 @@ export default class ObjectType extends React.Component {
     // props
     this.level = props.level || 0;
     this.maxLevel = 5;
-    this.nextLevel = this.level == this.maxLevel ? 0 : this.level + 1
+    this.nextLevel = this.level === this.maxLevel ? 0 : this.level + 1
   }
 
   onChangeExpansion(isExpanded) {

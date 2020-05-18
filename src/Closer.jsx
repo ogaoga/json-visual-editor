@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { toggleTextarea } from './actions'
 
 class Closer extends React.Component {
@@ -19,8 +20,6 @@ class Closer extends React.Component {
     );
   }
 }
-
-import { connect }   from 'react-redux'
 
 export default connect(
   (state) => {

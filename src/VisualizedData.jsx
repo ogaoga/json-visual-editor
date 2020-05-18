@@ -1,5 +1,6 @@
 import React      from 'react';
 import ObjectType from './object/ObjectType';
+import { connect } from 'react-redux';
 
 class VisualizedData extends React.Component {
   render() {
@@ -8,8 +9,6 @@ class VisualizedData extends React.Component {
     );
   }
 }
-
-import { connect }   from 'react-redux'
 
 export default connect(
   (state) => {

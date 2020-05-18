@@ -6,6 +6,7 @@ import persistState    from 'redux-localstorage'
 
 import App     from './App'
 import reducer from './reducers'
+import './index.scss';
 
 // For local storage cache
 const enhancer = compose(

@@ -1,4 +1,5 @@
 import React    from 'react';
+import { connect } from 'react-redux';
 
 import TextArea       from './TextArea';
 import VisualizedData from './VisualizedData';
@@ -54,8 +55,6 @@ class Page extends React.Component {
     );
   }
 }
-
-import { connect }   from 'react-redux'
 
 export default connect(
   (state) => {

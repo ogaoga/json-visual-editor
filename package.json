@@ -1,13 +1,53 @@
 {
   "name": "json-visual-editor",
-  "version": "0.0.1",
+  "version": "2.0.0",
   "description": "Web based JSON Editor powered by React.",
-  "main": "''",
+  "author": "Tsutomu Ogasawara (ogaoga)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ogaoga/json-visual-editor/issues"
+  },
+  "homepage": "http://ogaoga.github.io/json-visual-editor/",
+  "dependencies": {
+    "@testing-library/jest-dom": "^4.2.4",
+    "@testing-library/react": "^9.3.2",
+    "@testing-library/user-event": "^7.1.2",
+    "@types/jest": "^24.0.0",
+    "@types/node": "^12.0.0",
+    "@types/react": "^16.9.0",
+    "@types/react-dom": "^16.9.0",
+    "clipboard": "^2.0.6",
+    "file-saver": "^2.0.2",
+    "is_js": "^0.9.0",
+    "material-design-lite": "^1.3.0",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "react-redux": "^7.2.0",
+    "react-scripts": "3.4.1",
+    "redux": "^4.0.5",
+    "redux-localstorage": "^0.4.1",
+    "typescript": "~3.7.2"
+  },
   "scripts": {
-    "start": "webpack-dev-server --progress --profile --colors --hot",
-    "build": "NODE_ENV=production webpack -p --config webpack.production.config.js --progress --profile --colors",
+    "start": "react-scripts start",
+    "build": "react-scripts build",
     "deploy": "npm run build && gh-pages -d public",
-    "test": "NODE_ENV=test mocha-webpack --colors --webpack-config webpack.config-test.js \"test/test-*.js\""
+    "test": "react-scripts test"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   },
   "repository": {
     "type": "git",
@@ -20,55 +60,7 @@
     "Starter",
     "template"
   ],
-  "author": "Tsutomu Ogasawara (ogaoga)",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/ogaoga/json-visual-editor/issues"
-  },
-  "homepage": "http://ogaoga.github.io/json-visual-editor/",
-  "dependencies": {
-    "clipboard": "^1.5.10",
-    "file-saver": "^1.3.1",
-    "is_js": "^0.9.0",
-    "json-loader": "^0.5.4",
-    "json5-loader": "^1.0.1",
-    "jsx-loader": "^0.13.2",
-    "material-design-lite": "^1.1.3",
-    "node-libs-browser": "^2.1.0",
-    "raw-loader": "^0.5.1",
-    "react": "^16.2.0",
-    "react-dom": "^16.2.0",
-    "react-redux": "^5.0.6",
-    "redux": "^3.5.2",
-    "redux-localstorage": "^0.4.1"
-  },
   "devDependencies": {
-    "babel-core": "6.26.0",
-    "babel-loader": "7.1.2",
-    "babel-preset-es2015": "6.24.1",
-    "babel-preset-react": "6.24.1",
-    "babel-register": "^6.9.0",
-    "chai": "^4.1.2",
-    "css-loader": "0.28.7",
-    "enzyme": "^3.2.0",
-    "enzyme-adapter-react-16": "^1.1.0",
-    "eslint": "^4.13.0",
-    "eslint-loader": "^1.3.0",
-    "eslint-plugin-react": "^7.5.1",
-    "expect": "^21.2.1",
-    "expect-jsx": "^5.0.0",
-    "file-loader": "1.1.5",
-    "gh-pages": "^1.1.0",
-    "mocha": "^4.0.1",
-    "mocha-webpack": "^1.0.1",
-    "react-hot-loader": "3.1.3",
-    "react-test-renderer": "^16.2.0",
-    "style-loader": "0.19.0",
-    "stylus": "^0.54.5",
-    "stylus-loader": "^3.0.1",
-    "url-loader": "0.6.2",
-    "webpack": "^3.10.0",
-    "webpack-dev-server": "2.9.7",
-    "webpack-node-externals": "^1.2.0"
+    "node-sass": "^4.14.1"
   }
 }

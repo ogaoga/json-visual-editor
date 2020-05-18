@@ -1,5 +1,4 @@
 import React from 'react';
-import './styles/index.styl';
 import '../node_modules/material-design-lite/material.min.js';
 import Page from './Page';
 
