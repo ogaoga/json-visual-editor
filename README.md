@@ -1,5 +1,7 @@
 # JSON Visual Editor
 
+## Now work in progress for version 2
+
 > Web based JSON Editor powered by React.
 > https://ogaoga.github.io/json-visual-editor/
 
@@ -67,11 +69,12 @@ Licensed under the [MIT License](LICENSE).
 
 ### for version 2.0.0
 
-- [ ] Replace the environment with create-react-app
-- [ ] Use latest packages to fix vulnerability
+- [x] Replace the environment with create-react-app
+- [x] Use latest packages to fix vulnerability
 - [ ] Use TypeScript
 - [ ] Use Redux Toolkit
 - [ ] Use Prettier
+- [ ] Translate test codes
 
 ### issues and features to be implemented
 
