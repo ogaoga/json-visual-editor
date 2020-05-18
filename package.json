@@ -59,5 +59,8 @@
     "Babel",
     "Starter",
     "template"
-  ]
+  ],
+  "devDependencies": {
+    "node-sass": "^4.14.1"
+  }
 }
