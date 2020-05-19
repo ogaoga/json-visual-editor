@@ -1,7 +1,7 @@
 import React from 'react';
 import ShallowRenderer from 'react-test-renderer/shallow';
 
-import BooleanType from '../object/BooleanType.jsx'
+import BooleanType from '../object/BooleanType'
 
 let params = [
   {

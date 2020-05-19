@@ -2,8 +2,8 @@ import React from 'react';
 import Enzyme from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 
-import BooleanType from '../object/BooleanType.jsx';
-import ObjectType from '../object/ObjectType.jsx';
+import BooleanType from '../object/BooleanType';
+import ObjectType from '../object/ObjectType';
 import Expander from '../Expander.jsx';
 
 import reducer from '../reducers';

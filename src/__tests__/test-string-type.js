@@ -1,6 +1,6 @@
 import React from 'react';
 import ShallowRenderer from 'react-test-renderer/shallow';
-import StringType from '../object/StringType.jsx';
+import StringType from '../object/StringType';
 
 let params = [
   {
