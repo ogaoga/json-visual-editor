@@ -1,11 +1,9 @@
 import expect from 'expect';
-import {describe, it} from 'mocha'
 
-import {updateText, clearText, setAutoFormat, pasteSample, setText, openTextarea, closeTextarea, toggleTextarea} from '../src/actions'
-import reducer from '../src/reducers'
-
-import SampleJson   from '../src/samples/simple.json';
-import {ValidationClass} from '../src/Constants.js'
+import {updateText, clearText, setAutoFormat, pasteSample, setText, openTextarea, closeTextarea, toggleTextarea} from '../actions'
+import reducer from '../reducers'
+import SampleJson   from '../samples/simple.json';
+import {ValidationClass} from '../Constants.js'
 
 const defaults = {
   data: null,

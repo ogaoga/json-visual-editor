@@ -25,7 +25,7 @@ export default class Expander extends React.Component {
       this.state.expanded ? 'expanded' : '',
       'mdl-button',
       'mdl-js-button',
-    ];
+    ].join(' ');
     return (
       <button className={classes} onClick={(event) => this.onClick(event)}>
         <i className="material-icons">expand_more</i>

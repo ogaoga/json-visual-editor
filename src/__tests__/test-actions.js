@@ -1,11 +1,8 @@
-import expect from 'expect';
-import {describe, it} from 'mocha'
-
 import {
   updateText, setText, clearText, copyText, pasteSample, setAutoFormat, resetValid,
   openTextarea, closeTextarea, toggleTextarea
-} from '../src/actions/index'
-import {Actions} from '../src/Constants.js'
+} from '../actions/index'
+import {Actions} from '../Constants.js'
 
 let params = [
   {
