@@ -156,10 +156,10 @@ thead {
   }
 }
 
-$colorPalette:#c5bee4, #becde4, #c5e4be, #dbe4be, #e4d5be, #e4bebe;
+$colorPalette: #c5bee4, #becde4, #c5e4be, #dbe4be, #e4d5be, #e4bebe;
 
 @for $i from 1 to 5 {
-  thead[data-level="#{$i}"] tr th {
+  thead[data-level='#{$i}'] tr th {
     background: nth($colorPalette, $i);
   }
 }
@@ -237,6 +237,8 @@ tbody {
 
 .component-expander {
   color: gray;
+  min-width: 24px;
+  padding: 0;
   i {
     transition: transform 0.2s ease;
     transform: rotateZ(-90deg);

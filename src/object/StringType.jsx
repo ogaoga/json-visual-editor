@@ -6,10 +6,10 @@ export default class StringType extends React.Component {
     let data = this.props.data;
     if (is.url(data)) {
       if (data.match(/\.(jpg|jpeg|png|gif)$/)) {
-        data = (<a href={data} target="_blank"><img src={data} /><br /><span>{data}</span></a>);
+        data = <a href={data} target="_blank" rel="noopener noreferrer"><img src={data} alt={data} /><br /><span>{data}</span></a>;
       }
       else {
-        data = (<a href={data} target="_blank"><span>{data}</span></a>);
+        data = <a href={data} target="_blank" rel="noopener noreferrer"><span>{data}</span></a>;
       }
     }
     else {

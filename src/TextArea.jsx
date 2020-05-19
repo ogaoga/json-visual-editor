@@ -47,7 +47,7 @@ class TextArea extends React.Component {
       var reader = new FileReader();
       reader.onload = (() => {
         this.props.setText(reader.result)
-      }).bind(this);
+      });
       reader.readAsText(file);
     }
   }
