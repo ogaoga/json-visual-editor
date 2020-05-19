@@ -1,9 +1,7 @@
 import React from 'react';
-import expect from 'expect';
 import ShallowRenderer from 'react-test-renderer/shallow';
-import {describe, it} from 'mocha'
 
-import BooleanType from '../src/object/BooleanType.jsx'
+import BooleanType from '../object/BooleanType'
 
 let params = [
   {

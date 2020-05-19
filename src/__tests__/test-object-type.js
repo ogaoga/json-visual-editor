@@ -1,18 +1,17 @@
 import React from 'react';
-import expect from 'expect';
-import {describe, it} from 'mocha'
 import Enzyme from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
+
+import BooleanType from '../object/BooleanType';
+import ObjectType from '../object/ObjectType';
+import Expander from '../Expander.jsx';
+
+import reducer from '../reducers';
+import { createStore } from 'redux';
+import { Provider } from 'react-redux';
+
 Enzyme.configure({ adapter: new Adapter() });
-
-import BooleanType from '../src/object/BooleanType.jsx'
-import ObjectType  from '../src/object/ObjectType.jsx'
-import Expander    from '../src/Expander.jsx'
-
-import reducer from '../src/reducers'
-import { createStore } from 'redux'
-import { Provider }    from 'react-redux'
-const store = createStore(reducer)
+const store = createStore(reducer);
 
 const params = [
   {
@@ -22,21 +21,21 @@ const params = [
         <ObjectType />
       </Provider>
     ),
-    expected: (<ObjectType />)
+    expected: <ObjectType />,
   },
   {
     title: 'Display true',
-    actual: (<ObjectType data={true} />),
-    expected: (<BooleanType data={true} />)
+    actual: <ObjectType data={true} />,
+    expected: <BooleanType data={true} />,
   },
   {
     title: 'Display false',
-    actual: (<ObjectType data={false} />),
-    expected: (<BooleanType data={false} />)
+    actual: <ObjectType data={false} />,
+    expected: <BooleanType data={false} />,
   },
   {
     title: 'Display array',
-    actual: (<ObjectType data={[null, 'abc', 123]} />),
+    actual: <ObjectType data={[null, 'abc', 123]} />,
     expected: (
       <table>
         <thead data-level="0">
@@ -47,9 +46,7 @@ const params = [
                 onChangeExpansion={function onChangeExpansion() {}}
               />
             </th>
-            <th className="objectType">
-              Array [3]
-            </th>
+            <th className="objectType">Array [3]</th>
           </tr>
         </thead>
         <tbody className="expanded">
@@ -73,11 +70,11 @@ const params = [
           </tr>
         </tbody>
       </table>
-    )
+    ),
   },
   {
     title: 'Display object',
-    actual: (<ObjectType data={{abc: 123, 'xyz': 'abc'}} />),
+    actual: <ObjectType data={{ abc: 123, xyz: 'abc' }} />,
     expected: (
       <table>
         <thead data-level="0">
@@ -88,9 +85,7 @@ const params = [
                 onChangeExpansion={function onChangeExpansion() {}}
               />
             </th>
-            <th className="objectType">
-              Object [2]
-            </th>
+            <th className="objectType">Object [2]</th>
           </tr>
         </thead>
         <tbody className="expanded">
@@ -108,8 +103,8 @@ const params = [
           </tr>
         </tbody>
       </table>
-    )
-  }
+    ),
+  },
 ];
 
 describe('ObjectType Component', () => {

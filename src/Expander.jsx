@@ -7,13 +7,13 @@ export default class Expander extends React.Component {
 
     // state
     this.state = {
-      expanded: props.defaultValue
+      expanded: props.defaultValue,
     };
   }
 
   onClick() {
     const newValue = !this.state.expanded;
-    this.setState({expanded: newValue});
+    this.setState({ expanded: newValue });
     if ('onChangeExpansion' in this.props) {
       this.props.onChangeExpansion(newValue);
     }
@@ -22,13 +22,14 @@ export default class Expander extends React.Component {
   render() {
     const classes = [
       'component-expander',
-      (this.state.expanded) ? 'expanded' : ''
+      this.state.expanded ? 'expanded' : '',
+      'mdl-button',
+      'mdl-js-button',
     ].join(' ');
     return (
-      <a href="#" className={classes} onClick={(event)=>this.onClick(event)}>
+      <button className={classes} onClick={(event) => this.onClick(event)}>
         <i className="material-icons">expand_more</i>
-      </a>
+      </button>
     );
   }
-
 }

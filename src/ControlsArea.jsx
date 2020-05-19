@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import Clipboard from 'clipboard';
 import { saveAs } from 'file-saver';
 
@@ -70,8 +71,6 @@ class ControlsArea extends React.Component {
     );
   }
 }
-
-import { connect }   from 'react-redux'
 
 export default connect(
   (state) => {
