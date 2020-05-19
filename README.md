@@ -73,7 +73,7 @@ Licensed under the [MIT License](LICENSE).
 - [x] Use latest packages to fix vulnerability
 - [ ] Use TypeScript
 - [ ] Use Redux Toolkit
-- [ ] Use Prettier
+- [x] Use Prettier
 - [ ] Translate test codes
 
 ### issues and features to be implemented
