@@ -4,7 +4,7 @@ import Adapter from 'enzyme-adapter-react-16';
 
 import BooleanType from '../object/BooleanType';
 import ObjectType from '../object/ObjectType';
-import Expander from '../Expander.jsx';
+import Expander from '../Expander';
 
 import reducer from '../reducers';
 import { createStore } from 'redux';
