@@ -42,6 +42,7 @@ Licensed under the [MIT License](LICENSE).
 
 ### for version 2.0.0
 
+- [ ] Setup GitHub Acitons
 - [x] Replace the environment with create-react-app
 - [x] Use latest packages to fix vulnerability
 - [ ] Use TypeScript
