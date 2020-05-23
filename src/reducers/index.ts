@@ -1,7 +1,17 @@
 import SampleJson from '../samples/simple.json';
-import { ValidationClass, Actions } from '../Constants.js';
+import { ValidationClass, Actions } from '../Constants';
+import { Reducer } from 'react';
+import { AnyAction } from 'redux';
 
-const initialState = {
+export interface State {
+  data: any;
+  text: string;
+  autoFormat: boolean;
+  valid: ValidationClass,
+  isTextareaClose: boolean;
+}
+
+export const initialState = {
   data: null,
   text: '',
   autoFormat: false,
@@ -9,8 +19,8 @@ const initialState = {
   isTextareaClose: false,
 };
 
-const reducer = (state = initialState, action) => {
-  const _setText = (state, action) => {
+const reducer = (state = initialState, action: AnyAction) => {
+  const _setText = (state: State, action: AnyAction) => {
     let text = action.newText || '';
     let data = state.data;
     let valid = state.valid;

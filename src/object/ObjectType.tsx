@@ -7,7 +7,7 @@ import Expander from '../Expander';
 
 interface Props {
   data: any;
-  level: number;
+  level?: number;
 }
 
 const maxLevel = 5;
@@ -20,7 +20,7 @@ const ObjectType: React.FC<Props> = ({ data, level = 0 }) => {
     setExpanded(isExpanded);
   };
 
-  let result = null;
+  let result = <></>;
   if (data === null) {
     // null
     result = <span className="null">null</span>;
@@ -45,7 +45,7 @@ const ObjectType: React.FC<Props> = ({ data, level = 0 }) => {
             <th className="expand">
               <Expander
                 defaultValue={expanded}
-                onChangeExpansion={(flag: boolean) => onChangeExpansion(flag)}
+                onChangeExpansion={onChangeExpansion}
               />
             </th>
             <th className="objectType">{`${typeLabel} ${headerLabel}`}</th>

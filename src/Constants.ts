@@ -1,8 +1,8 @@
-export const ValidationClass = {
-  Valid:   'valid',
-  Invalid: 'invalid',
-  None:    ''
-}
+export enum ValidationClass {
+  Valid = 'valid',
+  Invalid = 'invalid',
+  None = '',
+};
 
 export const Actions = {
   UpdateText: 'UPDATE_TEXT',
