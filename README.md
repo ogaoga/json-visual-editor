@@ -7,6 +7,8 @@
 
 ![json-visual-editor](resources/json-visual-editor.png?raw=true)
 
+![](https://github.com/ogaoga/json-visual-editor/workflows/test.yml/badge.svg)
+
 ## To develop
 
 This project is based on [Create React App](https://reactjs.org/docs/create-a-new-react-app.html). Please read the document to develop.
