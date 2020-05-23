@@ -1,19 +1,27 @@
 # JSON Visual Editor
 
-## Now work in progress for version 2
+⚠️⚠️⚠️ Now work in progress for version 2 ⚠️⚠️⚠️
 
 > Web based JSON Editor powered by React.
 > https://ogaoga.github.io/json-visual-editor/
 
-[![Build Status][travis-image]][travis-url]
-
 ![json-visual-editor](resources/json-visual-editor.png?raw=true)
+
+![](https://github.com/ogaoga/json-visual-editor/workflows/test.yml/badge.svg)
 
 ## To develop
 
 This project is based on [Create React App](https://reactjs.org/docs/create-a-new-react-app.html). Please read the document to develop.
 
 Please contribute to the project if you think this can be done better in anyway even for this README :)
+
+### `master`
+
+Release branch. Merge stable codes from onlyh `develop` branch. After merging via a pull request from `develop`, automatically deploy to [the GitHub page](https://ogaoga.github.io/json-visual-editor/).
+
+### `develop`
+
+Develop branch. Topic branches are merged into the branch via pull request or directory pushed.
 
 ## See also
 
