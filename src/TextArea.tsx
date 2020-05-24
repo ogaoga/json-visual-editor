@@ -1,21 +1,29 @@
-import React, { useState, useRef, ChangeEvent, useCallback } from 'react';
-import { updateText, setText } from './actions';
+import React, {
+  useState,
+  useRef,
+  ChangeEvent,
+  useCallback,
+  useEffect,
+} from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import ControlsArea from './ControlsArea';
-import { useSelector } from 'react-redux';
-import { State } from './reducers';
-import { useDispatch } from 'react-redux';
+import { RootState } from './index';
+import { dataSlice } from './features/data/dataSlice';
 
 const TextArea: React.FC = () => {
   const dispatch = useDispatch();
   const jsonText = useRef(null);
-  const text = useSelector((state: State) => state.text);
-  const valid = useSelector((state: State) => state.valid);
+  const text = useSelector((state: RootState) => state.data.text);
+  const valid = useSelector((state: RootState) => state.data.valid);
 
   const [timeoutId, setTimeoutId] = useState<NodeJS.Timeout>(
     setTimeout(() => {}, 0)
   );
   const [localText, setLocalText] = useState(text);
 
+  const { setText } = dataSlice.actions;
+
+  // TODO: to be implemented
   /*
   useEffect(() => {
     // remove class when the animation end
@@ -42,11 +50,17 @@ const TextArea: React.FC = () => {
     setTimeoutId(id);
   }, [dispatch, localText, timeoutId]);
 
-  const onChange = (event: ChangeEvent<HTMLTextAreaElement>) => {
-    resetTimeout();
-    dispatch(updateText(event.target.value));
-    setLocalText(event.target.value);
-  };
+  const onChange = useCallback(
+    (event: ChangeEvent<HTMLTextAreaElement>) => {
+      resetTimeout();
+      setLocalText(event.target.value);
+    },
+    [resetTimeout]
+  );
+
+  useEffect(() => {
+    setLocalText(text);
+  }, [text]);
 
   const onDrop = (event: any) => {
     event.stopPropagation();
@@ -69,7 +83,7 @@ const TextArea: React.FC = () => {
         id="json-text"
         className={valid}
         placeholder="Write JSON code or drop a JSON file here."
-        value={text}
+        value={localText}
         onChange={onChange}
         onDrop={onDrop}
         ref={jsonText}

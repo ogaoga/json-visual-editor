@@ -1,13 +1,14 @@
 import React, { useCallback } from 'react';
-import { pasteSample } from './actions';
 import { useDispatch } from 'react-redux';
+import { dataSlice } from './features/data/dataSlice';
 
 const OptionMenu: React.FC = () => {
   const dispatch = useDispatch();
+  const { pasteSample } = dataSlice.actions;
 
   const onPasteClicked = useCallback(() => {
     dispatch(pasteSample());
-  }, [dispatch]);
+  }, [dispatch, pasteSample]);
 
   return (
     <ul
