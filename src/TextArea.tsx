@@ -1,15 +1,14 @@
 import React, { useState, useRef, ChangeEvent, useCallback } from 'react';
 import { updateText, setText } from './actions';
 import ControlsArea from './ControlsArea';
-import { useSelector } from 'react-redux';
-import { State } from './reducers';
-import { useDispatch } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { RootState } from './index';
 
 const TextArea: React.FC = () => {
   const dispatch = useDispatch();
   const jsonText = useRef(null);
-  const text = useSelector((state: State) => state.text);
-  const valid = useSelector((state: State) => state.valid);
+  const text = useSelector((state: RootState) => state.data.text);
+  const valid = useSelector((state: RootState) => state.data.valid);
 
   const [timeoutId, setTimeoutId] = useState<NodeJS.Timeout>(
     setTimeout(() => {}, 0)

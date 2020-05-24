@@ -2,7 +2,7 @@ export enum ValidationClass {
   Valid = 'valid',
   Invalid = 'invalid',
   None = '',
-};
+}
 
 export const Actions = {
   UpdateText: 'UPDATE_TEXT',
@@ -13,5 +13,5 @@ export const Actions = {
   ResetValid: 'RESET_VALID',
   OpenTextarea: 'OPEN_TEXTAREA',
   CloseTextarea: 'CLOSE_TEXTAREA',
-  ToggleTextarea: 'TOGGLE_TEXTAREA'
-}
+  ToggleTextarea: 'TOGGLE_TEXTAREA',
+};

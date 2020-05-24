@@ -1,21 +1,24 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { /* compose,*/ createStore } from 'redux';
+import { combineReducers } from 'redux';
 import { Provider } from 'react-redux';
-// import persistState from 'redux-localstorage';
 
 import App from './App';
-import reducer, { initialState } from './reducers';
 import './index.scss';
 
-// For local storage cache
-/*
-const enhancer = compose(
-  persistState()
-);
-*/
+import { configureStore } from '@reduxjs/toolkit';
+import { textareaSlice } from './features/textarea/textareaSlice';
+import { dataSlice } from './features/data/dataSlice';
 
-const store = createStore(reducer, initialState /*, enhancer*/);
+// ToDo: Add `redux-localstorage` to persiste the data
+
+const rootReducer = combineReducers({
+  data: dataSlice.reducer,
+  textarea: textareaSlice.reducer,
+});
+const store = configureStore({ reducer: rootReducer });
+
+export type RootState = ReturnType<typeof rootReducer>;
 
 ReactDOM.render(
   <Provider store={store}>

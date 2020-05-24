@@ -5,7 +5,7 @@ import { AnyAction } from 'redux';
 export interface State {
   data: any;
   text: string;
-  valid: ValidationClass,
+  valid: ValidationClass;
   isTextareaClose: boolean;
 }
 

@@ -1,12 +1,14 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { State } from './reducers';
 import TextArea from './TextArea';
 import VisualizedData from './VisualizedData';
 import Closer from './Closer';
+import { RootState } from './index';
 
 const Page: React.FC = () => {
-  const isTextareaClose = useSelector((state: State) => state.isTextareaClose);
+  const isTextareaClose = useSelector(
+    (state: RootState) => state.textarea.isTextareaClose
+  );
   let classes = {
     jsonText: ['json-text', 'mdl-cell', 'mdl-cell--8-col-tablet'],
     visualized: ['visualized-data', 'mdl-cell', 'mdl-cell--8-col-tablet'],

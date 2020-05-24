@@ -1,10 +1,10 @@
 import React from 'react';
 import ObjectType from './object/ObjectType';
 import { useSelector } from 'react-redux';
-import { State } from './reducers';
+import { RootState } from '.';
 
 const VisualizedData: React.FC = () => {
-  const data = useSelector((state: State) => state.data);
+  const data = useSelector((state: RootState) => state.data.data);
   return <ObjectType data={data} />;
 };
 
