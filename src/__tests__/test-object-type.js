@@ -6,23 +6,9 @@ import BooleanType from '../object/BooleanType';
 import ObjectType from '../object/ObjectType';
 import Expander from '../Expander';
 
-import reducer from '../reducers';
-import { createStore } from 'redux';
-import { Provider } from 'react-redux';
-
 Enzyme.configure({ adapter: new Adapter() });
-const store = createStore(reducer);
 
 const params = [
-  {
-    title: 'Prepare',
-    actual: (
-      <Provider store={store}>
-        <ObjectType />
-      </Provider>
-    ),
-    expected: <ObjectType />,
-  },
   {
     title: 'Display true',
     actual: <ObjectType data={true} />,
