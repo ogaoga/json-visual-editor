@@ -8,8 +8,8 @@ interface State {
   valid: ValidationClass;
 }
 
-const _setText = (state: State, action) => {
-  let text = action.newText || '';
+const _setText = (state: State, newText: string) => {
+  let text = newText || '';
   let data = state.data;
   let valid = state.valid;
   if (text.length > 0) {
@@ -38,13 +38,13 @@ export const dataSlice = createSlice({
     valid: ValidationClass.None,
   },
   reducers: {
-    setText: (state, action: PayloadAction<string>) => {
-      const [text, data, valid] = _setText(state, action);
+    setText: (state: State, action: PayloadAction<string>) => {
+      const [text, data, valid] = _setText(state, action.payload);
       state.text = text;
       state.data = data;
       state.valid = valid;
     },
-    resetValid: (state, action) => {
+    resetValid: (state: State) => {
       state.valid = ValidationClass.None;
     },
     pasteSample: (state: State) => {
