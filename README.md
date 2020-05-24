@@ -42,6 +42,7 @@ Licensed under the [MIT License](LICENSE).
 
 ### for version 2.0.0
 
+- [ ] Fix eslint error on build
 - [ ] Fix some remaining issues
 - [x] Setup GitHub Acitons
 - [x] Replace the environment with create-react-app
