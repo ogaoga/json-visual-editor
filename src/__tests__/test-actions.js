@@ -1,5 +1,5 @@
 import {
-  updateText, setText, clearText, copyText, pasteSample, setAutoFormat, resetValid,
+  updateText, setText, clearText, copyText, pasteSample, resetValid,
   openTextarea, closeTextarea, toggleTextarea
 } from '../actions/index'
 import {Actions} from '../Constants'
@@ -29,11 +29,6 @@ let params = [
     title: 'pasteSample',
     actual: pasteSample().type,
     expected: Actions.PasteSample
-  },
-  {
-    title: 'setAutoFormat',
-    actual: setAutoFormat(true).type,
-    expected: Actions.SetAutoFormat
   },
   {
     title: 'resetValid',

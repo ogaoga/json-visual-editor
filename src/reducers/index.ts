@@ -1,12 +1,10 @@
 import SampleJson from '../samples/simple.json';
 import { ValidationClass, Actions } from '../Constants';
-import { Reducer } from 'react';
 import { AnyAction } from 'redux';
 
 export interface State {
   data: any;
   text: string;
-  autoFormat: boolean;
   valid: ValidationClass,
   isTextareaClose: boolean;
 }
@@ -14,7 +12,6 @@ export interface State {
 export const initialState = {
   data: null,
   text: '',
-  autoFormat: false,
   valid: ValidationClass.None,
   isTextareaClose: false,
 };
@@ -29,9 +26,7 @@ const reducer = (state = initialState, action: AnyAction) => {
         // set data
         data = JSON.parse(text);
         // format
-        if (state.autoFormat) {
-          text = JSON.stringify(data, null, 2);
-        }
+        text = JSON.stringify(data, null, 2);
         valid = ValidationClass.Valid;
       } catch (e) {
         data = null;
@@ -85,12 +80,6 @@ const reducer = (state = initialState, action: AnyAction) => {
         text: text,
         data: data,
         valid: valid,
-      });
-    }
-
-    case Actions.SetAutoFormat: {
-      return Object.assign({}, state, {
-        autoFormat: action.enabled,
       });
     }
 

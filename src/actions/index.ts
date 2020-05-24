@@ -32,13 +32,6 @@ export const pasteSample = () => {
   };
 };
 
-export const setAutoFormat = (enabled: boolean) => {
-  return {
-    type: Actions.SetAutoFormat,
-    enabled,
-  };
-};
-
 export const resetValid = () => {
   return {
     type: Actions.ResetValid,
