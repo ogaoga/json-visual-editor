@@ -2,7 +2,7 @@ import {
   updateText, setText, clearText, copyText, pasteSample, setAutoFormat, resetValid,
   openTextarea, closeTextarea, toggleTextarea
 } from '../actions/index'
-import {Actions} from '../Constants.js'
+import {Actions} from '../Constants'
 
 let params = [
   {

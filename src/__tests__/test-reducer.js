@@ -3,7 +3,7 @@ import expect from 'expect';
 import {updateText, clearText, setAutoFormat, pasteSample, setText, openTextarea, closeTextarea, toggleTextarea} from '../actions'
 import reducer from '../reducers'
 import SampleJson   from '../samples/simple.json';
-import {ValidationClass} from '../Constants.js'
+import {ValidationClass} from '../Constants'
 
 const defaults = {
   data: null,

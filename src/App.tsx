@@ -1,50 +1,45 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import '../node_modules/material-design-lite/material.min.js';
 import Page from './Page';
 
-class App extends React.Component {
+const App: React.FC = () => {
+  const [previousEvent, setPreviousEvent] = useState<string | null>(null);
 
-  constructor(props) {
-    super(props);
-
-    // for drag event handling
-    this.previousEvent = null;
-  }
-
-  componentDidMount() {
+  useEffect(() => {
     let body = document.getElementsByTagName('body')[0];
     body.addEventListener('drop', (e) => {
+      /*
       if (e.target.id !== 'json-text') {
         e.preventDefault();
         e.stopPropagation();
       }
-      this.previousEvent = 'drop';
+      */
+      e.preventDefault();
+      e.stopPropagation();
+
+      setPreviousEvent('drop');
       body.classList.remove('dragging');
     });
     body.addEventListener('dragover', (e) => {
-      if (this.previousEvent === 'dragenter') {
+      if (previousEvent === 'dragenter') {
         body.classList.add('dragging');
       }
-      this.previousEvent = 'dragover';
+      setPreviousEvent('dragover');
       e.preventDefault();
       return false;
     });
     body.addEventListener('dragenter', () => {
-      this.previousEvent = 'dragenter';
+      setPreviousEvent('dragenter');
     });
     body.addEventListener('dragleave', () => {
-      if (this.previousEvent === 'dragover') {
+      if (previousEvent === 'dragover') {
         body.classList.remove('dragging');
       }
-      this.previousEvent = 'dragleave';
+      setPreviousEvent('dragleave');
     });
-  }
+  }, [previousEvent]);
 
-  render() {
-    return (
-      <Page />
-    );
-  }
-}
+  return <Page />;
+};
 
-export default App
+export default App;
