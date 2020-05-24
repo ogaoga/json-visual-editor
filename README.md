@@ -42,11 +42,12 @@ Licensed under the [MIT License](LICENSE).
 
 ### for version 2.0.0
 
-- [ ] Setup GitHub Acitons
+- [ ] Fix some remaining issues
+- [x] Setup GitHub Acitons
 - [x] Replace the environment with create-react-app
 - [x] Use latest packages to fix vulnerability
-- [ ] Use TypeScript
-- [ ] Use Redux Toolkit
+- [x] Use TypeScript
+- [x] Use Redux Toolkit
 - [x] Use Prettier
 - [x] Translate test codes
 
