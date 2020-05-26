@@ -20,6 +20,7 @@ const ControlsArea: React.FC = () => {
 
   const dispatch = useDispatch();
   const data = useSelector((state: RootState) => state.data.data);
+  const textCount = useSelector((state: RootState) => state.textarea.textCount);
   const text = useMemo(() => {    
     return JSON.stringify(data, null, 2);
   }, [data]);
@@ -71,7 +72,7 @@ const ControlsArea: React.FC = () => {
         <OptionMenu />
       </div>
       <div className="float-right control-count">
-        <span className="text-count">{text.length}</span>
+        <span className="text-count">{textCount}</span>
       </div>
     </div>
   );

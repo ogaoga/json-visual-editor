@@ -10,6 +10,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import ControlsArea from './ControlsArea';
 import { RootState } from './index';
 import { dataSlice } from './features/data/dataSlice';
+import { textareaSlice } from './features/textarea/textareaSlice';
 
 const TextArea: React.FC = () => {
   const dispatch = useDispatch();
@@ -25,10 +26,12 @@ const TextArea: React.FC = () => {
   const [localText, setLocalText] = useState(text);
 
   const { setData } = dataSlice.actions;
+  const { setTextCount } = textareaSlice.actions;
 
   // state to local
   useEffect(() => {
     setLocalText(text);
+    dispatch(setTextCount(text.length));
   }, [text]);
 
   // local to state
@@ -44,9 +47,14 @@ const TextArea: React.FC = () => {
   }, [localText]);
 
   // update local text
-  const onChange = useCallback((event: ChangeEvent<HTMLTextAreaElement>) => {
-    setLocalText(event.target.value);
-  }, []);
+  const onChange = useCallback(
+    (event: ChangeEvent<HTMLTextAreaElement>) => {
+      const { value } = event.target;
+      setLocalText(value);
+      dispatch(setTextCount(value.length));
+    },
+    [setLocalText, setTextCount]
+  );
 
   const onDrop = (event: any) => {
     event.stopPropagation();
@@ -58,6 +66,7 @@ const TextArea: React.FC = () => {
         if (typeof reader.result === 'string') {
           // TODO: it doesn't work
           setLocalText(reader.result);
+          dispatch(setTextCount(reader.result.length));
         }
       };
       reader.readAsText(file);
