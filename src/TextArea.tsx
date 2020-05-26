@@ -42,25 +42,29 @@ const TextArea: React.FC = () => {
   }, [dispatch, jsonText]);
   */
 
-  const resetTimeout = useCallback(() => {
-    clearTimeout(timeoutId);
-    const id = setTimeout(() => {
-      dispatch(setText(localText));
-    }, 1000);
-    setTimeoutId(id);
-  }, [dispatch, localText, timeoutId]);
-
-  const onChange = useCallback(
-    (event: ChangeEvent<HTMLTextAreaElement>) => {
-      resetTimeout();
-      setLocalText(event.target.value);
-    },
-    [resetTimeout]
-  );
-
-  useEffect(() => {
+  // state to local
+  useEffect(() => { 
     setLocalText(text);
   }, [text]);
+
+  // local to state
+  useEffect(() => {
+    clearTimeout(timeoutId);
+    const id = setTimeout(() => {
+      try {
+        JSON.parse(localText);
+        dispatch(setText(localText));
+      } catch {
+        console.log(localText);
+      }
+    }, 1000);
+    setTimeoutId(id);
+  }, [localText]);
+
+  // update local text
+  const onChange = useCallback((event: ChangeEvent<HTMLTextAreaElement>) => {
+    setLocalText(event.target.value);
+  }, []);
 
   const onDrop = (event: any) => {
     event.stopPropagation();
