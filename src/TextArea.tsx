@@ -23,15 +23,14 @@ const TextArea: React.FC = () => {
   const [timeoutId, setTimeoutId] = useState<NodeJS.Timeout>(
     setTimeout(() => {}, 0)
   );
-  const [localText, setLocalText] = useState(text);
-
   const { setData } = dataSlice.actions;
-  const { setTextCount } = textareaSlice.actions;
+
+  const localText = useSelector((state: RootState) => state.textarea.localText);
+  const { setLocalText } = textareaSlice.actions;
 
   // state to local
   useEffect(() => {
-    setLocalText(text);
-    dispatch(setTextCount(text.length));
+    dispatch(setLocalText(text));
   }, [text]);
 
   // local to state
@@ -47,14 +46,10 @@ const TextArea: React.FC = () => {
   }, [localText]);
 
   // update local text
-  const onChange = useCallback(
-    (event: ChangeEvent<HTMLTextAreaElement>) => {
-      const { value } = event.target;
-      setLocalText(value);
-      dispatch(setTextCount(value.length));
-    },
-    [setLocalText, setTextCount]
-  );
+  const onChange = useCallback((event: ChangeEvent<HTMLTextAreaElement>) => {
+    const { value } = event.target;
+    dispatch(setLocalText(value));
+  }, []);
 
   const onDrop = (event: any) => {
     event.stopPropagation();
@@ -65,8 +60,7 @@ const TextArea: React.FC = () => {
       reader.onload = () => {
         if (typeof reader.result === 'string') {
           // TODO: it doesn't work
-          setLocalText(reader.result);
-          dispatch(setTextCount(reader.result.length));
+          dispatch(setLocalText(reader.result));
         }
       };
       reader.readAsText(file);

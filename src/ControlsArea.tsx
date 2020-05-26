@@ -19,13 +19,11 @@ const ControlsArea: React.FC = () => {
   };
 
   const dispatch = useDispatch();
-  const data = useSelector((state: RootState) => state.data.data);
-  const textCount = useSelector((state: RootState) => state.textarea.textCount);
-  const text = useMemo(() => {    
-    return JSON.stringify(data, null, 2);
-  }, [data]);
-  const isEmpty = useMemo(() => text.length === 0, [text.length]);
+  // const data = useSelector((state: RootState) => state.data.data);
   const { setData } = dataSlice.actions;
+
+  const text = useSelector((state: RootState) => state.textarea.localText);
+  const isEmpty = useMemo(() => text.length === 0, [text.length]);
 
   return (
     <div className="controls-area">
@@ -72,7 +70,7 @@ const ControlsArea: React.FC = () => {
         <OptionMenu />
       </div>
       <div className="float-right control-count">
-        <span className="text-count">{textCount}</span>
+        <span className="text-count">{text.length}</span>
       </div>
     </div>
   );

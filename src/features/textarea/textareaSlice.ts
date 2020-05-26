@@ -2,12 +2,12 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 interface State {
   isTextareaClose: boolean;
-  textCount: number;
+  localText: string;
 }
 
 const initialState = {
   isTextareaClose: false,
-  textCount: 0,
+  localText: '',
 };
 
 export const textareaSlice = createSlice({
@@ -17,8 +17,8 @@ export const textareaSlice = createSlice({
     toggleTextarea: (state: State) => {
       state.isTextareaClose = !state.isTextareaClose;
     },
-    setTextCount: (state: State, action: PayloadAction<number>) => { 
-      state.textCount = action.payload;
+    setLocalText: (state: State, action: PayloadAction<string>) => {
+      state.localText = action.payload;
     },
   },
 });
