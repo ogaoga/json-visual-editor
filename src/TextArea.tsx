@@ -4,6 +4,7 @@ import React, {
   ChangeEvent,
   useCallback,
   useEffect,
+  useMemo,
 } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import ControlsArea from './ControlsArea';
@@ -13,37 +14,20 @@ import { dataSlice } from './features/data/dataSlice';
 const TextArea: React.FC = () => {
   const dispatch = useDispatch();
   const jsonText = useRef(null);
-  const text = useSelector((state: RootState) => state.data.text);
-  const valid = useSelector((state: RootState) => state.data.valid);
+  const data = useSelector((state: RootState) => state.data.data);
 
+  const text = useMemo(() => {
+    return data === null ? '' : JSON.stringify(data, null, 2);
+  }, [data]);
   const [timeoutId, setTimeoutId] = useState<NodeJS.Timeout>(
     setTimeout(() => {}, 0)
   );
   const [localText, setLocalText] = useState(text);
 
-  const { setText } = dataSlice.actions;
-
-  // TODO: to be implemented
-  /*
-  useEffect(() => {
-    // remove class when the animation end
-    jsonText.current.addEventListener(
-      'animationend',
-      (event) => {
-        if (
-          event.animationName === 'invalidFrames' ||
-          event.animationName === 'validFrames'
-        ) {
-          dispatch(resetValid());
-        }
-      },
-      false
-    );
-  }, [dispatch, jsonText]);
-  */
+  const { setData } = dataSlice.actions;
 
   // state to local
-  useEffect(() => { 
+  useEffect(() => {
     setLocalText(text);
   }, [text]);
 
@@ -52,11 +36,9 @@ const TextArea: React.FC = () => {
     clearTimeout(timeoutId);
     const id = setTimeout(() => {
       try {
-        JSON.parse(localText);
-        dispatch(setText(localText));
-      } catch {
-        console.log(localText);
-      }
+        const data = localText.length > 0 ? JSON.parse(localText) : null;
+        dispatch(setData(data));
+      } catch {}
     }, 1000);
     setTimeoutId(id);
   }, [localText]);
@@ -74,7 +56,8 @@ const TextArea: React.FC = () => {
       var reader = new FileReader();
       reader.onload = () => {
         if (typeof reader.result === 'string') {
-          dispatch(setText(reader.result || ''));
+          // TODO: it doesn't work
+          setLocalText(reader.result);
         }
       };
       reader.readAsText(file);
@@ -85,7 +68,6 @@ const TextArea: React.FC = () => {
     <div className="textarea-column">
       <textarea
         id="json-text"
-        className={valid}
         placeholder="Write JSON code or drop a JSON file here."
         value={localText}
         onChange={onChange}
