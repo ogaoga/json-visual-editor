@@ -19,10 +19,12 @@ const ControlsArea: React.FC = () => {
   };
 
   const dispatch = useDispatch();
-  const text = useSelector((state: RootState) => state.data.text);
+  const data = useSelector((state: RootState) => state.data.data);
+  const text = useMemo(() => {    
+    return JSON.stringify(data, null, 2);
+  }, [data]);
   const isEmpty = useMemo(() => text.length === 0, [text.length]);
-
-  const { setText } = dataSlice.actions;
+  const { setData } = dataSlice.actions;
 
   return (
     <div className="controls-area">
@@ -52,7 +54,7 @@ const ControlsArea: React.FC = () => {
         <button
           className="mdl-button mdl-js-button mdl-button--icon"
           disabled={isEmpty}
-          onClick={() => dispatch(setText(''))}
+          onClick={() => dispatch(setData(null))}
           title="Clear"
         >
           <i className="material-icons">delete</i>
