@@ -10,13 +10,13 @@ import { useSelector, useDispatch } from 'react-redux';
 import ControlsArea from './ControlsArea';
 import { RootState } from './index';
 import { dataSlice } from './features/data/dataSlice';
-import { textareaSlice } from './features/textarea/textareaSlice';
+import { textareaSlice, ValidityType } from './features/textarea/textareaSlice';
 
 const TextArea: React.FC = () => {
   const dispatch = useDispatch();
   const jsonText = useRef(null);
   const data = useSelector((state: RootState) => state.data.data);
-  const isValid = useSelector((state: RootState) => state.textarea.isValid);
+  const validity = useSelector((state: RootState) => state.textarea.validity);
 
   const text = useMemo(() => {
     return data === null ? '' : JSON.stringify(data, null, 2);
@@ -68,6 +68,17 @@ const TextArea: React.FC = () => {
     }
   };
 
+  const textareaClasses = useMemo(() => { 
+    switch (validity) {
+      case ValidityType.Valid:
+        return 'valid';
+      case ValidityType.Invalid:
+        return 'invalid';
+      case ValidityType.None:
+        return '';
+    }
+  }, [validity]);
+
   return (
     <div className="textarea-column">
       <textarea
@@ -77,7 +88,7 @@ const TextArea: React.FC = () => {
         onChange={onChange}
         onDrop={onDrop}
         ref={jsonText}
-        className={isValid ? 'valid' : 'invalid'}
+        className={textareaClasses}
       ></textarea>
       <ControlsArea />
     </div>

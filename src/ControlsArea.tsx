@@ -6,6 +6,7 @@ import { saveAs } from 'file-saver';
 import OptionMenu from './OptionMenu';
 import { RootState } from '.';
 import { dataSlice } from './features/data/dataSlice';
+import { ValidityType } from './features/textarea/textareaSlice';
 
 const ControlsArea: React.FC = () => {
   useEffect(() => {
@@ -24,7 +25,9 @@ const ControlsArea: React.FC = () => {
 
   const text = useSelector((state: RootState) => state.textarea.localText);
   const isEmpty = useMemo(() => text.length === 0, [text.length]);
-  const isValid = useSelector((state: RootState) => state.textarea.isValid);
+  const isValid = useSelector(
+    (state: RootState) => state.textarea.validity === ValidityType.Valid
+  );
 
   return (
     <div className="controls-area">

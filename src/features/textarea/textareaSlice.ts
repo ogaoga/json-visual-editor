@@ -1,15 +1,21 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
+export enum ValidityType {
+  Valid = 'valid',
+  Invalid = 'invalid',
+  None = 'none',
+}
+
 interface State {
   isTextareaClose: boolean;
   localText: string;
-  isValid: boolean;
+  validity: ValidityType;
 }
 
 const initialState = {
   isTextareaClose: false,
   localText: '',
-  isValid: false,
+  validity: ValidityType.None,
 };
 
 export const textareaSlice = createSlice({
@@ -20,12 +26,17 @@ export const textareaSlice = createSlice({
       state.isTextareaClose = !state.isTextareaClose;
     },
     setLocalText: (state: State, action: PayloadAction<string>) => {
-      state.localText = action.payload;
-      try {
-        JSON.parse(action.payload)
-        state.isValid = true;
-      } catch (e) {
-        state.isValid = false;
+      const text = action.payload;
+      state.localText = text;
+      if (text.length > 0) {
+        try {
+          JSON.parse(action.payload);
+          state.validity = ValidityType.Valid;
+        } catch (e) {
+          state.validity = ValidityType.Invalid;
+        }
+      } else {
+        state.validity = ValidityType.None;
       }
     },
   },
