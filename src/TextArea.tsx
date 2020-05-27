@@ -16,6 +16,7 @@ const TextArea: React.FC = () => {
   const dispatch = useDispatch();
   const jsonText = useRef(null);
   const data = useSelector((state: RootState) => state.data.data);
+  const isValid = useSelector((state: RootState) => state.textarea.isValid);
 
   const text = useMemo(() => {
     return data === null ? '' : JSON.stringify(data, null, 2);
@@ -76,6 +77,7 @@ const TextArea: React.FC = () => {
         onChange={onChange}
         onDrop={onDrop}
         ref={jsonText}
+        className={isValid ? 'valid' : 'invalid'}
       ></textarea>
       <ControlsArea />
     </div>

@@ -81,10 +81,10 @@ section {
         font-size: 14px;
         background-color: #ffffff;
         &.valid {
-          animation: validFrames 1s ease-in-out;
+          animation: validFrames .5s ease-in-out;
         }
         &.invalid {
-          animation: invalidFrames 1s ease-in-out;
+          animation: invalidFrames .5s ease-in-out;
         }
       }
     }
@@ -214,7 +214,7 @@ tbody {
     background-color: #ffffff;
   }
   10% {
-    background-color: #f0f0ff;
+    background-color: #F0FFF0;
   }
   100% {
     background-color: #ffffff;
@@ -226,7 +226,7 @@ tbody {
     background-color: #ffffff;
   }
   10% {
-    background-color: #fff6fc;
+    background-color: #fff0ff;
   }
   100% {
     background-color: #ffffff;

@@ -24,6 +24,7 @@ const ControlsArea: React.FC = () => {
 
   const text = useSelector((state: RootState) => state.textarea.localText);
   const isEmpty = useMemo(() => text.length === 0, [text.length]);
+  const isValid = useSelector((state: RootState) => state.textarea.isValid);
 
   return (
     <div className="controls-area">
@@ -31,7 +32,7 @@ const ControlsArea: React.FC = () => {
         <button
           id="copy-to-clipboard"
           data-clipboard-target="#json-text"
-          disabled={isEmpty}
+          disabled={!isValid}
           className="mdl-button mdl-js-button mdl-button--icon"
           title="Copy"
         >
@@ -41,7 +42,7 @@ const ControlsArea: React.FC = () => {
       <div className="float-left">
         <button
           id="donwload"
-          disabled={isEmpty}
+          disabled={!isValid}
           className="mdl-button mdl-js-button mdl-button--icon"
           onClick={() => downloadJson(text)}
           title="Download"
