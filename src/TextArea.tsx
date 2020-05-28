@@ -7,6 +7,7 @@ import React, {
   useMemo,
 } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import MonacoEditor from 'react-monaco-editor';
 import ControlsArea from './ControlsArea';
 import { RootState } from './index';
 import { dataSlice } from './features/data/dataSlice';
@@ -47,9 +48,12 @@ const TextArea: React.FC = () => {
   }, [localText]);
 
   // update local text
-  const onChange = useCallback((event: ChangeEvent<HTMLTextAreaElement>) => {
-    const { value } = event.target;
-    dispatch(setLocalText(value));
+  const onChange = useCallback((newValue) => {
+    dispatch(setLocalText(newValue));
+  }, []);
+
+  const editorDidMount = useCallback(() => {
+    // ToDo
   }, []);
 
   const onDrop = (event: any) => {
@@ -68,7 +72,7 @@ const TextArea: React.FC = () => {
     }
   };
 
-  const textareaClasses = useMemo(() => { 
+  const textareaClasses = useMemo(() => {
     switch (validity) {
       case ValidityType.Valid:
         return 'valid';
@@ -79,8 +83,13 @@ const TextArea: React.FC = () => {
     }
   }, [validity]);
 
+  const options = {
+    selectOnLineNumbers: true,
+  };
+
   return (
     <div className="textarea-column">
+      {/*
       <textarea
         id="json-text"
         placeholder="Write JSON code or drop a JSON file here."
@@ -90,6 +99,17 @@ const TextArea: React.FC = () => {
         ref={jsonText}
         className={textareaClasses}
       ></textarea>
+      */}
+      <MonacoEditor
+        width="400"
+        height="600"
+        language="json"
+        theme="vs"
+        value={localText}
+        options={options}
+        onChange={onChange}
+        editorDidMount={editorDidMount}      
+      />
       <ControlsArea />
     </div>
   );
