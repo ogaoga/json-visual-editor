@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo } from 'react';
+import React, { useEffect, useMemo, useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Clipboard from 'clipboard';
 import { saveAs } from 'file-saver';
@@ -6,7 +6,7 @@ import { saveAs } from 'file-saver';
 import OptionMenu from './OptionMenu';
 import { RootState } from '.';
 import { dataSlice } from './features/data/dataSlice';
-import { ValidityType } from './features/textarea/textareaSlice';
+import { ValidityType, textareaSlice } from './features/textarea/textareaSlice';
 
 const ControlsArea: React.FC = () => {
   useEffect(() => {
@@ -20,14 +20,19 @@ const ControlsArea: React.FC = () => {
   };
 
   const dispatch = useDispatch();
-  // const data = useSelector((state: RootState) => state.data.data);
   const { setData } = dataSlice.actions;
+  const { setLocalText } = textareaSlice.actions;
 
   const text = useSelector((state: RootState) => state.textarea.localText);
   const isEmpty = useMemo(() => text.length === 0, [text.length]);
   const isValid = useSelector(
     (state: RootState) => state.textarea.validity === ValidityType.Valid
   );
+
+  const onDeleteButtonClicked = useCallback(() => {
+    dispatch(setData(null));
+    dispatch(setLocalText(''));
+  }, []);
 
   return (
     <div className="controls-area">
@@ -57,7 +62,7 @@ const ControlsArea: React.FC = () => {
         <button
           className="mdl-button mdl-js-button mdl-button--icon"
           disabled={isEmpty}
-          onClick={() => dispatch(setData(null))}
+          onClick={onDeleteButtonClicked}
           title="Clear"
         >
           <i className="material-icons">delete</i>
