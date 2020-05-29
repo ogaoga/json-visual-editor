@@ -65,7 +65,8 @@ section {
     .textarea-column {
       width: 100%;
       height: 100%;
-      textarea {
+      /*
+      .react-monaco-editor-container {
         position: absolute;
         top: 0;
         bottom: $controlAreaHeight;
@@ -81,12 +82,13 @@ section {
         font-size: 14px;
         background-color: #ffffff;
         &.valid {
-          animation: validFrames .5s ease-in-out;
+          animation: validFrames 0.5s ease-in-out;
         }
         &.invalid {
-          animation: invalidFrames .5s ease-in-out;
+          animation: invalidFrames 0.5s ease-in-out;
         }
       }
+      */
     }
     .controls-area {
       position: absolute;
@@ -214,7 +216,7 @@ tbody {
     background-color: #ffffff;
   }
   10% {
-    background-color: #F0FFF0;
+    background-color: #f0fff0;
   }
   100% {
     background-color: #ffffff;

@@ -15,7 +15,6 @@ import { textareaSlice, ValidityType } from './features/textarea/textareaSlice';
 
 const TextArea: React.FC = () => {
   const dispatch = useDispatch();
-  const jsonText = useRef(null);
   const data = useSelector((state: RootState) => state.data.data);
   const validity = useSelector((state: RootState) => state.textarea.validity);
 
@@ -89,26 +88,13 @@ const TextArea: React.FC = () => {
 
   return (
     <div className="textarea-column">
-      {/*
-      <textarea
-        id="json-text"
-        placeholder="Write JSON code or drop a JSON file here."
-        value={localText}
-        onChange={onChange}
-        onDrop={onDrop}
-        ref={jsonText}
-        className={textareaClasses}
-      ></textarea>
-      */}
       <MonacoEditor
-        width="400"
-        height="600"
         language="json"
         theme="vs"
         value={localText}
         options={options}
         onChange={onChange}
-        editorDidMount={editorDidMount}      
+        editorDidMount={editorDidMount}
       />
       <ControlsArea />
     </div>
