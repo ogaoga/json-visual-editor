@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import '../node_modules/material-design-lite/material.min.js';
-import Page from './Page';
+import { Page } from './Page';
 
 const App: React.FC = () => {
   const [previousEvent, setPreviousEvent] = useState<string | null>(null);
