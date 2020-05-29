@@ -2,10 +2,12 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import TextArea from './TextArea';
 import VisualizedData from './VisualizedData';
-import Closer from './Closer';
+// import Closer from './Closer';
 import { RootState } from './index';
+import { Footer } from './Footer';
+import { Header } from './Header';
 
-const Page: React.FC = () => {
+export const Page: React.FC = () => {
   const isTextareaClose = useSelector(
     (state: RootState) => state.textarea.isTextareaClose
   );
@@ -21,52 +23,24 @@ const Page: React.FC = () => {
     classes.visualized.push('mdl-cell--8-col');
   }
   return (
-    <div className="mdl-layout mdl-js-layout mdl-layout--fixed-header">
-      <header className="mdl-layout__header">
-        <div className="mdl-layout__header-row">
-          <h1 className="mdl-layout-title">JSON Visual Editor</h1>
-          <div className="mdl-layout-spacer"></div>
-          <nav className="mdl-navigation">
-            <a
-              className="mdl-navigation__link"
-              href="https://github.com/ogaoga/json-visual-editor/issues/new"
-            >
-              <i className="material-icons">feedback</i> Feedback
-            </a>
-          </nav>
-        </div>
-      </header>
-      <main className="mdl-layout__content">
-        <div className="mdl-grid">
-          <section className={classes.jsonText.join(' ')}>
+    <>
+      <Header />
+      <main className="d-flex flex-row flex-grow-1">
+        <div className="leading-side d-flex flex-column">
+          <section className="flex-grow-1">
             <TextArea />
-            <Closer />
+            {/* <Closer /> */}
           </section>
-          <section className={classes.visualized.join(' ')}>
-            <VisualizedData />
-          </section>
+        </div>
+        <div className="trailing-side d-flex flex-column">
+          <div className="flex-grow-1">
+            <div className="scroll-wrapper">
+              <VisualizedData />
+            </div>
+          </div>
         </div>
       </main>
-      <footer>
-        <div>
-          <span>
-            <a href="https://github.com/ogaoga/json-visual-editor">
-              Source code on GitHub
-            </a>
-          </span>
-          <span> | </span>
-          <span>
-            <a href="http://qiita.com/ogaoga/items/1dae5586601e6900c3f1">
-              Development guide on Qiita
-            </a>
-          </span>
-        </div>
-        <div>
-          <span>Copyright &copy; 2016 - 2020 ogaoga.org</span>
-        </div>
-      </footer>
-    </div>
+      <Footer />
+    </>
   );
 };
-
-export default Page;

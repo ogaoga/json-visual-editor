@@ -1,3 +1,78 @@
+// to expand the content area to the browser height
+html,
+body {
+  height: 100%;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.container {
+  width: 100%;
+  height: 100%;
+  max-width: 100%;
+  padding: 0;
+}
+
+section,
+nav {
+  padding: 10px;
+  overflow: hidden;
+}
+
+//
+// Footer
+//
+footer {
+  color: #ccc;
+  font-size: .8rem;
+  text-align: center;
+  padding: 10px 0;
+  background: #222;  
+}
+
+//
+// Main area
+//
+.leading-side {
+  width: 80%;
+}
+
+.trailing-side {
+  width: 20%;
+  background: #eeffee;
+}
+
+//
+// Leading side
+//
+.vertical-fixed-area {
+  height: 50px; // fixed height
+  background: #eeeeee;
+}
+
+//
+// nav
+//
+
+.trailing-side nav {
+  // to be scrollable
+  overflow-y: scroll;
+  position: relative;
+  .scroll-wrapper {
+    position: absolute;
+  }
+}
+
+.adjuster {
+  width: 10px;
+  height: 100%;
+  cursor: col-resize;
+  background: #ffe;
+}
+
+/*
 body {
   background: #fafafa;
 }
@@ -20,11 +95,13 @@ body {
   float: right;
   margin-left: 10px;
 }
+*/
 
 .monospace-font {
   font-family: Consolas, 'Courier New', Courier, Monaco, monospace;
 }
 
+/*
 input[readonly] {
   cursor: not-allowed;
   & ~ * {
@@ -106,13 +183,7 @@ section {
     overflow: scroll;
   }
 }
-
-footer {
-  text-align: center;
-  padding: 10px 0;
-  color: #ccc;
-  background: #222;
-}
+*/
 
 // Table
 
@@ -155,6 +226,7 @@ thead {
     }
   }
 }
+
 
 $colorPalette: #c5bee4, #becde4, #c5e4be, #dbe4be, #e4d5be, #e4bebe;
 
@@ -209,6 +281,7 @@ tbody {
   font-style: italic;
 }
 
+/*
 @keyframes validFrames {
   0% {
     background-color: #ffffff;
@@ -249,3 +322,4 @@ tbody {
     }
   }
 }
+*/
