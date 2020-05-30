@@ -17,13 +17,13 @@ const Expander: React.FC<Props> = ({ defaultValue, onChangeExpansion }) => {
   const classes = [
     'component-expander',
     expanded ? 'expanded' : '',
-    'mdl-button',
-    'mdl-js-button',
+    'btn',
+    'btn-link',
   ].join(' ');
 
   return (
     <button className={classes} onClick={onClick}>
-      <i className="material-icons">expand_more</i>
+      <i className="fas fa-chevron-down" />
     </button>
   );
 };

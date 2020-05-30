@@ -26,22 +26,22 @@ nav {
 //
 footer {
   color: #ccc;
-  font-size: .8rem;
+  font-size: 0.8rem;
   text-align: center;
   padding: 10px 0;
-  background: #222;  
+  background: #222;
 }
 
 //
 // Main area
 //
 .leading-side {
-  width: 80%;
+  width: 40%;
 }
 
 .trailing-side {
-  width: 20%;
-  background: #eeffee;
+  width: 60%;
+  padding: 10px;
 }
 
 //
@@ -56,7 +56,7 @@ footer {
 // nav
 //
 
-.trailing-side nav {
+.trailing-side div.flex-grow-1 {
   // to be scrollable
   overflow-y: scroll;
   position: relative;
@@ -69,7 +69,7 @@ footer {
   width: 10px;
   height: 100%;
   cursor: col-resize;
-  background: #ffe;
+  background: #eee;
 }
 
 /*
@@ -226,7 +226,6 @@ thead {
     }
   }
 }
-
 
 $colorPalette: #c5bee4, #becde4, #c5e4be, #dbe4be, #e4d5be, #e4bebe;
 

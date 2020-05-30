@@ -68,7 +68,7 @@ const TextArea: React.FC = () => {
     }
   };
 
-  const textareaClasses = useMemo(() => { 
+  const textareaClasses = useMemo(() => {
     switch (validity) {
       case ValidityType.Valid:
         return 'valid';
@@ -81,6 +81,7 @@ const TextArea: React.FC = () => {
 
   return (
     <div className="textarea-column">
+      <ControlsArea />
       <textarea
         id="json-text"
         placeholder="Write JSON code or drop a JSON file here."
@@ -90,7 +91,6 @@ const TextArea: React.FC = () => {
         ref={jsonText}
         className={textareaClasses}
       ></textarea>
-      <ControlsArea />
     </div>
   );
 };

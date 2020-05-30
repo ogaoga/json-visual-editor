@@ -32,6 +32,7 @@ export const Page: React.FC = () => {
             {/* <Closer /> */}
           </section>
         </div>
+        <div className="adjuster"></div>
         <div className="trailing-side d-flex flex-column">
           <div className="flex-grow-1">
             <div className="scroll-wrapper">

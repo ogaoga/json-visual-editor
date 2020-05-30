@@ -41,40 +41,40 @@ const ControlsArea: React.FC = () => {
           id="copy-to-clipboard"
           data-clipboard-target="#json-text"
           disabled={!isValid}
-          className="mdl-button mdl-js-button mdl-button--icon"
+          className="btn btn-link"
           title="Copy"
         >
-          <i className="material-icons">content_copy</i>
+          <i className="far fa-copy" />
         </button>
       </div>
       <div className="float-left">
         <button
           id="donwload"
           disabled={!isValid}
-          className="mdl-button mdl-js-button mdl-button--icon"
+          className="btn btn-link"
           onClick={() => downloadJson(text)}
           title="Download"
         >
-          <i className="material-icons">file_download</i>
+          <i className="fas fa-file-download" />
         </button>
       </div>
       <div className="float-left">
         <button
-          className="mdl-button mdl-js-button mdl-button--icon"
+          className="btn btn-link"
           disabled={isEmpty}
           onClick={onDeleteButtonClicked}
           title="Clear"
         >
-          <i className="material-icons">delete</i>
+          <i className="far fa-trash-alt" />
         </button>
       </div>
       <div className="float-left">
         <button
-          className="mdl-button mdl-js-button mdl-button--icon"
+          className="btn btn-link"
           title="More"
           id="more-button"
         >
-          <i className="material-icons">more_vert</i>
+          <i className="fas fa-ellipsis-v" />
         </button>
         <OptionMenu />
       </div>
