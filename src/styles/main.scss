@@ -1,3 +1,78 @@
+// to expand the content area to the browser height
+html,
+body {
+  height: 100%;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.container {
+  width: 100%;
+  height: 100%;
+  max-width: 100%;
+  padding: 0;
+}
+
+section,
+nav {
+  padding: 10px;
+  overflow: hidden;
+}
+
+//
+// Footer
+//
+footer {
+  color: #ccc;
+  font-size: 0.8rem;
+  text-align: center;
+  padding: 10px 0;
+  background: #222;
+}
+
+//
+// Main area
+//
+.leading-side {
+  width: 40%;
+}
+
+.trailing-side {
+  width: 60%;
+  padding: 10px;
+}
+
+//
+// Leading side
+//
+.vertical-fixed-area {
+  height: 50px; // fixed height
+  background: #eeeeee;
+}
+
+//
+// nav
+//
+
+.trailing-side div.flex-grow-1 {
+  // to be scrollable
+  overflow-y: scroll;
+  position: relative;
+  .scroll-wrapper {
+    position: absolute;
+  }
+}
+
+.adjuster {
+  width: 10px;
+  height: 100%;
+  cursor: col-resize;
+  background: #eee;
+}
+
+/*
 body {
   background: #fafafa;
 }
@@ -20,11 +95,13 @@ body {
   float: right;
   margin-left: 10px;
 }
+*/
 
 .monospace-font {
   font-family: Consolas, 'Courier New', Courier, Monaco, monospace;
 }
 
+/*
 input[readonly] {
   cursor: not-allowed;
   & ~ * {
@@ -106,12 +183,13 @@ section {
     overflow: scroll;
   }
 }
+*/
 
-footer {
-  text-align: center;
-  padding: 10px 0;
+// Count
+.text-count {
   color: #ccc;
-  background: #222;
+  font-size: 16px;
+  font-weight: bold;
 }
 
 // Table
@@ -209,6 +287,7 @@ tbody {
   font-style: italic;
 }
 
+/*
 @keyframes validFrames {
   0% {
     background-color: #ffffff;
@@ -232,6 +311,7 @@ tbody {
     background-color: #ffffff;
   }
 }
+*/
 
 // Components
 
