@@ -2,7 +2,7 @@ import React from 'react';
 
 export const Footer: React.FC = () => {
   return (
-    <footer>
+    <footer className="bg-dark">
       <div>
         <span>
           <a href="https://github.com/ogaoga/json-visual-editor">

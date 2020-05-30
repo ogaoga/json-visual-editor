@@ -2,7 +2,7 @@ import React from 'react';
 
 export const Header: React.FC = () => {
   return (
-    <header className="navbar navbar-dark bg-primary">
+    <header className="navbar navbar-dark bg-dark">
       <a className="navbar-brand" href="#">
         JSON Visual Editor
       </a>
@@ -11,8 +11,10 @@ export const Header: React.FC = () => {
           <a
             className="mdl-navigation__link"
             href="https://github.com/ogaoga/json-visual-editor/issues/new"
+            target="_blank"
+            rel="noopener noreferrer"
           >
-            <i className="material-icons">feedback</i> Feedback
+            <i className="fas fa-comment" /> Feedback
           </a>
         </li>
       </ul>

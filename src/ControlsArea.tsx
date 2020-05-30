@@ -34,7 +34,7 @@ const ControlsArea: React.FC = () => {
   }, []);
 
   return (
-    <nav className="navbar px-1" style={{ overflow: 'visible' }}>
+    <nav className="navbar px-1 py-0" style={{ overflow: 'visible' }}>
       <ul className="nav">
         <li className="nav-item">
           <button

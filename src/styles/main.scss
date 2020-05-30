@@ -29,7 +29,6 @@ footer {
   font-size: 0.8rem;
   text-align: center;
   padding: 10px 0;
-  background: #222;
 }
 
 //
@@ -184,6 +183,25 @@ section {
   }
 }
 */
+
+// textarea
+.textarea-column {
+  textarea {    
+    box-shadow: 2px 2px 2px 0 rgba(200, 200, 200, 0.2) inset;
+    font-family: Consolas, 'Courier New', Courier, Monaco, monospace;
+    font-size: 14px;
+    background-color: #ffffff;
+    padding: .5rem;
+    /*
+    &.valid {
+      animation: validFrames 0.5s ease-in-out;
+    }
+    &.invalid {
+      animation: invalidFrames 0.5s ease-in-out;
+    }
+    */
+  }
+}
 
 // Count
 .text-count {
