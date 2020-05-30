@@ -68,6 +68,7 @@ const TextArea: React.FC = () => {
     }
   };
 
+  /*
   const textareaClasses = useMemo(() => {
     switch (validity) {
       case ValidityType.Valid:
@@ -78,9 +79,10 @@ const TextArea: React.FC = () => {
         return '';
     }
   }, [validity]);
+  */
 
   return (
-    <div className="textarea-column d-flex flex-column">
+    <div className="textarea-column d-flex flex-column h-100">
       <ControlsArea />
       <textarea
         id="json-text"
@@ -89,7 +91,7 @@ const TextArea: React.FC = () => {
         onChange={onChange}
         onDrop={onDrop}
         ref={jsonText}
-        className={textareaClasses}
+        className="flex-grow-1"
       ></textarea>
     </div>
   );
