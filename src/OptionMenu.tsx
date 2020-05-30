@@ -2,7 +2,11 @@ import React, { useCallback } from 'react';
 import { useDispatch } from 'react-redux';
 import { dataSlice } from './features/data/dataSlice';
 
-const OptionMenu: React.FC= () => {
+interface Props {
+  ariaLabelledby: string;
+}
+
+const OptionMenu: React.FC<Props> = ({ ariaLabelledby }) => {
   const dispatch = useDispatch();
   const { pasteSample } = dataSlice.actions;
 
@@ -11,7 +15,7 @@ const OptionMenu: React.FC= () => {
   }, [dispatch, pasteSample]);
 
   return (
-    <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
+    <div className="dropdown-menu" aria-labelledby={ariaLabelledby}>
       <a className="dropdown-item" onClick={onPasteClicked}>
         Paste Sample JSON
       </a>

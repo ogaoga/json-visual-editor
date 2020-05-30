@@ -80,7 +80,7 @@ const TextArea: React.FC = () => {
   }, [validity]);
 
   return (
-    <div className="textarea-column">
+    <div className="textarea-column d-flex flex-column">
       <ControlsArea />
       <textarea
         id="json-text"
