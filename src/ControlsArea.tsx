@@ -68,11 +68,13 @@ const ControlsArea: React.FC = () => {
           <i className="far fa-trash-alt" />
         </button>
       </div>
-      <div className="float-left">
+      <div className="float-left dropdown">
         <button
           className="btn btn-link"
           title="More"
-          id="more-button"
+          data-toggle="dropdown"
+          aria-haspopup="true"
+          aria-expanded="false"
         >
           <i className="fas fa-ellipsis-v" />
         </button>
