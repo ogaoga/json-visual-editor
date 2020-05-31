@@ -82,28 +82,11 @@ input[readonly] {
   }
 }
 
-/*
-// Layout
-
-body.dragging {
-  .json-text {
-    textarea {
-      border: 6px dotted #cce;
-      border-radius: 12px;
-      padding: 3px;
-    }
-  }
-}
-*/
-
-.react-monaco-editor-container {
-  // box-shadow: 2px 2px 2px 0 rgba(200, 200, 200, 0.2) inset;
-  &.valid {
-    animation: validFrames 0.5s ease-in-out;
-  }
-  &.invalid {
-    animation: invalidFrames 0.5s ease-in-out;
-  }
+.monaco-wrapper {
+  $monaco-wapper-color: rgba(200, 200, 200, 0.4);
+  padding: 4px;
+  box-shadow: 2px 2px 2px 0 $monaco-wapper-color inset;
+  border: 1px solid $monaco-wapper-color;
 }
 
 .visualized-data {
@@ -210,30 +193,6 @@ tbody {
   color: #999;
   @extend .monospace-font;
   font-style: italic;
-}
-
-@keyframes validFrames {
-  0% {
-    background-color: #ffffff;
-  }
-  10% {
-    background-color: #f0fff0;
-  }
-  100% {
-    background-color: #ffffff;
-  }
-}
-
-@keyframes invalidFrames {
-  0% {
-    background-color: #ffffff;
-  }
-  10% {
-    background-color: #fff0ff;
-  }
-  100% {
-    background-color: #ffffff;
-  }
 }
 
 // Components

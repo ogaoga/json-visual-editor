@@ -1,9 +1,4 @@
-import React, {
-  useState,
-  useCallback,
-  useEffect,
-  useMemo,
-} from 'react';
+import React, { useState, useCallback, useEffect, useMemo } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import MonacoEditor from 'react-monaco-editor';
 import ControlsArea from './ControlsArea';
@@ -91,14 +86,16 @@ const TextArea: React.FC = () => {
   return (
     <div className="textarea-column d-flex flex-column h-100">
       <ControlsArea />
-      <MonacoEditor
-        language="json"
-        theme="vs"
-        value={localText}
-        options={options}
-        onChange={onChange}
-        editorDidMount={editorDidMount}
-      />
+      <div className="monaco-wrapper h-100 flex-grow-1">
+        <MonacoEditor
+          language="json"
+          theme="vs"
+          value={localText}
+          options={options}
+          onChange={onChange}
+          editorDidMount={editorDidMount}
+        />
+      </div>
     </div>
   );
 };
