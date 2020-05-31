@@ -6,13 +6,15 @@ import { RootState } from './index';
 import { dataSlice } from './features/data/dataSlice';
 import { textareaSlice, ValidityType } from './features/textarea/textareaSlice';
 
+const tabSize = 4;
+
 const TextArea: React.FC = () => {
   const dispatch = useDispatch();
   const data = useSelector((state: RootState) => state.data.data);
   // const validity = useSelector((state: RootState) => state.textarea.validity);
 
   const text = useMemo(() => {
-    return data === null ? '' : JSON.stringify(data, null, 2);
+    return data === null ? '' : JSON.stringify(data, null, tabSize);
   }, [data]);
   const [timeoutId, setTimeoutId] = useState<NodeJS.Timeout>(
     setTimeout(() => {}, 0)
@@ -42,13 +44,6 @@ const TextArea: React.FC = () => {
   // update local text
   const onChange = useCallback((newValue) => {
     dispatch(setLocalText(newValue));
-  }, []);
-
-  const editorDidMount = useCallback((editor, monaco) => {
-    editor.updateOptions({
-      renderLineHighlight: 'none',
-      automaticLayout: true,
-    });
   }, []);
 
   /*
@@ -91,7 +86,20 @@ const TextArea: React.FC = () => {
           theme="vs"
           value={localText}
           onChange={onChange}
-          editorDidMount={editorDidMount}
+          options={{
+            automaticLayout: true,
+            formatOnPaste: true,
+            formatOnType: true,
+            renderLineHighlight: 'none',
+            autoClosingOvertype: 'always',
+            cursorStyle: 'block',
+            hover: {
+              enabled: false,
+            },
+            quickSuggestions: false,
+            scrollBeyondLastLine: false,
+            snippetSuggestions: 'none',
+          }}
         />
       </div>
     </div>

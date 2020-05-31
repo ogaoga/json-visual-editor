@@ -15,7 +15,6 @@ export const dataSlice = createSlice({
       state.data = action.payload;
     },
     pasteSample: (state: State) => {
-      const text = JSON.stringify(SampleJson, null, 2);
       state.data = SampleJson;
     },
   },
