@@ -1,24 +1,74 @@
+// to expand the content area to the browser height
+html,
 body {
-  background: #fafafa;
+  height: 100%;
 }
 
-// common
-
-.fillbox {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
+* {
+  box-sizing: border-box;
 }
 
-.float-left {
-  float: left;
-  margin-right: 10px;
+.container {
+  width: 100%;
+  height: 100%;
+  max-width: 100%;
+  padding: 0;
 }
-.float-right {
-  float: right;
-  margin-left: 10px;
+
+section,
+nav {
+  padding: 10px;
+  overflow: hidden;
+}
+
+//
+// Footer
+//
+footer {
+  color: #ccc;
+  font-size: 0.8rem;
+  text-align: center;
+  padding: 10px 0;
+}
+
+//
+// Main area
+//
+.leading-side {
+  width: 40%;
+}
+
+.trailing-side {
+  width: 60%;
+  padding: 10px;
+}
+
+//
+// Leading side
+//
+.vertical-fixed-area {
+  height: 50px; // fixed height
+  background: #eeeeee;
+}
+
+//
+// nav
+//
+
+.trailing-side div.flex-grow-1 {
+  // to be scrollable
+  overflow-y: scroll;
+  position: relative;
+  .scroll-wrapper {
+    position: absolute;
+  }
+}
+
+.adjuster {
+  width: 10px;
+  height: 100%;
+  cursor: col-resize;
+  background: #eee;
 }
 
 .monospace-font {
@@ -32,19 +82,8 @@ input[readonly] {
   }
 }
 
+/*
 // Layout
-
-main {
-  & > div {
-    @extend .fillbox;
-  }
-}
-
-header {
-  .mdl-layout__header-row {
-    padding: 0 20px;
-  }
-}
 
 body.dragging {
   .json-text {
@@ -55,65 +94,27 @@ body.dragging {
     }
   }
 }
+*/
 
-section {
-  &.json-text {
-    $controlAreaHeight: 48px;
-    display: flex;
-    align-items: center;
-    position: relative;
-    .textarea-column {
-      width: 100%;
-      height: 100%;
-      /*
-      .react-monaco-editor-container {
-        position: absolute;
-        top: 0;
-        bottom: $controlAreaHeight;
-        left: 0;
-        right: 20px;
-        resize: none;
-        width: 100%;
-        box-sizing: border-box;
-        padding: 8px;
-        border: 1px solid #ddd;
-        box-shadow: 2px 2px 2px 0 rgba(200, 200, 200, 0.2) inset;
-        font-family: Consolas, 'Courier New', Courier, Monaco, monospace;
-        font-size: 14px;
-        background-color: #ffffff;
-        &.valid {
-          animation: validFrames 0.5s ease-in-out;
-        }
-        &.invalid {
-          animation: invalidFrames 0.5s ease-in-out;
-        }
-      }
-      */
-    }
-    .controls-area {
-      position: absolute;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      .control-count {
-        color: #ccc;
-        font-size: 16px;
-        font-weight: bold;
-        line-height: 32px;
-      }
-    }
+.react-monaco-editor-container {
+  // box-shadow: 2px 2px 2px 0 rgba(200, 200, 200, 0.2) inset;
+  &.valid {
+    animation: validFrames 0.5s ease-in-out;
   }
-
-  &.visualized-data {
-    overflow: scroll;
+  &.invalid {
+    animation: invalidFrames 0.5s ease-in-out;
   }
 }
 
-footer {
-  text-align: center;
-  padding: 10px 0;
+.visualized-data {
+  overflow: scroll;
+}
+
+// Count
+.text-count {
   color: #ccc;
-  background: #222;
+  font-size: 16px;
+  font-weight: bold;
 }
 
 // Table

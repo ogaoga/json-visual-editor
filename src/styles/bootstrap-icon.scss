@@ -1,0 +1,19 @@
+.icon-base {
+  display: inline-block;
+  content: '';
+  background-repeat: no-repeat;
+  background-size: 1rem 1rem;
+  background-position: center;
+  width: 1rem;
+  height: 1rem;
+}
+
+$icons: 'chevron-down', 'files', 'file-earmark-arrow-down', 'trash',
+  'three-dots-vertical';
+
+@each $icon in $icons {
+  i.icon-#{$icon}::before {
+    @extend .icon-base;
+    background-image: url('~bootstrap-icons/icons/#{$icon}.svg');
+  }
+}

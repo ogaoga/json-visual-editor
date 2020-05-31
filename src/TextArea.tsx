@@ -1,7 +1,5 @@
 import React, {
   useState,
-  useRef,
-  ChangeEvent,
   useCallback,
   useEffect,
   useMemo,
@@ -16,7 +14,7 @@ import { textareaSlice, ValidityType } from './features/textarea/textareaSlice';
 const TextArea: React.FC = () => {
   const dispatch = useDispatch();
   const data = useSelector((state: RootState) => state.data.data);
-  const validity = useSelector((state: RootState) => state.textarea.validity);
+  // const validity = useSelector((state: RootState) => state.textarea.validity);
 
   const text = useMemo(() => {
     return data === null ? '' : JSON.stringify(data, null, 2);
@@ -55,6 +53,7 @@ const TextArea: React.FC = () => {
     // ToDo
   }, []);
 
+  /*
   const onDrop = (event: any) => {
     event.stopPropagation();
     event.preventDefault();
@@ -70,7 +69,9 @@ const TextArea: React.FC = () => {
       reader.readAsText(file);
     }
   };
+  */
 
+  /*
   const textareaClasses = useMemo(() => {
     switch (validity) {
       case ValidityType.Valid:
@@ -81,13 +82,15 @@ const TextArea: React.FC = () => {
         return '';
     }
   }, [validity]);
+  */
 
   const options = {
     selectOnLineNumbers: true,
   };
 
   return (
-    <div className="textarea-column">
+    <div className="textarea-column d-flex flex-column h-100">
+      <ControlsArea />
       <MonacoEditor
         language="json"
         theme="vs"
@@ -96,7 +99,6 @@ const TextArea: React.FC = () => {
         onChange={onChange}
         editorDidMount={editorDidMount}
       />
-      <ControlsArea />
     </div>
   );
 };

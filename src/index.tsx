@@ -10,6 +10,8 @@ import { configureStore } from '@reduxjs/toolkit';
 import { textareaSlice } from './features/textarea/textareaSlice';
 import { dataSlice } from './features/data/dataSlice';
 
+import 'bootstrap';
+
 // ToDo: Add `redux-localstorage` to persiste the data
 
 const rootReducer = combineReducers({

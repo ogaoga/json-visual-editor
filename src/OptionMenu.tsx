@@ -2,7 +2,11 @@ import React, { useCallback } from 'react';
 import { useDispatch } from 'react-redux';
 import { dataSlice } from './features/data/dataSlice';
 
-const OptionMenu: React.FC = () => {
+interface Props {
+  ariaLabelledby: string;
+}
+
+const OptionMenu: React.FC<Props> = ({ ariaLabelledby }) => {
   const dispatch = useDispatch();
   const { pasteSample } = dataSlice.actions;
 
@@ -11,14 +15,11 @@ const OptionMenu: React.FC = () => {
   }, [dispatch, pasteSample]);
 
   return (
-    <ul
-      className="mdl-menu mdl-menu--top-left mdl-js-menu mdl-js-ripple-effect"
-      data-mdl-for="more-button"
-    >
-      <li className="mdl-menu__item" onClick={onPasteClicked}>
+    <div className="dropdown-menu" aria-labelledby={ariaLabelledby}>
+      <a className="dropdown-item" onClick={onPasteClicked}>
         Paste Sample JSON
-      </li>
-    </ul>
+      </a>
+    </div>
   );
 };
 
