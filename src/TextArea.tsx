@@ -6,13 +6,15 @@ import { RootState } from './index';
 import { dataSlice } from './features/data/dataSlice';
 import { textareaSlice, ValidityType } from './features/textarea/textareaSlice';
 
+const tabSize = 4;
+
 const TextArea: React.FC = () => {
   const dispatch = useDispatch();
   const data = useSelector((state: RootState) => state.data.data);
   // const validity = useSelector((state: RootState) => state.textarea.validity);
 
   const text = useMemo(() => {
-    return data === null ? '' : JSON.stringify(data, null, 2);
+    return data === null ? '' : JSON.stringify(data, null, tabSize);
   }, [data]);
   const [timeoutId, setTimeoutId] = useState<NodeJS.Timeout>(
     setTimeout(() => {}, 0)
@@ -44,45 +46,6 @@ const TextArea: React.FC = () => {
     dispatch(setLocalText(newValue));
   }, []);
 
-  const editorDidMount = useCallback(() => {
-    // ToDo
-  }, []);
-
-  /*
-  const onDrop = (event: any) => {
-    event.stopPropagation();
-    event.preventDefault();
-    if (event.dataTransfer.files.length > 0) {
-      var file = event.dataTransfer.files[0];
-      var reader = new FileReader();
-      reader.onload = () => {
-        if (typeof reader.result === 'string') {
-          // TODO: it doesn't work
-          dispatch(setLocalText(reader.result));
-        }
-      };
-      reader.readAsText(file);
-    }
-  };
-  */
-
-  /*
-  const textareaClasses = useMemo(() => {
-    switch (validity) {
-      case ValidityType.Valid:
-        return 'valid';
-      case ValidityType.Invalid:
-        return 'invalid';
-      case ValidityType.None:
-        return '';
-    }
-  }, [validity]);
-  */
-
-  const options = {
-    selectOnLineNumbers: true,
-  };
-
   return (
     <div className="textarea-column d-flex flex-column h-100">
       <ControlsArea />
@@ -91,9 +54,21 @@ const TextArea: React.FC = () => {
           language="json"
           theme="vs"
           value={localText}
-          options={options}
           onChange={onChange}
-          editorDidMount={editorDidMount}
+          options={{
+            automaticLayout: true,
+            formatOnPaste: true,
+            formatOnType: true,
+            renderLineHighlight: 'none',
+            autoClosingOvertype: 'always',
+            cursorStyle: 'block',
+            hover: {
+              enabled: false,
+            },
+            quickSuggestions: false,
+            scrollBeyondLastLine: false,
+            snippetSuggestions: 'none',
+          }}
         />
       </div>
     </div>

@@ -13,7 +13,6 @@ const Closer: React.FC = () => {
   return (
     <div className="closer">
       <button
-        className="mdl-button mdl-js-button mdl-button--icon"
         title="Open/Close text area"
         onClick={onClick}
         id="expand-button"
