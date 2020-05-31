@@ -1,12 +1,6 @@
-import React, {
-  useState,
-  useRef,
-  ChangeEvent,
-  useCallback,
-  useEffect,
-  useMemo,
-} from 'react';
+import React, { useState, useCallback, useEffect, useMemo } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import MonacoEditor from 'react-monaco-editor';
 import ControlsArea from './ControlsArea';
 import { RootState } from './index';
 import { dataSlice } from './features/data/dataSlice';
@@ -14,9 +8,8 @@ import { textareaSlice, ValidityType } from './features/textarea/textareaSlice';
 
 const TextArea: React.FC = () => {
   const dispatch = useDispatch();
-  const jsonText = useRef(null);
   const data = useSelector((state: RootState) => state.data.data);
-  const validity = useSelector((state: RootState) => state.textarea.validity);
+  // const validity = useSelector((state: RootState) => state.textarea.validity);
 
   const text = useMemo(() => {
     return data === null ? '' : JSON.stringify(data, null, 2);
@@ -47,11 +40,15 @@ const TextArea: React.FC = () => {
   }, [localText]);
 
   // update local text
-  const onChange = useCallback((event: ChangeEvent<HTMLTextAreaElement>) => {
-    const { value } = event.target;
-    dispatch(setLocalText(value));
+  const onChange = useCallback((newValue) => {
+    dispatch(setLocalText(newValue));
   }, []);
 
+  const editorDidMount = useCallback(() => {
+    // ToDo
+  }, []);
+
+  /*
   const onDrop = (event: any) => {
     event.stopPropagation();
     event.preventDefault();
@@ -67,6 +64,7 @@ const TextArea: React.FC = () => {
       reader.readAsText(file);
     }
   };
+  */
 
   /*
   const textareaClasses = useMemo(() => {
@@ -81,18 +79,23 @@ const TextArea: React.FC = () => {
   }, [validity]);
   */
 
+  const options = {
+    selectOnLineNumbers: true,
+  };
+
   return (
     <div className="textarea-column d-flex flex-column h-100">
       <ControlsArea />
-      <textarea
-        id="json-text"
-        placeholder="Write JSON code or drop a JSON file here."
-        value={localText}
-        onChange={onChange}
-        onDrop={onDrop}
-        ref={jsonText}
-        className="flex-grow-1"
-      ></textarea>
+      <div className="monaco-wrapper h-100 flex-grow-1">
+        <MonacoEditor
+          language="json"
+          theme="vs"
+          value={localText}
+          options={options}
+          onChange={onChange}
+          editorDidMount={editorDidMount}
+        />
+      </div>
     </div>
   );
 };

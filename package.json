@@ -25,6 +25,7 @@
     "popper.js": "^1.16.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
+    "react-monaco-editor": "^0.36.0",
     "react-redux": "^7.2.0",
     "react-scripts": "3.4.1",
     "redux": "^4.0.5",
@@ -33,10 +34,10 @@
     "validator": "^13.0.0"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "deploy": "npm run build && gh-pages -d build",
-    "test": "react-scripts test"
+    "start": "react-app-rewired start",
+    "build": "react-app-rewired build",
+    "test": "react-app-rewired test --env=jsdom",
+    "deploy": "npm run build && gh-pages -d build"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -75,6 +76,9 @@
     "enzyme": "^3.11.0",
     "enzyme-adapter-react-16": "^1.15.2",
     "gh-pages": "^2.2.0",
-    "node-sass": "^4.14.1"
+    "monaco-editor-webpack-plugin": "^1.9.0",
+    "node-sass": "^4.14.1",
+    "react-app-rewired": "^2.1.6",
+    "react-scripts-ts": "^3.1.0"
   }
 }
