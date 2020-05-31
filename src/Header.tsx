@@ -9,7 +9,6 @@ export const Header: React.FC = () => {
       <ul className="nav justify-content-end">
         <li>
           <a
-            className="mdl-navigation__link"
             href="https://github.com/ogaoga/json-visual-editor/issues/new"
             target="_blank"
             rel="noopener noreferrer"

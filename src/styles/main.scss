@@ -46,6 +46,16 @@ footer {
   padding: 10px 0;
 }
 
+// other elements
+
+label {
+  margin: 0;
+}
+
+input[type="checkbox"] {
+  vertical-align: middle;
+}
+
 //
 // Main area
 //
@@ -122,6 +132,7 @@ table {
   background-color: #f0f0ff;
   border: 1px solid #669;
   border-collapse: collapse;
+  font-size: 0.9rem;
 }
 
 td,
@@ -194,9 +205,6 @@ tbody {
   @extend .monospace-font;
   input {
     margin-right: 4px;
-  }
-  span {
-    font-size: 14px;
   }
 }
 
