@@ -84,7 +84,13 @@ const ControlsArea: React.FC = () => {
       </ul>
       <ul className="nav justify-content-end">
         <li className="control-count nav-item">
-          <span className="text-count">{text.length}</span>
+          <span
+            className={`text-count ${
+              text.length > 0 && !isValid ? 'invalid' : ''
+            }`}
+          >
+            {text.length}
+          </span>
         </li>
       </ul>
     </nav>

@@ -1,0 +1,7 @@
+.visualized-data {
+  @extend .monospace-font;
+  .placeholder {
+    font-style: italic;
+    color: var(--gray);    
+  }
+}

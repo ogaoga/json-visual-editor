@@ -52,7 +52,7 @@ label {
   margin: 0;
 }
 
-input[type="checkbox"] {
+input[type='checkbox'] {
   vertical-align: middle;
 }
 
@@ -114,15 +114,14 @@ input[readonly] {
   border: 1px solid $monaco-wapper-color;
 }
 
-.visualized-data {
-  overflow: scroll;
-}
-
 // Count
 .text-count {
   color: #ccc;
   font-size: 16px;
   font-weight: bold;
+  &.invalid {
+    color: var(--danger);
+  }
 }
 
 // Table
@@ -187,6 +186,7 @@ tbody {
 
 .string-type {
   color: #833;
+  font-weight: bold;
   img {
     width: 200px;
     height: auto;
@@ -213,9 +213,10 @@ tbody {
 }
 
 .null {
-  color: #999;
+  color: var(--gray);
   @extend .monospace-font;
   font-style: italic;
+  font-weight: bold;
 }
 
 // Components

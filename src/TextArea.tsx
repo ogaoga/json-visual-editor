@@ -62,9 +62,6 @@ const TextArea: React.FC = () => {
             renderLineHighlight: 'none',
             autoClosingOvertype: 'always',
             cursorStyle: 'block',
-            hover: {
-              enabled: false,
-            },
             quickSuggestions: false,
             scrollBeyondLastLine: false,
             snippetSuggestions: 'none',
