@@ -44,8 +44,11 @@ const TextArea: React.FC = () => {
     dispatch(setLocalText(newValue));
   }, []);
 
-  const editorDidMount = useCallback(() => {
-    // ToDo
+  const editorDidMount = useCallback((editor, monaco) => {
+    editor.updateOptions({
+      renderLineHighlight: 'none',
+      automaticLayout: true,
+    });
   }, []);
 
   /*
@@ -79,10 +82,6 @@ const TextArea: React.FC = () => {
   }, [validity]);
   */
 
-  const options = {
-    selectOnLineNumbers: true,
-  };
-
   return (
     <div className="textarea-column d-flex flex-column h-100">
       <ControlsArea />
@@ -91,7 +90,6 @@ const TextArea: React.FC = () => {
           language="json"
           theme="vs"
           value={localText}
-          options={options}
           onChange={onChange}
           editorDidMount={editorDidMount}
         />
