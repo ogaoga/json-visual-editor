@@ -14,12 +14,12 @@ let params = [
         className={[
           'component-expander',
           'expanded',
-          'mdl-button',
-          'mdl-js-button',
+          'btn',
+          'btn-link'
         ].join(' ')}
         onClick={function onClick() {}}
       >
-        <i className="material-icons">expand_more</i>
+        <i className="fas fa-chevron-down" />
       </button>
     ),
   },
@@ -31,12 +31,12 @@ let params = [
         className={[
           'component-expander',
           '',
-          'mdl-button',
-          'mdl-js-button',
+          'btn',
+          'btn-link'
         ].join(' ')}
         onClick={function onClick() {}}
       >
-        <i className="material-icons">expand_more</i>
+        <i className="fas fa-chevron-down" />
       </button>
     ),
   },

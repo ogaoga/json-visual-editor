@@ -58,7 +58,6 @@ Licensed under the [MIT License](LICENSE).
 - [ ] Show level of depth.
 - [ ] Timestamp translation.
 - [ ] Edit feature.
-- [ ] Chrome Web Store app build.
-- [ ] React Native
+- [ ] VS Code Extension.
 - [ ] Insert version number.
 - [ ] bug: Height of &lt;textarea&gt; is not enough in Firefox.
