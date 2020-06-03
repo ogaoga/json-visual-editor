@@ -30,8 +30,18 @@ const ObjectType: React.FC<Props> = ({ data, level = 0 }) => {
       return (
         <tr key={name}>
           <th>{name}</th>
-          <td>
-            <ObjectType data={data[name]} level={nextLevel} />
+          <td className="d-flex">
+            <div className="flex-grow-1">
+              <ObjectType data={data[name]} level={nextLevel} />
+            </div>
+            {(typeof data[name] === 'string' ||
+              typeof data[name] === 'number') && (
+              <div>
+                <button className="btn btn-sm btn-link">
+                  <i className="far fa-copy" />
+                </button>
+              </div>
+            )}
           </td>
         </tr>
       );
