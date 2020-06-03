@@ -38,20 +38,26 @@ const params = [
         <tbody className="expanded">
           <tr>
             <th>0</th>
-            <td>
-              <ObjectType data={null} />
+            <td className="d-flex">
+              <div className="flex-grow-1">
+                <ObjectType data={null} />
+              </div>
             </td>
           </tr>
           <tr>
             <th>1</th>
-            <td>
-              <ObjectType data={'abc'} />
+            <td className="d-flex">
+              <div className="flex-grow-1">
+                <ObjectType data={'abc'} />
+              </div>
             </td>
           </tr>
           <tr>
             <th>2</th>
-            <td>
-              <ObjectType data={123} />
+            <td className="d-flex">
+              <div className="flex-grow-1">
+                <ObjectType data={123} />
+              </div>
             </td>
           </tr>
         </tbody>
@@ -77,14 +83,18 @@ const params = [
         <tbody className="expanded">
           <tr>
             <th>abc</th>
-            <td>
-              <ObjectType data={123} />
+            <td className="d-flex">
+              <div className="flex-grow-1">
+                <ObjectType data={123} />
+              </div>
             </td>
           </tr>
           <tr>
             <th>xyz</th>
-            <td>
-              <ObjectType data={'abc'} />
+            <td className="d-flex">
+              <div className="flex-grow-1">
+                <ObjectType data={'abc'} />
+              </div>
             </td>
           </tr>
         </tbody>
