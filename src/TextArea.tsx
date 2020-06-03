@@ -4,14 +4,14 @@ import MonacoEditor from 'react-monaco-editor';
 import ControlsArea from './ControlsArea';
 import { RootState } from './index';
 import { dataSlice } from './features/data/dataSlice';
-import { textareaSlice, ValidityType } from './features/textarea/textareaSlice';
+import { textareaSlice } from './features/textarea/textareaSlice';
 
 const tabSize = 4;
+const localStorageKey = 'json-text';
 
 const TextArea: React.FC = () => {
   const dispatch = useDispatch();
   const data = useSelector((state: RootState) => state.data.data);
-  // const validity = useSelector((state: RootState) => state.textarea.validity);
 
   const text = useMemo(() => {
     return data === null ? '' : JSON.stringify(data, null, tabSize);
@@ -23,6 +23,16 @@ const TextArea: React.FC = () => {
 
   const localText = useSelector((state: RootState) => state.textarea.localText);
   const { setLocalText } = textareaSlice.actions;
+
+  // initialize
+  useEffect(() => {
+    // load from local storage
+    const jsonText = localStorage.getItem(localStorageKey);
+    if (jsonText) {
+      const data = JSON.parse(jsonText);
+      dispatch(setData(data));
+    }
+  }, []);
 
   // state to local
   useEffect(() => {
@@ -36,6 +46,8 @@ const TextArea: React.FC = () => {
       try {
         const data = localText.length > 0 ? JSON.parse(localText) : null;
         dispatch(setData(data));
+        // Save to local storage
+        localStorage.setItem(localStorageKey, localText);
       } catch {}
     }, 1000);
     setTimeoutId(id);
