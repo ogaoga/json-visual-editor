@@ -1,7 +1,20 @@
 .visualized-data {
-  @extend .monospace-font;
   .placeholder {
     font-style: italic;
-    color: var(--gray);    
+    color: var(--gray);
+  }
+  td {
+    .copy-button {
+      visibility: hidden;
+      padding: 0;
+      width: 20px;
+      color: var(--secondary);
+      &:active i {
+        color: var(--primary);
+      }
+    }
+    &:hover > div > .copy-button {
+      visibility: visible;
+    }
   }
 }
