@@ -4,6 +4,7 @@ import BooleanType from './BooleanType';
 import NumberType from './NumberType';
 import StringType from './StringType';
 import Expander from '../Expander';
+import { EditButtons } from '../VisualizedData/EditButtons';
 
 interface Props {
   data: any;
@@ -20,13 +21,6 @@ const ObjectType: React.FC<Props> = ({ data, level = 0 }) => {
     setExpanded(isExpanded);
   };
 
-  const onCopyButtonClicked = useCallback((event: SyntheticEvent) => {
-    if (navigator.clipboard) {
-      const value = event.currentTarget.getAttribute('data-value') || '';
-      navigator.clipboard.writeText(`${value}`);
-    }
-  }, []);
-
   let result = <></>;
   if (data === null) {
     // null
@@ -42,20 +36,9 @@ const ObjectType: React.FC<Props> = ({ data, level = 0 }) => {
               <div className="flex-grow-1">
                 <ObjectType data={data[name]} level={nextLevel} />
               </div>
-              {navigator.clipboard &&
-                (typeof data[name] === 'string' ||
-                  typeof data[name] === 'number') && (
-                  <div>
-                    <button
-                      title="Copy text"
-                      data-value={data[name]}
-                      className="copy-button btn btn-sm btn-link ml-2"
-                      onClick={onCopyButtonClicked}
-                    >
-                      <i className="far fa-copy" />
-                    </button>
-                  </div>
-                )}
+              <div>
+                <EditButtons data={data[name]} />
+              </div>
             </div>
           </td>
         </tr>

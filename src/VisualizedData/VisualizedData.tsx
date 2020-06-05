@@ -1,7 +1,7 @@
 import React from 'react';
-import ObjectType from './object/ObjectType';
+import ObjectType from '../object/ObjectType';
 import { useSelector } from 'react-redux';
-import { RootState } from '.';
+import { RootState } from '..';
 
 const VisualizedData: React.FC = () => {
   const data = useSelector((state: RootState) => state.data.data);

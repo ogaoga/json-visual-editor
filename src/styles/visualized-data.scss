@@ -3,18 +3,23 @@
     font-style: italic;
     color: var(--gray);
   }
-  td div {
-    .copy-button {
-      visibility: hidden;
-      padding: 0;
-      width: 20px;
-      color: var(--secondary);
-      &:active i {
-        color: var(--primary);
-      }
+  td {
+    &:hover {
+      background-color: #ffe;
     }
-    &:hover > div > .copy-button {
-      visibility: visible;
+    div {
+      .copy-button {
+        visibility: hidden;
+        padding: 0;
+        width: 20px;
+        color: var(--secondary);
+        &:active i {
+          color: var(--primary);
+        }
+      }
+      &:hover > div > div > .copy-button {
+        visibility: visible;
+      }
     }
   }
 }
