@@ -70,7 +70,7 @@ const ControlsArea: React.FC = () => {
         </li>
         <li className="dropdown nav-item">
           <button
-            className="btn btn-link nav-link"
+            className="btn btn-link"
             title="More"
             data-toggle="dropdown"
             aria-haspopup="true"
