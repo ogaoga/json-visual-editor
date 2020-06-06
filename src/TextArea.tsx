@@ -51,7 +51,7 @@ const TextArea: React.FC = () => {
       } catch {}
     }, 1000);
     setTimeoutId(id);
-  }, [dispatch, localText, setData, timeoutId]);
+  }, [dispatch, localText, setData]); // eslint-disable-line react-hooks/exhaustive-deps
 
   // update local text
   const onChange = useCallback(
