@@ -1,31 +1,27 @@
-import React, { useState, useCallback, SyntheticEvent } from 'react';
+import React, { useState } from 'react';
 
 import BooleanType from './BooleanType';
 import NumberType from './NumberType';
 import StringType from './StringType';
 import Expander from '../Expander';
+import { EditButtons } from '../VisualizedData/EditButtons';
+import { Path } from '../types';
 
 interface Props {
   data: any;
+  path: Path;
   level?: number;
 }
 
 const maxLevel = 5;
 
-const ObjectType: React.FC<Props> = ({ data, level = 0 }) => {
+const ObjectType: React.FC<Props> = ({ data, level = 0, path }) => {
   const [expanded, setExpanded] = useState(true);
   const nextLevel = level === maxLevel ? 0 : level + 1;
 
   const onChangeExpansion = (isExpanded: boolean) => {
     setExpanded(isExpanded);
   };
-
-  const onCopyButtonClicked = useCallback((event: SyntheticEvent) => {
-    if (navigator.clipboard) {
-      const value = event.currentTarget.getAttribute('data-value') || '';
-      navigator.clipboard.writeText(`${value}`);
-    }
-  }, []);
 
   let result = <></>;
   if (data === null) {
@@ -34,28 +30,24 @@ const ObjectType: React.FC<Props> = ({ data, level = 0 }) => {
   } else if (data !== null && typeof data === typeof {}) {
     // Object or Array
     let rows = Object.keys(data).map((name) => {
+      const newPath = path === '' ? name : `${path}.${name}`;
       return (
         <tr key={name}>
-          <th>{name}</th>
+          <th>
+            <span title={newPath}>{name}</span>
+          </th>
           <td>
             <div className="d-flex">
               <div className="flex-grow-1">
-                <ObjectType data={data[name]} level={nextLevel} />
+                <ObjectType
+                  data={data[name]}
+                  level={nextLevel}
+                  path={newPath}
+                />
               </div>
-              {navigator.clipboard &&
-                (typeof data[name] === 'string' ||
-                  typeof data[name] === 'number') && (
-                  <div>
-                    <button
-                      title="Copy text"
-                      data-value={data[name]}
-                      className="copy-button btn btn-sm btn-link ml-2"
-                      onClick={onCopyButtonClicked}
-                    >
-                      <i className="far fa-copy" />
-                    </button>
-                  </div>
-                )}
+              <div>
+                <EditButtons data={data[name]} path={newPath} />
+              </div>
             </div>
           </td>
         </tr>
@@ -90,7 +82,11 @@ const ObjectType: React.FC<Props> = ({ data, level = 0 }) => {
     result = <BooleanType data={data} />;
   } else {
     // something else
-    result = <span className="undefined">{data}</span>;
+    result = (
+      <span className="undefined" title={path}>
+        {data}
+      </span>
+    );
   }
   return result;
 };

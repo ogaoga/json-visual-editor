@@ -31,7 +31,7 @@ const ControlsArea: React.FC = () => {
   const onDeleteButtonClicked = useCallback(() => {
     dispatch(setData(null));
     dispatch(setLocalText(''));
-  }, []);
+  }, [dispatch, setData, setLocalText]);
 
   return (
     <nav className="navbar px-1 py-0" style={{ overflow: 'visible' }}>

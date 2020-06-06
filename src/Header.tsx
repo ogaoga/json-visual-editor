@@ -3,7 +3,10 @@ import React from 'react';
 export const Header: React.FC = () => {
   return (
     <header className="navbar navbar-dark bg-dark">
-      <a className="navbar-brand" href="#">
+      <a
+        className="navbar-brand"
+        href="https://ogaoga.github.io/json-visual-editor/"
+      >
         JSON Visual Editor
       </a>
       <ul className="nav justify-content-end">

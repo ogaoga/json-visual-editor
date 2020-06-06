@@ -1,6 +1,6 @@
 import React from 'react';
 import TextArea from './TextArea';
-import VisualizedData from './VisualizedData';
+import VisualizedData from './VisualizedData/VisualizedData';
 import { Footer } from './Footer';
 import { Header } from './Header';
 
