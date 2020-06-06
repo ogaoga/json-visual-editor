@@ -41,7 +41,7 @@ export const dataSlice = createSlice({
         // the traget is root object
         if (_.isArray(state.data)) {
           // Array
-          state.data = data.filter((d, index) => `${index}` != name);
+          state.data = data.filter((d, index) => `${index}` !== name);
         } else {
           // Object
           state.data = _.omit(data, name);

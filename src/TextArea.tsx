@@ -32,12 +32,12 @@ const TextArea: React.FC = () => {
       const data = JSON.parse(jsonText);
       dispatch(setData(data));
     }
-  }, []);
+  }, [dispatch, setData]);
 
   // state to local
   useEffect(() => {
     dispatch(setLocalText(text));
-  }, [text]);
+  }, [text, dispatch, setLocalText]);
 
   // local to state
   useEffect(() => {
@@ -51,12 +51,15 @@ const TextArea: React.FC = () => {
       } catch {}
     }, 1000);
     setTimeoutId(id);
-  }, [localText]);
+  }, [dispatch, localText, setData, timeoutId]);
 
   // update local text
-  const onChange = useCallback((newValue) => {
-    dispatch(setLocalText(newValue));
-  }, []);
+  const onChange = useCallback(
+    (newValue) => {
+      dispatch(setLocalText(newValue));
+    },
+    [dispatch, setLocalText]
+  );
 
   return (
     <div className="textarea-column d-flex flex-column h-100">
