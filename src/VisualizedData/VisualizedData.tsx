@@ -9,7 +9,7 @@ const VisualizedData: React.FC = () => {
   return (
     <div className="visualized-data">
       {text.length > 0 ? (
-        <ObjectType data={data} />
+        <ObjectType data={data} path={''} />
       ) : (
         <div className="placeholder p-2">No data</div>
       )}
