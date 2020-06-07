@@ -7,9 +7,9 @@
     &:hover {
       background-color: #ffe;
     }
-    div {
-      .copy-button {
-        visibility: hidden;
+    div > div > .edit-buttons {
+      visibility: hidden;
+      button {
         padding: 0;
         width: 20px;
         color: var(--secondary);
@@ -17,9 +17,9 @@
           color: var(--primary);
         }
       }
-      &:hover > div > div > .copy-button {
-        visibility: visible;
-      }
+    }
+    &:hover > div > div > .edit-buttons {
+      visibility: visible;
     }
   }
 }

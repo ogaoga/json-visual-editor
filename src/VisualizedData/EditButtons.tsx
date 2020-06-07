@@ -23,21 +23,35 @@ export const EditButtons: React.FC<Props> = ({ data, path }) => {
     dispatch(deletePath(path));
   }, [path, dispatch, deletePath]);
 
+  const onEditButtonClicked = useCallback(() => {
+    console.log('edit');
+  }, []);
+
   return (
-    <div className="d-flex flex-row">
+    <div className="edit-buttons d-flex flex-row">
+      {!Array.isArray(data) && typeof data !== typeof {} && (
+        <button
+          title="Edit the value"
+          data-value={data}
+          className="btn btn-sm btn-link ml-3"
+          onClick={onEditButtonClicked}
+        >
+          <i className="far fa-edit" />
+        </button>
+      )}
       {navigator.clipboard &&
         (typeof data === 'string' || typeof data === 'number') && (
           <button
             title="Copy text"
             data-value={data}
-            className="copy-button btn btn-sm btn-link ml-1"
+            className="btn btn-sm btn-link ml-1"
             onClick={onCopyButtonClicked}
           >
             <i className="far fa-copy" />
           </button>
         )}
       <button
-        className="copy-button btn btn-sm btn-link ml-1"
+        className="btn btn-sm btn-link ml-1"
         onClick={onDeleteButtonClicked}
       >
         <i className="far fa-trash-alt" />
