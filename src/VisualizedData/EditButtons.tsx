@@ -6,9 +6,14 @@ import { dataSlice } from '../features/data/dataSlice';
 interface Props {
   data: any;
   path: Path;
+  onEditModeChanged: (editable: Boolean) => void;
 }
 
-export const EditButtons: React.FC<Props> = ({ data, path }) => {
+export const EditButtons: React.FC<Props> = ({
+  data,
+  path,
+  onEditModeChanged,
+}) => {
   const onCopyButtonClicked = useCallback((event: SyntheticEvent) => {
     if (navigator.clipboard) {
       const value = event.currentTarget.getAttribute('data-value') || '';
@@ -24,8 +29,8 @@ export const EditButtons: React.FC<Props> = ({ data, path }) => {
   }, [path, dispatch, deletePath]);
 
   const onEditButtonClicked = useCallback(() => {
-    console.log('edit');
-  }, []);
+    onEditModeChanged(true);
+  }, [onEditModeChanged]);
 
   return (
     <div className="edit-buttons d-flex flex-row">

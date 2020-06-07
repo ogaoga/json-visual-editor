@@ -1,0 +1,25 @@
+.value-editor {
+  button {
+    padding: 0;
+    margin: 0 4px;
+    &.ok-button {
+      i {
+        color: #9a9;
+        &:hover {
+          color: #696;
+        }
+      }
+    }
+    &.cancel-button {
+      i {
+        color: #a99;
+        &:hover {
+          color: #966;
+        }
+      }      
+    }
+    &:focus {
+      box-shadow: none;
+    }
+  }
+}

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 
 import BooleanType from './BooleanType';
 import NumberType from './NumberType';
@@ -6,6 +6,7 @@ import StringType from './StringType';
 import Expander from '../Expander';
 import { EditButtons } from '../VisualizedData/EditButtons';
 import { Path } from '../types';
+import { ValueEditor } from '../VisualizedData/ValueEditor';
 
 interface Props {
   data: any;
@@ -23,6 +24,26 @@ const ObjectType: React.FC<Props> = ({ data, level = 0, path }) => {
     setExpanded(isExpanded);
   };
 
+  const [editable, setEditable] = useState(false);
+  const onEditModeChanged = useCallback(
+    (editable) => {
+      setEditable(editable);
+    },
+    [setEditable]
+  );
+
+  const onUpdate = useCallback(
+    (value) => {
+      console.log(value);
+      setEditable(false);
+    },
+    [setEditable]
+  );
+
+  const onCancel = useCallback(() => {
+    setEditable(false);
+  }, [setEditable]);
+
   let result = <></>;
   if (data === null) {
     // null
@@ -39,14 +60,26 @@ const ObjectType: React.FC<Props> = ({ data, level = 0, path }) => {
           <td>
             <div className="d-flex">
               <div className="flex-grow-1">
-                <ObjectType
-                  data={data[name]}
-                  level={nextLevel}
-                  path={newPath}
-                />
+                {editable ? (
+                  <ValueEditor
+                    defaultValue={data[name]}
+                    onUpdate={onUpdate}
+                    onCancel={onCancel}
+                  />
+                ) : (
+                  <ObjectType
+                    data={data[name]}
+                    level={nextLevel}
+                    path={newPath}
+                  />
+                )}
               </div>
               <div>
-                <EditButtons data={data[name]} path={newPath} />
+                <EditButtons
+                  data={data[name]}
+                  path={newPath}
+                  onEditModeChanged={onEditModeChanged}
+                />
               </div>
             </div>
           </td>
