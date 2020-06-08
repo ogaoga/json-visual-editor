@@ -31,15 +31,18 @@ const ObjectType: React.FC<Props> = ({ data, level = 0, path }) => {
   const editPath = useSelector((state: RootState) => state.data.editPath);
 
   const dispatch = useDispatch();
-  const { setEditPath } = dataSlice.actions;
+  const { setEditPath, updateDataOfPath } = dataSlice.actions;
   const onUpdate = useCallback(
-    (value) => {
-      // TODO: update the value
+    (path, data) => {
+      // update the value
+      dispatch(updateDataOfPath({ path, data }));
+      // close
       dispatch(setEditPath(null));
     },
-    [setEditPath, dispatch]
+    [dispatch, setEditPath, updateDataOfPath]
   );
   const onCancel = useCallback(() => {
+    // close
     dispatch(setEditPath(null));
   }, [dispatch, setEditPath]);
 
@@ -61,6 +64,7 @@ const ObjectType: React.FC<Props> = ({ data, level = 0, path }) => {
               <div className="flex-grow-1">
                 {newPath === editPath ? (
                   <ValueEditor
+                    path={newPath}
                     defaultValue={data[name]}
                     onUpdate={onUpdate}
                     onCancel={onCancel}

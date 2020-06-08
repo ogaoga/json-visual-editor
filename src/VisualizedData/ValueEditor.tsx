@@ -1,4 +1,5 @@
 import React, { useState, useCallback } from 'react';
+import { Path } from '../types';
 
 enum DataType {
   Object = 'object',
@@ -27,12 +28,14 @@ const getType = (value: any): DataType => {
 };
 
 interface Props {
+  path: Path;
   defaultValue: any;
   onCancel: () => void;
-  onUpdate: (value: any) => void;
+  onUpdate: (path: Path, value: any) => void;
 }
 
 export const ValueEditor: React.FC<Props> = ({
+  path,
   defaultValue,
   onCancel,
   onUpdate,
@@ -55,8 +58,8 @@ export const ValueEditor: React.FC<Props> = ({
   );
   // Buttons
   const onOKClicked = useCallback(() => {
-    onUpdate(value);
-  }, [value, onUpdate]);
+    onUpdate(path, value);
+  }, [onUpdate, path, value]);
   const onCancelClicked = useCallback(() => {
     onCancel();
   }, [onCancel]);

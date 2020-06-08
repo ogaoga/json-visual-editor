@@ -69,6 +69,13 @@ export const dataSlice = createSlice({
         }
       }
     },
+    updateDataOfPath: (
+      state: State,
+      action: PayloadAction<{ data: any; path: Path }>
+    ) => {
+      const { data, path } = action.payload;
+      _.set(state.data, path, data);
+    },
     setEditPath: (state: State, action: PayloadAction<Path | null>) => {
       state.editPath = action.payload;
     },
