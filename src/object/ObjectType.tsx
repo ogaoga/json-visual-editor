@@ -7,6 +7,9 @@ import Expander from '../Expander';
 import { EditButtons } from '../VisualizedData/EditButtons';
 import { Path } from '../types';
 import { ValueEditor } from '../VisualizedData/ValueEditor';
+import { useSelector, useDispatch } from 'react-redux';
+import { RootState } from '..';
+import { dataSlice } from '../features/data/dataSlice';
 
 interface Props {
   data: any;
@@ -24,25 +27,21 @@ const ObjectType: React.FC<Props> = ({ data, level = 0, path }) => {
     setExpanded(isExpanded);
   };
 
-  const [editable, setEditable] = useState(false);
-  const onEditModeChanged = useCallback(
-    (editable) => {
-      setEditable(editable);
-    },
-    [setEditable]
-  );
+  // for editing
+  const editPath = useSelector((state: RootState) => state.data.editPath);
 
+  const dispatch = useDispatch();
+  const { setEditPath } = dataSlice.actions;
   const onUpdate = useCallback(
     (value) => {
-      console.log(value);
-      setEditable(false);
+      // TODO: update the value
+      dispatch(setEditPath(null));
     },
-    [setEditable]
+    [setEditPath, dispatch]
   );
-
   const onCancel = useCallback(() => {
-    setEditable(false);
-  }, [setEditable]);
+    dispatch(setEditPath(null));
+  }, [dispatch, setEditPath]);
 
   let result = <></>;
   if (data === null) {
@@ -60,7 +59,7 @@ const ObjectType: React.FC<Props> = ({ data, level = 0, path }) => {
           <td>
             <div className="d-flex">
               <div className="flex-grow-1">
-                {editable ? (
+                {newPath === editPath ? (
                   <ValueEditor
                     defaultValue={data[name]}
                     onUpdate={onUpdate}
@@ -75,11 +74,9 @@ const ObjectType: React.FC<Props> = ({ data, level = 0, path }) => {
                 )}
               </div>
               <div>
-                <EditButtons
-                  data={data[name]}
-                  path={newPath}
-                  onEditModeChanged={onEditModeChanged}
-                />
+                {editPath === null && (
+                  <EditButtons data={data[name]} path={newPath} />
+                )}
               </div>
             </div>
           </td>

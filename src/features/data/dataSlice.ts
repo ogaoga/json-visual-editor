@@ -3,8 +3,14 @@ import _ from 'lodash';
 import SampleJson from '../../samples/simple.json';
 import { Path } from '../../types';
 
+/**
+ * State of dataSlice
+ * @param data the data.
+ * @param editPath the path of editable. `null` means no editable data.
+ */
 interface State {
   data: any;
+  editPath: Path | null;
 }
 
 const getParentPathAndName = (path: Path): [Path, string] => {
@@ -25,6 +31,7 @@ export const dataSlice = createSlice({
   name: 'data',
   initialState: {
     data: null,
+    editPath: null,
   },
   reducers: {
     setData: (state: State, action: PayloadAction<any>) => {
@@ -61,6 +68,9 @@ export const dataSlice = createSlice({
           state.data = _.omit(state.data, path);
         }
       }
+    },
+    setEditPath: (state: State, action: PayloadAction<Path | null>) => {
+      state.editPath = action.payload;
     },
   },
 });

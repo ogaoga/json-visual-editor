@@ -6,13 +6,11 @@ import { dataSlice } from '../features/data/dataSlice';
 interface Props {
   data: any;
   path: Path;
-  onEditModeChanged: (editable: Boolean) => void;
 }
 
 export const EditButtons: React.FC<Props> = ({
   data,
   path,
-  onEditModeChanged,
 }) => {
   const onCopyButtonClicked = useCallback((event: SyntheticEvent) => {
     if (navigator.clipboard) {
@@ -22,15 +20,15 @@ export const EditButtons: React.FC<Props> = ({
   }, []);
 
   const dispatch = useDispatch();
-  const { deletePath } = dataSlice.actions;
+  const { deletePath, setEditPath } = dataSlice.actions;
 
   const onDeleteButtonClicked = useCallback(() => {
     dispatch(deletePath(path));
   }, [path, dispatch, deletePath]);
 
   const onEditButtonClicked = useCallback(() => {
-    onEditModeChanged(true);
-  }, [onEditModeChanged]);
+    dispatch(setEditPath(path));
+  }, [dispatch, path, setEditPath]);
 
   return (
     <div className="edit-buttons d-flex flex-row">
