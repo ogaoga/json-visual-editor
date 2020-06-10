@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 
 import BooleanType from './BooleanType';
 import NumberType from './NumberType';
@@ -6,6 +6,10 @@ import StringType from './StringType';
 import Expander from '../Expander';
 import { EditButtons } from '../VisualizedData/EditButtons';
 import { Path } from '../types';
+import { ValueEditor } from '../VisualizedData/ValueEditor';
+import { useSelector, useDispatch } from 'react-redux';
+import { RootState } from '..';
+import { dataSlice } from '../features/data/dataSlice';
 
 interface Props {
   data: any;
@@ -23,6 +27,25 @@ const ObjectType: React.FC<Props> = ({ data, level = 0, path }) => {
     setExpanded(isExpanded);
   };
 
+  // for editing
+  const editPath = useSelector((state: RootState) => state.data.editPath);
+
+  const dispatch = useDispatch();
+  const { setEditPath, updateDataOfPath } = dataSlice.actions;
+  const onUpdate = useCallback(
+    (path, data) => {
+      // update the value
+      dispatch(updateDataOfPath({ path, data }));
+      // close
+      dispatch(setEditPath(null));
+    },
+    [dispatch, setEditPath, updateDataOfPath]
+  );
+  const onCancel = useCallback(() => {
+    // close
+    dispatch(setEditPath(null));
+  }, [dispatch, setEditPath]);
+
   let result = <></>;
   if (data === null) {
     // null
@@ -39,14 +62,29 @@ const ObjectType: React.FC<Props> = ({ data, level = 0, path }) => {
           <td>
             <div className="d-flex">
               <div className="flex-grow-1">
-                <ObjectType
-                  data={data[name]}
-                  level={nextLevel}
-                  path={newPath}
-                />
+                {newPath === editPath ? (
+                  <ValueEditor
+                    path={newPath}
+                    defaultValue={data[name]}
+                    onUpdate={onUpdate}
+                    onCancel={onCancel}
+                  />
+                ) : (
+                  <ObjectType
+                    data={data[name]}
+                    level={nextLevel}
+                    path={newPath}
+                  />
+                )}
               </div>
               <div>
-                <EditButtons data={data[name]} path={newPath} />
+                {newPath !== editPath && (
+                  <EditButtons
+                    data={data[name]}
+                    path={newPath}
+                    hidden={editPath !== null}
+                  />
+                )}
               </div>
             </div>
           </td>

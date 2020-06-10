@@ -59,12 +59,13 @@ input[type='checkbox'] {
 //
 // Main area
 //
+$leading-side-width: 30%;
 .leading-side {
-  width: 40%;
+  width: $leading-side-width;
 }
 
 .trailing-side {
-  width: 60%;
+  width: 100% - $leading-side-width;
   padding: 10px;
 }
 
@@ -202,6 +203,9 @@ tbody {
 .boolean-type {
   color: #383;
   font-weight: bold;
+  white-space: nowrap;
+  width: 4rem;
+  margin-right: 0.5rem;  
   @extend .monospace-font;
   input {
     margin: 0 4px 0 3px;
