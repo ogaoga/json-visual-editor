@@ -3,8 +3,11 @@
     width: inherit;
     font-size: 0.6rem;
     font-weight: bold;
+    &:focus {
+      box-shadow: none;
+    }
   }
-  .text-editor {    
+  .text-editor {
     height: 1.5rem;
     &[type='text'] {
       @extend .string-type;
@@ -12,6 +15,9 @@
     &[type='number'] {
       @extend .number-type;
       text-align: right;
+    }
+    &:focus {
+      box-shadow: none;
     }
   }
   .buttons {
@@ -23,17 +29,19 @@
       &.ok-button {
         i {
           color: #9a9;
-          &:hover {
-            color: #696;
-          }
+        }
+        &:hover i,
+        &:focus i {
+          color: #696;
         }
       }
       &.cancel-button {
         i {
           color: #a99;
-          &:hover {
-            color: #966;
-          }
+        }
+        &:hover i,
+        &:focus i {
+          color: #966;
         }
       }
       &:focus {

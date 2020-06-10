@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useEffect, useRef } from 'react';
 import { Path } from '../types';
 import BooleanType from '../object/BooleanType';
 
@@ -45,7 +45,7 @@ const cast = (type: DataType, value: any): any => {
         case DataType.String:
           return `${value}`;
         case DataType.Boolean:
-          return value !== 0;
+          return Boolean(value);
         default:
           return value;
       }
@@ -96,8 +96,8 @@ export const ValueEditor: React.FC<Props> = ({
   );
   // Buttons
   const onOKClicked = useCallback(() => {
-    onUpdate(path, value);
-  }, [onUpdate, path, value]);
+    onUpdate(path, cast(type, value));
+  }, [onUpdate, path, type, value]);
   const onCancelClicked = useCallback(() => {
     onCancel();
   }, [onCancel]);
@@ -108,6 +108,30 @@ export const ValueEditor: React.FC<Props> = ({
       setValue(event.target.checked);
     },
     [setValue]
+  );
+
+  // Focus on editing
+  const textFieldRef = useRef<HTMLInputElement>(null);
+  useEffect(() => {
+    if (textFieldRef.current) {
+      textFieldRef.current.focus();
+    }
+  }, [textFieldRef, type]);
+
+  // Keyboard handling
+  const onKeyDown = useCallback(
+    (event) => {
+      if (event.key === 'Enter') {
+        onOKClicked();
+        event.preventDefault();
+      } else if (event.key === 'Escape' || event.keyCode === 27) {
+        onCancelClicked();
+        event.preventDefault();
+      } else {
+        //
+      }
+    },
+    [onOKClicked, onCancelClicked]
   );
 
   return (
@@ -121,6 +145,8 @@ export const ValueEditor: React.FC<Props> = ({
             className="text-editor form-control form-control-sm"
             value={value}
             onChange={onValueChanged}
+            ref={textFieldRef}
+            onKeyDown={onKeyDown}
           />
         )}
         {type === DataType.Number && (
@@ -129,6 +155,8 @@ export const ValueEditor: React.FC<Props> = ({
             className="text-editor form-control form-control-sm"
             value={value}
             onChange={onValueChanged}
+            ref={textFieldRef}
+            onKeyDown={onKeyDown}
           />
         )}
         {type === DataType.Boolean && (
