@@ -45,7 +45,7 @@ const cast = (type: DataType, value: any): any => {
         case DataType.String:
           return `${value}`;
         case DataType.Boolean:
-          return value !== 0;
+          return Boolean(value);
         default:
           return value;
       }
