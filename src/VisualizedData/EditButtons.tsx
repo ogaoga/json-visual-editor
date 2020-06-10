@@ -40,7 +40,7 @@ export const EditButtons: React.FC<Props> = ({
         <button
           title="Edit the value"
           data-value={data}
-          className="btn btn-sm btn-link ml-3"
+          className="btn btn-sm btn-link ml-1"
           onClick={onEditButtonClicked}
         >
           <i className="far fa-edit" />

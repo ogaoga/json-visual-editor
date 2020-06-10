@@ -112,14 +112,24 @@ export const ValueEditor: React.FC<Props> = ({
 
   return (
     <div className="value-editor d-flex">
-      <div>
+      <div className="flex-grow-1 mr-1">
         {type === DataType.Object && <div></div>}
         {type === DataType.Array && <div></div>}
         {type === DataType.String && (
-          <input type="text" value={value} onChange={onValueChanged} />
+          <input
+            type="text"
+            className="text-editor form-control form-control-sm"
+            value={value}
+            onChange={onValueChanged}
+          />
         )}
         {type === DataType.Number && (
-          <input type="number" value={value} onChange={onValueChanged} />
+          <input
+            type="number"
+            className="text-editor form-control form-control-sm"
+            value={value}
+            onChange={onValueChanged}
+          />
         )}
         {type === DataType.Boolean && (
           <BooleanType

@@ -1,7 +1,18 @@
 .value-editor {
   .type-selector {
+    width: inherit;
     font-size: 0.6rem;
     font-weight: bold;
+  }
+  .text-editor {    
+    height: 1.5rem;
+    &[type='text'] {
+      @extend .string-type;
+    }
+    &[type='number'] {
+      @extend .number-type;
+      text-align: right;
+    }
   }
   .buttons {
     margin-left: 6px;
