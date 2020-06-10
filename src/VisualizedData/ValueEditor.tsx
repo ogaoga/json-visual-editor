@@ -96,8 +96,8 @@ export const ValueEditor: React.FC<Props> = ({
   );
   // Buttons
   const onOKClicked = useCallback(() => {
-    onUpdate(path, value);
-  }, [onUpdate, path, value]);
+    onUpdate(path, cast(type, value));
+  }, [onUpdate, path, type, value]);
   const onCancelClicked = useCallback(() => {
     onCancel();
   }, [onCancel]);
@@ -118,6 +118,22 @@ export const ValueEditor: React.FC<Props> = ({
     }
   }, [textFieldRef, type]);
 
+  // Keyboard handling
+  const onKeyDown = useCallback(
+    (event) => {
+      if (event.key === 'Enter') {
+        onOKClicked();
+        event.preventDefault();
+      } else if (event.key === 'Escape' || event.keyCode === 27) {
+        onCancelClicked();
+        event.preventDefault();
+      } else {
+        //
+      }
+    },
+    [onOKClicked, onCancelClicked]
+  );
+
   return (
     <div className="value-editor d-flex">
       <div className="mr-1">
@@ -130,6 +146,7 @@ export const ValueEditor: React.FC<Props> = ({
             value={value}
             onChange={onValueChanged}
             ref={textFieldRef}
+            onKeyDown={onKeyDown}
           />
         )}
         {type === DataType.Number && (
@@ -139,6 +156,7 @@ export const ValueEditor: React.FC<Props> = ({
             value={value}
             onChange={onValueChanged}
             ref={textFieldRef}
+            onKeyDown={onKeyDown}
           />
         )}
         {type === DataType.Boolean && (
