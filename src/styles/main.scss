@@ -203,7 +203,8 @@ tbody {
   color: #383;
   font-weight: bold;
   white-space: nowrap;
-  margin-right: 1rem;
+  width: 4rem;
+  margin-right: 0.5rem;  
   @extend .monospace-font;
   input {
     margin: 0 4px 0 3px;

@@ -142,15 +142,17 @@ export const ValueEditor: React.FC<Props> = ({
         <option value={DataType.Boolean}>boolean</option>
         <option value={DataType.Null}>null</option>
       </select>
-      <button className="ok-button btn btn-sm btn-link" onClick={onOKClicked}>
-        <i className="fas fa-check-circle" />
-      </button>
-      <button
-        className="cancel-button btn btn-sm btn-link"
-        onClick={onCancelClicked}
-      >
-        <i className="fas fa-times-circle" />
-      </button>
+      <span className="buttons">
+        <button className="ok-button btn btn-sm btn-link" onClick={onOKClicked}>
+          <i className="fas fa-check-circle" />
+        </button>
+        <button
+          className="cancel-button btn btn-sm btn-link"
+          onClick={onCancelClicked}
+        >
+          <i className="fas fa-times-circle" />
+        </button>
+      </span>
     </div>
   );
 };

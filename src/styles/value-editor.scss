@@ -1,29 +1,33 @@
 .value-editor {
-  button {
-    padding: 0;
-    margin: 0 4px;
-    &.ok-button {
-      i {
-        color: #9a9;
-        &:hover {
-          color: #696;
+  .type-selector {
+    font-size: 0.6rem;
+    font-weight: bold;
+  }
+  .buttons {
+    margin-left: 6px;
+    white-space: nowrap;
+    button {
+      padding: 0;
+      margin: 0 2px;
+      &.ok-button {
+        i {
+          color: #9a9;
+          &:hover {
+            color: #696;
+          }
         }
       }
-    }
-    &.cancel-button {
-      i {
-        color: #a99;
-        &:hover {
-          color: #966;
+      &.cancel-button {
+        i {
+          color: #a99;
+          &:hover {
+            color: #966;
+          }
         }
-      }      
+      }
+      &:focus {
+        box-shadow: none;
+      }
     }
-    &:focus {
-      box-shadow: none;
-    }
-  }
-  .type-selector {
-    font-size: 0.6rem; 
-    font-weight: bold;
   }
 }
