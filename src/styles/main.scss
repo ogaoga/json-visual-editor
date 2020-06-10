@@ -202,6 +202,8 @@ tbody {
 .boolean-type {
   color: #383;
   font-weight: bold;
+  white-space: nowrap;
+  margin-right: 1rem;
   @extend .monospace-font;
   input {
     margin: 0 4px 0 3px;

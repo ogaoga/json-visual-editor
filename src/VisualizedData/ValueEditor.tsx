@@ -1,5 +1,6 @@
 import React, { useState, useCallback } from 'react';
 import { Path } from '../types';
+import BooleanType from '../object/BooleanType';
 
 enum DataType {
   Object = 'object',
@@ -24,6 +25,41 @@ const getType = (value: any): DataType => {
       return DataType.Array;
     default:
       return DataType.Object;
+  }
+};
+
+const cast = (type: DataType, value: any): any => {
+  const currentType = getType(value);
+  switch (currentType) {
+    case DataType.String:
+      switch (type) {
+        case DataType.Number:
+          return parseInt(value) || 0;
+        case DataType.Boolean:
+          return value.length > 0;
+        default:
+          return value;
+      }
+    case DataType.Number:
+      switch (type) {
+        case DataType.String:
+          return `${value}`;
+        case DataType.Boolean:
+          return value !== 0;
+        default:
+          return value;
+      }
+    case DataType.Boolean:
+      switch (type) {
+        case DataType.String:
+          return value ? 'true' : 'false';
+        case DataType.Number:
+          return value ? 1 : 0;
+        default:
+          return value;
+      }
+    default:
+      return value;
   }
 };
 
@@ -52,9 +88,11 @@ export const ValueEditor: React.FC<Props> = ({
   const [type, setType] = useState<DataType>(getType(defaultValue));
   const onTypeChanged = useCallback(
     (event) => {
-      setType(event.target.value);
+      const newType = event.target.value;
+      setValue(cast(newType, value));
+      setType(newType);
     },
-    [setType]
+    [value, setType]
   );
   // Buttons
   const onOKClicked = useCallback(() => {
@@ -64,43 +102,38 @@ export const ValueEditor: React.FC<Props> = ({
     onCancel();
   }, [onCancel]);
 
+  // Boolean (checkbox)
+  const onCheckboxClicked = useCallback(
+    (event) => {
+      setValue(event.target.checked);
+    },
+    [setValue]
+  );
+
   return (
     <div className="value-editor d-flex">
       <div>
         {type === DataType.Object && <div></div>}
         {type === DataType.Array && <div></div>}
         {type === DataType.String && (
-          <span>
-            "<input type="text" value={value} onChange={onValueChanged} />"
-          </span>
+          <input type="text" value={value} onChange={onValueChanged} />
         )}
         {type === DataType.Number && (
-          <span>
-            <input type="number" value={value} onChange={onValueChanged} />
-          </span>
+          <input type="number" value={value} onChange={onValueChanged} />
         )}
         {type === DataType.Boolean && (
-          <span>
-            <input
-              type="radio"
-              checked={value === true}
-              onChange={onValueChanged}
-            />{' '}
-            true
-            <input
-              type="radio"
-              checked={value === false}
-              onChange={onValueChanged}
-            />{' '}
-            false
-          </span>
+          <BooleanType
+            data={value}
+            readOnly={false}
+            onChange={onCheckboxClicked}
+          />
         )}
         {type === DataType.Null && <span>null</span>}
       </div>
       <select
         value={type}
         onChange={onTypeChanged}
-        className="form-control form-control-sm"
+        className="form-control form-control-sm type-selector"
       >
         <option value={DataType.Object}>object</option>
         <option value={DataType.Array}>array</option>
