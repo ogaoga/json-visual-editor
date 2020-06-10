@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useEffect, useRef } from 'react';
 import { Path } from '../types';
 import BooleanType from '../object/BooleanType';
 
@@ -110,6 +110,14 @@ export const ValueEditor: React.FC<Props> = ({
     [setValue]
   );
 
+  // Focus on editing
+  const textFieldRef = useRef<HTMLInputElement>(null);
+  useEffect(() => {
+    if (textFieldRef.current) {
+      textFieldRef.current.focus();
+    }
+  }, [textFieldRef, type]);
+
   return (
     <div className="value-editor d-flex">
       <div className="mr-1">
@@ -121,6 +129,7 @@ export const ValueEditor: React.FC<Props> = ({
             className="text-editor form-control form-control-sm"
             value={value}
             onChange={onValueChanged}
+            ref={textFieldRef}
           />
         )}
         {type === DataType.Number && (
@@ -129,6 +138,7 @@ export const ValueEditor: React.FC<Props> = ({
             className="text-editor form-control form-control-sm"
             value={value}
             onChange={onValueChanged}
+            ref={textFieldRef}
           />
         )}
         {type === DataType.Boolean && (
