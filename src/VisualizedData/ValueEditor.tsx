@@ -112,7 +112,7 @@ export const ValueEditor: React.FC<Props> = ({
 
   return (
     <div className="value-editor d-flex">
-      <div className="flex-grow-1 mr-1">
+      <div className="mr-1">
         {type === DataType.Object && <div></div>}
         {type === DataType.Array && <div></div>}
         {type === DataType.String && (
@@ -145,12 +145,9 @@ export const ValueEditor: React.FC<Props> = ({
         onChange={onTypeChanged}
         className="form-control form-control-sm type-selector"
       >
-        <option value={DataType.Object}>object</option>
-        <option value={DataType.Array}>array</option>
         <option value={DataType.String}>string</option>
         <option value={DataType.Number}>number</option>
         <option value={DataType.Boolean}>boolean</option>
-        <option value={DataType.Null}>null</option>
       </select>
       <span className="buttons">
         <button className="ok-button btn btn-sm btn-link" onClick={onOKClicked}>
