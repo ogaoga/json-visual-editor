@@ -78,8 +78,12 @@ const ObjectType: React.FC<Props> = ({ data, level = 0, path }) => {
                 )}
               </div>
               <div>
-                {editPath === null && (
-                  <EditButtons data={data[name]} path={newPath} />
+                {newPath !== editPath && (
+                  <EditButtons
+                    data={data[name]}
+                    path={newPath}
+                    hidden={editPath !== null}
+                  />
                 )}
               </div>
             </div>

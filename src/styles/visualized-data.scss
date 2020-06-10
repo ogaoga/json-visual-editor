@@ -18,8 +18,14 @@
         }
       }
     }
+    & > div > div > .edit-buttons {
+      visibility: hidden;
+    }
     &:hover > div > div > .edit-buttons {
       visibility: visible;
+      &.hidden {
+        visibility: hidden;
+      }
     }
   }
 }

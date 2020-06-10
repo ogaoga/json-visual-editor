@@ -6,11 +6,13 @@ import { dataSlice } from '../features/data/dataSlice';
 interface Props {
   data: any;
   path: Path;
+  hidden: boolean;
 }
 
 export const EditButtons: React.FC<Props> = ({
   data,
   path,
+  hidden = false,
 }) => {
   const onCopyButtonClicked = useCallback((event: SyntheticEvent) => {
     if (navigator.clipboard) {
@@ -31,7 +33,9 @@ export const EditButtons: React.FC<Props> = ({
   }, [dispatch, path, setEditPath]);
 
   return (
-    <div className="edit-buttons d-flex flex-row">
+    <div
+      className={`edit-buttons d-flex flex-row ${hidden ? 'hidden' : ''}`}
+    >
       {!Array.isArray(data) && typeof data !== typeof {} && (
         <button
           title="Edit the value"
