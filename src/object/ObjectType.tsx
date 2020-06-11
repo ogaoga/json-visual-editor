@@ -1,5 +1,5 @@
 import React, { useState, useCallback } from 'react';
-
+import _ from 'lodash';
 import BooleanType from './BooleanType';
 import NumberType from './NumberType';
 import StringType from './StringType';
@@ -14,14 +14,12 @@ import { dataSlice } from '../features/data/dataSlice';
 interface Props {
   data: any;
   path: Path;
-  level?: number;
 }
 
-const maxLevel = 5;
+const maxLevel = 20;
 
-const ObjectType: React.FC<Props> = ({ data, level = 0, path }) => {
+const ObjectType: React.FC<Props> = ({ data, path }) => {
   const [expanded, setExpanded] = useState(true);
-  const nextLevel = level === maxLevel ? 0 : level + 1;
 
   const onChangeExpansion = (isExpanded: boolean) => {
     setExpanded(isExpanded);
@@ -53,16 +51,16 @@ const ObjectType: React.FC<Props> = ({ data, level = 0, path }) => {
   } else if (data !== null && typeof data === typeof {}) {
     // Object or Array
     let rows = Object.keys(data).map((name) => {
-      const newPath = path === '' ? name : `${path}.${name}`;
+      const newPath = path.length === 0 ? [name] : [...path, name];
       return (
         <tr key={name}>
           <th>
-            <span title={newPath}>{name}</span>
+            <span title={newPath.join('.')}>{name}</span>
           </th>
           <td>
             <div className="d-flex">
               <div className="flex-grow-1">
-                {newPath === editPath ? (
+                {_.isEqual(newPath, editPath) ? (
                   <ValueEditor
                     path={newPath}
                     defaultValue={data[name]}
@@ -70,15 +68,11 @@ const ObjectType: React.FC<Props> = ({ data, level = 0, path }) => {
                     onCancel={onCancel}
                   />
                 ) : (
-                  <ObjectType
-                    data={data[name]}
-                    level={nextLevel}
-                    path={newPath}
-                  />
+                  <ObjectType data={data[name]} path={newPath} />
                 )}
               </div>
               <div>
-                {newPath !== editPath && (
+                {!_.isEqual(newPath, editPath) && (
                   <EditButtons
                     data={data[name]}
                     path={newPath}
@@ -95,7 +89,7 @@ const ObjectType: React.FC<Props> = ({ data, level = 0, path }) => {
     const headerLabel = '[' + rows.length.toString() + ']';
     result = (
       <table>
-        <thead data-level={level}>
+        <thead data-level={path.length % maxLevel}>
           <tr>
             <th className="expand">
               <Expander
@@ -121,7 +115,7 @@ const ObjectType: React.FC<Props> = ({ data, level = 0, path }) => {
   } else {
     // something else
     result = (
-      <span className="undefined" title={path}>
+      <span className="undefined" title={path.join('.')}>
         {data}
       </span>
     );
