@@ -14,14 +14,13 @@ interface State {
 }
 
 const getParentPathAndName = (path: Path): [Path, string] => {
-  let parentPath = '';
+  let parentPath: Path = [];
   let name = '';
-  const pathArray = path.split('.');
-  if (pathArray.length === 1) {
-    name = pathArray[0];
-  } else if (pathArray.length > 1) {
-    name = pathArray.pop()!;
-    parentPath = pathArray.join('.');
+  if (path.length === 1) {
+    name = path[0];
+  } else if (path.length > 1) {
+    parentPath = _.initial(path);
+    name = _.last<string>(path)!;
   } else {
   }
   return [parentPath, name];
@@ -46,26 +45,26 @@ export const dataSlice = createSlice({
       const data = state.data;
       if (parentPath.length === 0) {
         // the traget is root object
-        if (_.isArray(state.data)) {
+        if (_.isArray(data)) {
           // Array
-          state.data = data.filter((d, index) => `${index}` !== name);
+          state.data = data.filter((_, index) => `${index}` !== name);
         } else {
           // Object
-          state.data = _.omit(data, name);
+          _.unset(state.data, path);
         }
       } else {
         // the traget is not root object
-        const targetData = _.get(state.data, parentPath);
+        const targetData = _.get(data, parentPath);
         if (_.isArray(targetData)) {
           // Array
           _.set(
             state.data,
             parentPath,
-            targetData.filter((d, index) => index !== parseInt(name))
+            targetData.filter((_, index) => index !== parseInt(name))
           );
         } else {
           // Object
-          state.data = _.omit(state.data, path);
+          _.unset(state.data, path);
         }
       }
     },

@@ -1,1 +1,1 @@
-export type Path = string;
+export type Path = string[];

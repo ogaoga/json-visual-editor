@@ -1,5 +1,5 @@
 import React, { useState, useCallback } from 'react';
-
+import _ from 'lodash';
 import BooleanType from './BooleanType';
 import NumberType from './NumberType';
 import StringType from './StringType';
@@ -53,16 +53,16 @@ const ObjectType: React.FC<Props> = ({ data, level = 0, path }) => {
   } else if (data !== null && typeof data === typeof {}) {
     // Object or Array
     let rows = Object.keys(data).map((name) => {
-      const newPath = path === '' ? name : `${path}.${name}`;
+      const newPath = path.length === 0 ? [name] : [...path, name];
       return (
         <tr key={name}>
           <th>
-            <span title={newPath}>{name}</span>
+            <span title={newPath.join('.')}>{name}</span>
           </th>
           <td>
             <div className="d-flex">
               <div className="flex-grow-1">
-                {newPath === editPath ? (
+                {_.isEqual(newPath, editPath) ? (
                   <ValueEditor
                     path={newPath}
                     defaultValue={data[name]}
@@ -78,7 +78,7 @@ const ObjectType: React.FC<Props> = ({ data, level = 0, path }) => {
                 )}
               </div>
               <div>
-                {newPath !== editPath && (
+                {!_.isEqual(newPath, editPath) && (
                   <EditButtons
                     data={data[name]}
                     path={newPath}
@@ -121,7 +121,7 @@ const ObjectType: React.FC<Props> = ({ data, level = 0, path }) => {
   } else {
     // something else
     result = (
-      <span className="undefined" title={path}>
+      <span className="undefined" title={path.join('.')}>
         {data}
       </span>
     );
