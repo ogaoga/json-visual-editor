@@ -14,14 +14,12 @@ import { dataSlice } from '../features/data/dataSlice';
 interface Props {
   data: any;
   path: Path;
-  level?: number;
 }
 
 const maxLevel = 20;
 
-const ObjectType: React.FC<Props> = ({ data, level = 0, path }) => {
+const ObjectType: React.FC<Props> = ({ data, path }) => {
   const [expanded, setExpanded] = useState(true);
-  const nextLevel = level === maxLevel ? 0 : level + 1;
 
   const onChangeExpansion = (isExpanded: boolean) => {
     setExpanded(isExpanded);
@@ -70,11 +68,7 @@ const ObjectType: React.FC<Props> = ({ data, level = 0, path }) => {
                     onCancel={onCancel}
                   />
                 ) : (
-                  <ObjectType
-                    data={data[name]}
-                    level={nextLevel}
-                    path={newPath}
-                  />
+                  <ObjectType data={data[name]} path={newPath} />
                 )}
               </div>
               <div>
@@ -95,7 +89,7 @@ const ObjectType: React.FC<Props> = ({ data, level = 0, path }) => {
     const headerLabel = '[' + rows.length.toString() + ']';
     result = (
       <table>
-        <thead data-level={level}>
+        <thead data-level={path.length % maxLevel}>
           <tr>
             <th className="expand">
               <Expander
