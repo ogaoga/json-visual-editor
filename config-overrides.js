@@ -2,7 +2,6 @@ const MonacoWebpackPlugin = require('monaco-editor-webpack-plugin');
 
 module.exports = {
   webpack: (config) => {
-    console.log(config);
     return {
       ...config,
       plugins: [
@@ -12,6 +11,12 @@ module.exports = {
           languages: ['json'],
         }),
       ],
+    };
+  },
+  jest: function (config) {
+    return {
+      ...config,
+      setupFilesAfterEnv: ['<rootDir>/setupTests.js'],
     };
   },
 };
