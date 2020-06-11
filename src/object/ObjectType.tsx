@@ -17,7 +17,7 @@ interface Props {
   level?: number;
 }
 
-const maxLevel = 5;
+const maxLevel = 20;
 
 const ObjectType: React.FC<Props> = ({ data, level = 0, path }) => {
   const [expanded, setExpanded] = useState(true);

@@ -168,9 +168,14 @@ thead {
   }
 }
 
-$colorPalette: #c5bee4, #becde4, #c5e4be, #dbe4be, #e4d5be, #e4bebe;
+$colorPalette: rgb(229, 215, 238), rgb(243, 209, 229), rgb(249, 223, 213),
+  rgb(255, 251, 213), rgb(209, 241, 204), rgb(201, 232, 241), rgb(213, 224, 241),
+  rgb(237, 208, 229), rgb(244, 210, 222), rgb(252, 241, 211), rgb(248, 250, 212),
+  rgb(198, 237, 219), rgb(202, 231, 242), rgb(222, 223, 239), rgb(240, 208, 228),
+  rgb(246, 212, 216), rgb(254, 247, 213), rgb(238, 245, 211), rgb(200, 239, 234),
+  rgb(203, 230, 243);
 
-@for $i from 1 to 5 {
+@for $i from 1 to length($colorPalette) + 1 {
   thead[data-level='#{$i}'] tr th {
     background: nth($colorPalette, $i);
   }
@@ -205,7 +210,7 @@ tbody {
   font-weight: bold;
   white-space: nowrap;
   width: 4rem;
-  margin-right: 0.5rem;  
+  margin-right: 0.5rem;
   @extend .monospace-font;
   input {
     margin: 0 4px 0 3px;
