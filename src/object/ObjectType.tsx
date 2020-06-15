@@ -44,6 +44,10 @@ const ObjectType: React.FC<Props> = ({ data, path }) => {
     dispatch(setEditPath(null));
   }, [dispatch, setEditPath]);
 
+  const onAddButtonClicked = useCallback((event) => {
+    console.log(event.currentTarget.dataset.path);
+  }, []);
+
   let result = <></>;
   if (data === null) {
     // null
@@ -54,6 +58,13 @@ const ObjectType: React.FC<Props> = ({ data, path }) => {
       const newPath = path.length === 0 ? [name] : [...path, name];
       return (
         <tr key={name}>
+          <td className="button-cell">
+            <i
+              className="fas fa-plus-circle"
+              data-path={newPath}
+              onClick={onAddButtonClicked}
+            />
+          </td>
           <th>
             <span title={newPath.join('.')}>{name}</span>
           </th>
@@ -91,6 +102,13 @@ const ObjectType: React.FC<Props> = ({ data, path }) => {
       <table>
         <thead data-level={path.length % maxLevel}>
           <tr>
+            <td className="button-cell">
+              <i
+                className="fas fa-plus-circle"
+                data-path={[...path, null]}
+                onClick={onAddButtonClicked}
+              />
+            </td>
             <th className="expand">
               <Expander
                 defaultValue={expanded}
