@@ -2,6 +2,7 @@ import React, { useCallback, SyntheticEvent } from 'react';
 import { useDispatch } from 'react-redux';
 import { Path } from '../types';
 import { dataSlice } from '../features/data/dataSlice';
+import { isString, isNumber, isObject, isArray } from 'lodash';
 
 interface Props {
   data: any;
@@ -33,10 +34,8 @@ export const EditButtons: React.FC<Props> = ({
   }, [dispatch, path, setEditPath]);
 
   return (
-    <div
-      className={`edit-buttons d-flex flex-row ${hidden ? 'hidden' : ''}`}
-    >
-      {!Array.isArray(data) && typeof data !== typeof {} && (
+    <div className={`edit-buttons d-flex flex-row ${hidden ? 'hidden' : ''}`}>
+      {!isArray(data) && !isObject(data) && (
         <button
           title="Edit the value"
           data-value={data}
@@ -46,17 +45,16 @@ export const EditButtons: React.FC<Props> = ({
           <i className="far fa-edit" />
         </button>
       )}
-      {navigator.clipboard &&
-        (typeof data === 'string' || typeof data === 'number') && (
-          <button
-            title="Copy text"
-            data-value={data}
-            className="btn btn-sm btn-link ml-1"
-            onClick={onCopyButtonClicked}
-          >
-            <i className="far fa-copy" />
-          </button>
-        )}
+      {navigator.clipboard && (isString(data) || isNumber(data)) && (
+        <button
+          title="Copy text"
+          data-value={data}
+          className="btn btn-sm btn-link ml-1"
+          onClick={onCopyButtonClicked}
+        >
+          <i className="far fa-copy" />
+        </button>
+      )}
       <button
         className="btn btn-sm btn-link ml-1"
         onClick={onDeleteButtonClicked}

@@ -1,6 +1,7 @@
 import React, { useState, useCallback, useEffect, useRef } from 'react';
 import { Path } from '../types';
 import BooleanType from '../object/BooleanType';
+import { isArray, isNumber, isString, isBoolean, isNull } from 'lodash';
 
 enum DataType {
   Object = 'object',
@@ -12,19 +13,18 @@ enum DataType {
 }
 
 const getType = (value: any): DataType => {
-  switch (typeof value) {
-    case typeof 1:
-      return DataType.Number;
-    case typeof 'a':
-      return DataType.String;
-    case typeof true:
-      return DataType.Boolean;
-    case typeof null:
-      return DataType.Null;
-    case typeof []:
-      return DataType.Array;
-    default:
-      return DataType.Object;
+  if (isNumber(value)) {
+    return DataType.Number;
+  } else if (isString(value)) {
+    return DataType.String;
+  } else if (isBoolean(value)) {
+    return DataType.Boolean;
+  } else if (isNull(value)) {
+    return DataType.Null;
+  } else if (isArray(value)) {
+    return DataType.Array;
+  } else {
+    return DataType.Object;
   }
 };
 
@@ -37,6 +37,8 @@ const cast = (type: DataType, value: any): any => {
           return parseInt(value) || 0;
         case DataType.Boolean:
           return value.length > 0;
+        case DataType.Null:
+          return null;
         default:
           return value;
       }
@@ -46,6 +48,8 @@ const cast = (type: DataType, value: any): any => {
           return `${value}`;
         case DataType.Boolean:
           return Boolean(value);
+        case DataType.Null:
+          return null;
         default:
           return value;
       }
@@ -55,9 +59,23 @@ const cast = (type: DataType, value: any): any => {
           return value ? 'true' : 'false';
         case DataType.Number:
           return value ? 1 : 0;
+        case DataType.Null:
+          return null;
         default:
           return value;
       }
+    case DataType.Null:
+      switch (type) {
+        case DataType.String:
+          return '';
+        case DataType.Number:
+          return 0;
+        case DataType.Boolean:
+          return false;
+        default:
+          return value;
+      }
+
     default:
       return value;
   }
@@ -166,7 +184,7 @@ export const ValueEditor: React.FC<Props> = ({
             onChange={onCheckboxClicked}
           />
         )}
-        {type === DataType.Null && <span>null</span>}
+        {type === DataType.Null && <span className="null">null</span>}
       </div>
       <select
         value={type}
@@ -176,6 +194,7 @@ export const ValueEditor: React.FC<Props> = ({
         <option value={DataType.String}>string</option>
         <option value={DataType.Number}>number</option>
         <option value={DataType.Boolean}>boolean</option>
+        <option value={DataType.Null}>null</option>
       </select>
       <span className="buttons">
         <button className="ok-button btn btn-sm btn-link" onClick={onOKClicked}>

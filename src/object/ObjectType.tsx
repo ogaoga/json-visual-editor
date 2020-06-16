@@ -29,7 +29,11 @@ const ObjectType: React.FC<Props> = ({ data, path }) => {
   const editPath = useSelector((state: RootState) => state.data.editPath);
 
   const dispatch = useDispatch();
-  const { setEditPath, updateDataOfPath } = dataSlice.actions;
+  const {
+    setEditPath,
+    updateDataOfPath,
+    insertDataAfterPath,
+  } = dataSlice.actions;
   const onUpdate = useCallback(
     (path, data) => {
       // update the value
@@ -44,6 +48,11 @@ const ObjectType: React.FC<Props> = ({ data, path }) => {
     dispatch(setEditPath(null));
   }, [dispatch, setEditPath]);
 
+  const onAddButtonClicked = useCallback((event) => {
+    const name = event.target.dataset.name;
+    dispatch(insertDataAfterPath([...path, name]));
+  }, [path]);
+
   let result = <></>;
   if (data === null) {
     // null
@@ -54,6 +63,13 @@ const ObjectType: React.FC<Props> = ({ data, path }) => {
       const newPath = path.length === 0 ? [name] : [...path, name];
       return (
         <tr key={name}>
+          <td className="button-cell">
+            <i
+              className="fas fa-plus-circle"
+              data-name={name}
+              onClick={onAddButtonClicked}
+            />
+          </td>
           <th>
             <span title={newPath.join('.')}>{name}</span>
           </th>
@@ -91,6 +107,13 @@ const ObjectType: React.FC<Props> = ({ data, path }) => {
       <table>
         <thead data-level={path.length % maxLevel}>
           <tr>
+            <td className="button-cell">
+              <i
+                className="fas fa-plus-circle"
+                data-name={''}
+                onClick={onAddButtonClicked}
+              />
+            </td>
             <th className="expand">
               <Expander
                 defaultValue={expanded}
