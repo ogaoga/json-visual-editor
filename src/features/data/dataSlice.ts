@@ -93,5 +93,43 @@ export const dataSlice = createSlice({
       // set
       _.set(state.data, parentPath, newData);
     },
+    duplicatePath: (state: State, action: PayloadAction<Path>) => {
+      const [parentPath, name] = getParentPathAndName(action.payload);
+      // get
+      const newData =
+        parentPath.length === 0 ? state.data : _.get(state.data, parentPath);
+      // insert
+      if (_.isArray(newData)) {
+        if (name === '') {
+          newData.splice(0, 0, newData[0]);
+        } else {
+          const newName = parseInt(name) + 1;
+          newData.splice(newName, 0, newData[name]);
+        }
+        // set
+        _.set(state.data, parentPath, newData);
+      } else {
+        console.log(parentPath, name, newData);
+        let newObject = {};
+        const keys = Object.keys(newData);
+        if (name === '') {
+          if (keys.length > 0) {
+            const key = `${keys[0]}--copy`;
+            newObject[key] = newData[keys[0]];
+          } else { 
+            const key = 'key';
+            newObject[key] = null;
+          }
+        }
+        keys.forEach((key) => {
+          newObject[key] = newData[key];
+          if (key === name) {
+            newObject[`${key}--copy`] = newData[key];
+          }
+        });
+        // set
+        _.set(state.data, parentPath, newObject);
+      }
+    },
   },
 });
