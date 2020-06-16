@@ -78,5 +78,20 @@ export const dataSlice = createSlice({
     setEditPath: (state: State, action: PayloadAction<Path | null>) => {
       state.editPath = action.payload;
     },
+    insertDataAfterPath: (state: State, action: PayloadAction<Path>) => {
+      const [parentPath, name] = getParentPathAndName(action.payload);
+      console.log(parentPath, name);
+      // get
+      const newData =
+        parentPath.length === 0 ? state.data : _.get(state.data, parentPath);
+      console.log(newData, typeof newData);
+      // insert
+      if (_.isArray(newData)) {
+        const newName = name === '' ? 0 : parseInt(name) + 1;
+        newData.splice(newName, 0, null);
+      }
+      // set
+      _.set(state.data, parentPath, newData);
+    },
   },
 });

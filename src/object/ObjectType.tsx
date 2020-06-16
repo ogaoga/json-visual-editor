@@ -29,7 +29,11 @@ const ObjectType: React.FC<Props> = ({ data, path }) => {
   const editPath = useSelector((state: RootState) => state.data.editPath);
 
   const dispatch = useDispatch();
-  const { setEditPath, updateDataOfPath } = dataSlice.actions;
+  const {
+    setEditPath,
+    updateDataOfPath,
+    insertDataAfterPath,
+  } = dataSlice.actions;
   const onUpdate = useCallback(
     (path, data) => {
       // update the value
@@ -45,8 +49,9 @@ const ObjectType: React.FC<Props> = ({ data, path }) => {
   }, [dispatch, setEditPath]);
 
   const onAddButtonClicked = useCallback((event) => {
-    console.log(event.currentTarget.dataset.path);
-  }, []);
+    const name = event.target.dataset.name;
+    dispatch(insertDataAfterPath([...path, name]));
+  }, [path]);
 
   let result = <></>;
   if (data === null) {
@@ -61,7 +66,7 @@ const ObjectType: React.FC<Props> = ({ data, path }) => {
           <td className="button-cell">
             <i
               className="fas fa-plus-circle"
-              data-path={newPath}
+              data-name={name}
               onClick={onAddButtonClicked}
             />
           </td>
@@ -105,7 +110,7 @@ const ObjectType: React.FC<Props> = ({ data, path }) => {
             <td className="button-cell">
               <i
                 className="fas fa-plus-circle"
-                data-path={[...path, null]}
+                data-name={''}
                 onClick={onAddButtonClicked}
               />
             </td>
