@@ -33,7 +33,7 @@ const ObjectType: React.FC<Props> = ({ data, path, insert = true }) => {
   const {
     setEditPath,
     updateDataOfPath,
-    insertDataAfterPath,
+    duplicatePath,
   } = dataSlice.actions;
   const onUpdate = useCallback(
     (path, data) => {
@@ -52,7 +52,7 @@ const ObjectType: React.FC<Props> = ({ data, path, insert = true }) => {
   const onAddButtonClicked = useCallback(
     (event) => {
       const name = event.target.dataset.name;
-      dispatch(insertDataAfterPath([...path, name]));
+      dispatch(duplicatePath([...path, name]));
     },
     [path]
   );
