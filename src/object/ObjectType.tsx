@@ -14,11 +14,12 @@ import { dataSlice } from '../features/data/dataSlice';
 interface Props {
   data: any;
   path: Path;
+  insert?: boolean;
 }
 
 const maxLevel = 20;
 
-const ObjectType: React.FC<Props> = ({ data, path }) => {
+const ObjectType: React.FC<Props> = ({ data, path, insert = true }) => {
   const [expanded, setExpanded] = useState(true);
 
   const onChangeExpansion = (isExpanded: boolean) => {
@@ -48,10 +49,13 @@ const ObjectType: React.FC<Props> = ({ data, path }) => {
     dispatch(setEditPath(null));
   }, [dispatch, setEditPath]);
 
-  const onAddButtonClicked = useCallback((event) => {
-    const name = event.target.dataset.name;
-    dispatch(insertDataAfterPath([...path, name]));
-  }, [path]);
+  const onAddButtonClicked = useCallback(
+    (event) => {
+      const name = event.target.dataset.name;
+      dispatch(insertDataAfterPath([...path, name]));
+    },
+    [path]
+  );
 
   let result = <></>;
   if (data === null) {
@@ -63,13 +67,15 @@ const ObjectType: React.FC<Props> = ({ data, path }) => {
       const newPath = path.length === 0 ? [name] : [...path, name];
       return (
         <tr key={name}>
-          <td className="button-cell">
-            <i
-              className="fas fa-plus-circle"
-              data-name={name}
-              onClick={onAddButtonClicked}
-            />
-          </td>
+          {insert && (
+            <td className="button-cell">
+              <i
+                className="fas fa-plus-circle"
+                data-name={name}
+                onClick={onAddButtonClicked}
+              />
+            </td>
+          )}
           <th>
             <span title={newPath.join('.')}>{name}</span>
           </th>
@@ -104,16 +110,18 @@ const ObjectType: React.FC<Props> = ({ data, path }) => {
     const typeLabel = Array.isArray(data) ? 'Array' : 'Object';
     const headerLabel = '[' + rows.length.toString() + ']';
     result = (
-      <table>
+      <table className={`${insert ? '' : 'no-margin'}`}>
         <thead data-level={path.length % maxLevel}>
           <tr>
-            <td className="button-cell">
-              <i
-                className="fas fa-plus-circle"
-                data-name={''}
-                onClick={onAddButtonClicked}
-              />
-            </td>
+            {insert && (
+              <td className="button-cell">
+                <i
+                  className="fas fa-plus-circle"
+                  data-name={''}
+                  onClick={onAddButtonClicked}
+                />
+              </td>
+            )}
             <th className="expand">
               <Expander
                 defaultValue={expanded}

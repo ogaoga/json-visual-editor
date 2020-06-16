@@ -2,6 +2,7 @@ import React, { useState, useCallback, useEffect, useRef } from 'react';
 import { Path } from '../types';
 import BooleanType from '../object/BooleanType';
 import { isArray, isNumber, isString, isBoolean, isNull } from 'lodash';
+import ObjectType from '../object/ObjectType';
 
 enum DataType {
   Object = 'object',
@@ -39,6 +40,10 @@ const cast = (type: DataType, value: any): any => {
           return value.length > 0;
         case DataType.Null:
           return null;
+        case DataType.Array:
+          return [];
+        case DataType.Object:
+          return {};
         default:
           return value;
       }
@@ -50,6 +55,10 @@ const cast = (type: DataType, value: any): any => {
           return Boolean(value);
         case DataType.Null:
           return null;
+        case DataType.Array:
+          return [];
+        case DataType.Object:
+          return {};
         default:
           return value;
       }
@@ -61,6 +70,10 @@ const cast = (type: DataType, value: any): any => {
           return value ? 1 : 0;
         case DataType.Null:
           return null;
+        case DataType.Array:
+          return [];
+        case DataType.Object:
+          return {};
         default:
           return value;
       }
@@ -72,10 +85,43 @@ const cast = (type: DataType, value: any): any => {
           return 0;
         case DataType.Boolean:
           return false;
+        case DataType.Array:
+          return [];
+        case DataType.Object:
+          return {};
         default:
           return value;
       }
-
+    case DataType.Object:
+      switch (type) {
+        case DataType.String:
+          return '';
+        case DataType.Number:
+          return 0;
+        case DataType.Boolean:
+          return false;
+        case DataType.Null:
+          return null;
+        case DataType.Array:
+          return [];
+        default:
+          return value;
+      }
+    case DataType.Array:
+      switch (type) {
+        case DataType.String:
+          return '';
+        case DataType.Number:
+          return 0;
+        case DataType.Boolean:
+          return false;
+        case DataType.Null:
+          return null;
+        case DataType.Object:
+          return {};
+        default:
+          return value;
+      }
     default:
       return value;
   }
@@ -155,8 +201,12 @@ export const ValueEditor: React.FC<Props> = ({
   return (
     <div className="value-editor d-flex">
       <div className="mr-1">
-        {type === DataType.Object && <div></div>}
-        {type === DataType.Array && <div></div>}
+        {type === DataType.Object && (
+          <ObjectType data={{}} path={[]} insert={false} />
+        )}
+        {type === DataType.Array && (
+          <ObjectType data={[]} path={[]} insert={false} />
+        )}
         {type === DataType.String && (
           <input
             type="text"
@@ -195,6 +245,8 @@ export const ValueEditor: React.FC<Props> = ({
         <option value={DataType.Number}>number</option>
         <option value={DataType.Boolean}>boolean</option>
         <option value={DataType.Null}>null</option>
+        <option value={DataType.Object}>object</option>
+        <option value={DataType.Array}>array</option>
       </select>
       <span className="buttons">
         <button className="ok-button btn btn-sm btn-link" onClick={onOKClicked}>
