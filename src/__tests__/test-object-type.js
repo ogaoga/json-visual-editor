@@ -13,6 +13,7 @@ import BooleanType from '../object/BooleanType';
 import ObjectType from '../object/ObjectType';
 import Expander from '../Expander';
 import { EditButtons } from '../VisualizedData/EditButtons';
+import { KeyEditButtons } from '../VisualizedData/KeyEditButtons';
 
 import { textareaSlice } from '../features/textarea/textareaSlice';
 import { dataSlice } from '../features/data/dataSlice';
@@ -63,16 +64,19 @@ const params = [
               <i className="fas fa-plus-circle" data-name="0"></i>
             </td>
             <th>
-              <span title="0">0</span>
+              <div className="d-flex">
+                <KeyEditButtons data={0} path={[]} hidden={false} />
+                <span className="key-label" title="0">
+                  0
+                </span>
+              </div>
             </th>
             <td>
               <div className="d-flex">
                 <div className="flex-grow-1">
                   <ObjectType data={null} />
                 </div>
-                <div>
-                  <EditButtons data={null} path={[]} hidden={false} />
-                </div>
+                <EditButtons data={null} path={[]} hidden={false} />
               </div>
             </td>
           </tr>
@@ -81,16 +85,19 @@ const params = [
               <i className="fas fa-plus-circle" data-name="1"></i>
             </td>
             <th>
-              <span title="1">1</span>
+              <div className="d-flex">
+                <KeyEditButtons data={1} path={[]} hidden={false} />
+                <span className="key-label" title="1">
+                  1
+                </span>
+              </div>
             </th>
             <td>
               <div className="d-flex">
                 <div className="flex-grow-1">
                   <ObjectType data={'abc'} />
                 </div>
-                <div>
-                  <EditButtons data={'abc'} path={[]} hidden={false} />
-                </div>
+                <EditButtons data={'abc'} path={[]} hidden={false} />
               </div>
             </td>
           </tr>
@@ -99,16 +106,19 @@ const params = [
               <i className="fas fa-plus-circle" data-name="2"></i>
             </td>
             <th>
-              <span title="2">2</span>
+              <div className="d-flex">
+                <KeyEditButtons data={2} path={[]} hidden={false} />
+                <span className="key-label" title="2">
+                  2
+                </span>
+              </div>
             </th>
             <td>
               <div className="d-flex">
                 <div className="flex-grow-1">
                   <ObjectType data={123} />
                 </div>
-                <div>
-                  <EditButtons data={123} path={[]} hidden={false} />
-                </div>
+                <EditButtons data={123} path={[]} hidden={false} />
               </div>
             </td>
           </tr>
@@ -135,16 +145,19 @@ const params = [
         <tbody className="expanded">
           <tr>
             <th>
-              <span title="0">0</span>
+              <div className="d-flex">
+                <KeyEditButtons data={0} path={[]} hidden={false} />
+                <span className="key-label" title="0">
+                  0
+                </span>
+              </div>
             </th>
             <td>
               <div className="d-flex">
                 <div className="flex-grow-1">
                   <ObjectType data={123} />
                 </div>
-                <div>
-                  <EditButtons data={123} path={[]} hidden={false} />
-                </div>
+                <EditButtons data={123} path={[]} hidden={false} />
               </div>
             </td>
           </tr>
@@ -177,20 +190,27 @@ const params = [
               <i className="fas fa-plus-circle" data-name="abc"></i>
             </td>
             <th>
-              <span title="path.abc">abc</span>
+              <div className="d-flex">
+                <KeyEditButtons
+                  data={{ abc: 123, xyz: 'abc' }}
+                  path={['path']}
+                  hidden={false}
+                />
+                <span className="key-label" title="path.abc">
+                  abc
+                </span>
+              </div>
             </th>
             <td>
               <div className="d-flex">
                 <div className="flex-grow-1">
                   <ObjectType data={123} path={['path', 'name']} />
                 </div>
-                <div>
-                  <EditButtons
-                    data={123}
-                    path={['path', 'name']}
-                    hidden={false}
-                  />
-                </div>
+                <EditButtons
+                  data={123}
+                  path={['path', 'name']}
+                  hidden={false}
+                />
               </div>
             </td>
           </tr>
@@ -199,20 +219,27 @@ const params = [
               <i className="fas fa-plus-circle" data-name="xyz"></i>
             </td>
             <th>
-              <span title="path.xyz">xyz</span>
+              <div className="d-flex">
+                <KeyEditButtons
+                  data={{ xyz: 'abc' }}
+                  path={['path']}
+                  hidden={false}
+                />
+                <span className="key-label" title="path.xyz">
+                  xyz
+                </span>
+              </div>
             </th>
             <td>
               <div className="d-flex">
                 <div className="flex-grow-1">
                   <ObjectType data={'abc'} />
                 </div>
-                <div>
-                  <EditButtons
-                    data={'abc'}
-                    path={['path', 'name']}
-                    hidden={false}
-                  />
-                </div>
+                <EditButtons
+                  data={'abc'}
+                  path={['path', 'name']}
+                  hidden={false}
+                />
               </div>
             </td>
           </tr>
@@ -239,20 +266,27 @@ const params = [
         <tbody className="expanded">
           <tr>
             <th>
-              <span title="path.abc">abc</span>
+              <div className="d-flex">
+                <KeyEditButtons
+                  data={{ abc: 123 }}
+                  path={['path']}
+                  hidden={false}
+                />
+                <span className="key-label" title="path.abc">
+                  abc
+                </span>
+              </div>
             </th>
             <td>
               <div className="d-flex">
                 <div className="flex-grow-1">
                   <ObjectType data={123} path={['path', 'name']} />
                 </div>
-                <div>
-                  <EditButtons
-                    data={123}
-                    path={['path', 'name']}
-                    hidden={false}
-                  />
-                </div>
+                <EditButtons
+                  data={123}
+                  path={['path', 'name']}
+                  hidden={false}
+                />
               </div>
             </td>
           </tr>
