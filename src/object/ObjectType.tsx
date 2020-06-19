@@ -5,7 +5,7 @@ import NumberType from './NumberType';
 import StringType from './StringType';
 import Expander from '../Expander';
 import { EditButtons } from '../VisualizedData/EditButtons';
-import { Path } from '../types';
+import { Path, EditType } from '../types';
 import { ValueEditor } from '../VisualizedData/ValueEditor';
 import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '..';
@@ -31,11 +31,25 @@ const ObjectType: React.FC<Props> = ({ data, path, insert = true }) => {
   const editMode = useSelector((state: RootState) => state.data.editMode);
 
   const dispatch = useDispatch();
-  const { setEditMode, updateDataOfPath, duplicatePath } = dataSlice.actions;
-  const onUpdate = useCallback(
+  const {
+    setEditMode,
+    updateDataOfPath,
+    updateKeyOfPath,
+    duplicatePath,
+  } = dataSlice.actions;
+  const onValueUpdate = useCallback(
     (path, data) => {
       // update the value
       dispatch(updateDataOfPath({ path, data }));
+      // close
+      dispatch(setEditMode(null));
+    },
+    [dispatch, setEditMode, updateDataOfPath]
+  );
+  const onKeyUpdate = useCallback(
+    (path, key) => {
+      // update the value
+      dispatch(updateKeyOfPath({ path, key }));
       // close
       dispatch(setEditMode(null));
     },
@@ -80,32 +94,44 @@ const ObjectType: React.FC<Props> = ({ data, path, insert = true }) => {
                 path={newPath}
                 hidden={editMode !== null}
               />
-              <span className="key-label" title={newPath.join('.')}>
-                {name}
-              </span>
+              {editMode !== null &&
+              editMode.type === EditType.Key &&
+              _.isEqual(newPath, editMode.path) ? (
+                <ValueEditor
+                  path={newPath}
+                  defaultValue={name}
+                  onUpdate={onKeyUpdate}
+                  onCancel={onCancel}
+                  isKey={true}
+                />
+              ) : (
+                <span className="key-label" title={newPath.join('.')}>
+                  {name}
+                </span>
+              )}
             </div>
           </th>
           <td>
             <div className="d-flex">
               <div className="flex-grow-1">
-                {editMode !== null && _.isEqual(newPath, editMode.path) ? (
+                {editMode !== null &&
+                editMode.type === EditType.Value &&
+                _.isEqual(newPath, editMode.path) ? (
                   <ValueEditor
                     path={newPath}
                     defaultValue={data[name]}
-                    onUpdate={onUpdate}
+                    onUpdate={onValueUpdate}
                     onCancel={onCancel}
                   />
                 ) : (
                   <ObjectType data={data[name]} path={newPath} />
                 )}
               </div>
-              {editMode === null && (
-                <EditButtons
-                  data={data[name]}
-                  path={newPath}
-                  hidden={editMode !== null}
-                />
-              )}
+              <EditButtons
+                data={data[name]}
+                path={newPath}
+                hidden={editMode !== null}
+              />
             </div>
           </td>
         </tr>
