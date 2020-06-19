@@ -1,17 +1,13 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import _ from 'lodash';
 import SampleJson from '../../samples/simple.json';
-import { Path } from '../../types';
+import { Path, EditMode } from '../../types';
 
 /**
  * State of dataSlice
  * @param data the data.
  * @param editPath the path of editable. `null` means no editable data.
  */
-interface State {
-  data: any;
-  editPath: Path | null;
-}
 
 const getParentPathAndName = (path: Path): [Path, string] => {
   let parentPath: Path = [];
@@ -26,12 +22,19 @@ const getParentPathAndName = (path: Path): [Path, string] => {
   return [parentPath, name];
 };
 
+interface State {
+  data: any;
+  editMode: EditMode | null;
+}
+
+const initialState: State = {
+  data: null,
+  editMode: null,
+};
+
 export const dataSlice = createSlice({
   name: 'data',
-  initialState: {
-    data: null,
-    editPath: null,
-  },
+  initialState,
   reducers: {
     setData: (state: State, action: PayloadAction<any>) => {
       state.data = action.payload;
@@ -75,16 +78,38 @@ export const dataSlice = createSlice({
       const { data, path } = action.payload;
       _.set(state.data, path, data);
     },
-    setEditPath: (state: State, action: PayloadAction<Path | null>) => {
-      state.editPath = action.payload;
+    updateKeyOfPath: (
+      state: State,
+      action: PayloadAction<{ key: string; path: Path }>
+    ) => {
+      const { key: newKey, path } = action.payload;
+      // get
+      const [parentPath, name] = getParentPathAndName(path);
+      const targetData =
+        parentPath.length === 0 ? state.data : _.get(state.data, parentPath);
+      let newObject = {};
+      _.toPairs(targetData).forEach(([key, value]) => {
+        if (key === name) {
+          newObject[newKey] = value;
+        } else {
+          newObject[key] = value;
+        }
+      });
+      // set
+      if (parentPath.length > 0) {
+        _.set(state.data, parentPath, newObject);
+      } else {
+        state.data = newObject;
+      }
+    },
+    setEditMode: (state: State, action: PayloadAction<EditMode | null>) => {
+      state.editMode = action.payload;
     },
     insertDataAfterPath: (state: State, action: PayloadAction<Path>) => {
       const [parentPath, name] = getParentPathAndName(action.payload);
-      console.log(parentPath, name);
       // get
       const newData =
         parentPath.length === 0 ? state.data : _.get(state.data, parentPath);
-      console.log(newData, typeof newData);
       // insert
       if (_.isArray(newData)) {
         const newName = name === '' ? 0 : parseInt(name) + 1;
@@ -109,14 +134,13 @@ export const dataSlice = createSlice({
         // set
         _.set(state.data, parentPath, newData);
       } else {
-        console.log(parentPath, name, newData);
         let newObject = {};
         const keys = Object.keys(newData);
         if (name === '') {
           if (keys.length > 0) {
             const key = `${keys[0]}--copy`;
             newObject[key] = newData[keys[0]];
-          } else { 
+          } else {
             const key = 'key';
             newObject[key] = null;
           }

@@ -21,7 +21,9 @@ export const ValueEditor: React.FC<Props> = ({
   const [value, setValue] = useState<any>(defaultValue);
   const onValueChanged = useCallback(
     (event) => {
-      setValue(event.target.value);
+      // set value
+      const { value: newValue } = event.target;
+      setValue(newValue);
     },
     [setValue]
   );

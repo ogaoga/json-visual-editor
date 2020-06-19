@@ -1,15 +1,17 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useMemo } from 'react';
 import _ from 'lodash';
 import BooleanType from './BooleanType';
 import NumberType from './NumberType';
 import StringType from './StringType';
 import Expander from '../Expander';
 import { EditButtons } from '../VisualizedData/EditButtons';
-import { Path } from '../types';
+import { Path, EditType } from '../types';
 import { ValueEditor } from '../VisualizedData/ValueEditor';
 import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '..';
 import { dataSlice } from '../features/data/dataSlice';
+import { KeyEditButtons } from '../VisualizedData/KeyEditButtons';
+import { KeyEditor } from '../VisualizedData/KeyEditor';
 
 interface Props {
   data: any;
@@ -27,27 +29,37 @@ const ObjectType: React.FC<Props> = ({ data, path, insert = true }) => {
   };
 
   // for editing
-  const editPath = useSelector((state: RootState) => state.data.editPath);
+  const editMode = useSelector((state: RootState) => state.data.editMode);
 
   const dispatch = useDispatch();
   const {
-    setEditPath,
+    setEditMode,
     updateDataOfPath,
+    updateKeyOfPath,
     duplicatePath,
   } = dataSlice.actions;
-  const onUpdate = useCallback(
+  const onValueUpdate = useCallback(
     (path, data) => {
       // update the value
       dispatch(updateDataOfPath({ path, data }));
       // close
-      dispatch(setEditPath(null));
+      dispatch(setEditMode(null));
     },
-    [dispatch, setEditPath, updateDataOfPath]
+    [dispatch, setEditMode, updateDataOfPath]
+  );
+  const onKeyUpdate = useCallback(
+    (path, key) => {
+      // update the value
+      dispatch(updateKeyOfPath({ path, key }));
+      // close
+      dispatch(setEditMode(null));
+    },
+    [dispatch, setEditMode, updateDataOfPath]
   );
   const onCancel = useCallback(() => {
     // close
-    dispatch(setEditPath(null));
-  }, [dispatch, setEditPath]);
+    dispatch(setEditMode(null));
+  }, [dispatch, setEditMode]);
 
   const onAddButtonClicked = useCallback(
     (event) => {
@@ -56,6 +68,13 @@ const ObjectType: React.FC<Props> = ({ data, path, insert = true }) => {
     },
     [path]
   );
+
+  // validation for object key name
+  const checkValid = useCallback((value) => {    
+    if (value.length === 0) return false;
+    if (Object.keys(data).includes(value)) return false;
+    return true;
+  }, [data]);
 
   let result = <></>;
   if (data === null) {
@@ -77,31 +96,50 @@ const ObjectType: React.FC<Props> = ({ data, path, insert = true }) => {
             </td>
           )}
           <th>
-            <span title={newPath.join('.')}>{name}</span>
+            <div className="d-flex">
+              <KeyEditButtons
+                data={data}
+                path={newPath}
+                hidden={editMode !== null}
+              />
+              {editMode !== null &&
+              editMode.type === EditType.Key &&
+              _.isEqual(newPath, editMode.path) ? (
+                <KeyEditor
+                  path={newPath}
+                  defaultValue={name}
+                  onUpdate={onKeyUpdate}
+                  onCancel={onCancel}
+                  checkValid={checkValid}
+                />
+              ) : (
+                <span className="key-label" title={newPath.join('.')}>
+                  {name}
+                </span>
+              )}
+            </div>
           </th>
           <td>
             <div className="d-flex">
               <div className="flex-grow-1">
-                {_.isEqual(newPath, editPath) ? (
+                {editMode !== null &&
+                editMode.type === EditType.Value &&
+                _.isEqual(newPath, editMode.path) ? (
                   <ValueEditor
                     path={newPath}
                     defaultValue={data[name]}
-                    onUpdate={onUpdate}
+                    onUpdate={onValueUpdate}
                     onCancel={onCancel}
                   />
                 ) : (
                   <ObjectType data={data[name]} path={newPath} />
                 )}
               </div>
-              <div>
-                {!_.isEqual(newPath, editPath) && (
-                  <EditButtons
-                    data={data[name]}
-                    path={newPath}
-                    hidden={editPath !== null}
-                  />
-                )}
-              </div>
+              <EditButtons
+                data={data[name]}
+                path={newPath}
+                hidden={editMode !== null}
+              />
             </div>
           </td>
         </tr>
