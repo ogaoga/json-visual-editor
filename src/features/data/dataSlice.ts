@@ -1,17 +1,13 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import _ from 'lodash';
 import SampleJson from '../../samples/simple.json';
-import { Path } from '../../types';
+import { Path, EditMode } from '../../types';
 
 /**
  * State of dataSlice
  * @param data the data.
  * @param editPath the path of editable. `null` means no editable data.
  */
-interface State {
-  data: any;
-  editPath: Path | null;
-}
 
 const getParentPathAndName = (path: Path): [Path, string] => {
   let parentPath: Path = [];
@@ -26,12 +22,19 @@ const getParentPathAndName = (path: Path): [Path, string] => {
   return [parentPath, name];
 };
 
+interface State {
+  data: any;
+  editMode: EditMode | null;
+}
+
+const initialState: State = {
+  data: null,
+  editMode: null,
+};
+
 export const dataSlice = createSlice({
   name: 'data',
-  initialState: {
-    data: null,
-    editPath: null,
-  },
+  initialState,
   reducers: {
     setData: (state: State, action: PayloadAction<any>) => {
       state.data = action.payload;
@@ -75,8 +78,8 @@ export const dataSlice = createSlice({
       const { data, path } = action.payload;
       _.set(state.data, path, data);
     },
-    setEditPath: (state: State, action: PayloadAction<Path | null>) => {
-      state.editPath = action.payload;
+    setEditMode: (state: State, action: PayloadAction<EditMode | null>) => {
+      state.editMode = action.payload;
     },
     insertDataAfterPath: (state: State, action: PayloadAction<Path>) => {
       const [parentPath, name] = getParentPathAndName(action.payload);
@@ -116,7 +119,7 @@ export const dataSlice = createSlice({
           if (keys.length > 0) {
             const key = `${keys[0]}--copy`;
             newObject[key] = newData[keys[0]];
-          } else { 
+          } else {
             const key = 'key';
             newObject[key] = null;
           }

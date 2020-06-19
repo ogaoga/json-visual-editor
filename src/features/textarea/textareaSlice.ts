@@ -12,7 +12,7 @@ interface State {
   validity: ValidityType;
 }
 
-const initialState = {
+const initialState: State = {
   isTextareaClose: false,
   localText: '',
   validity: ValidityType.None,

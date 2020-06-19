@@ -1,6 +1,6 @@
 import React, { useCallback, SyntheticEvent } from 'react';
 import { useDispatch } from 'react-redux';
-import { Path } from '../types';
+import { Path, EditType } from '../types';
 import { dataSlice } from '../features/data/dataSlice';
 import { isString, isNumber, isObject, isArray } from 'lodash';
 
@@ -23,15 +23,15 @@ export const EditButtons: React.FC<Props> = ({
   }, []);
 
   const dispatch = useDispatch();
-  const { deletePath, setEditPath } = dataSlice.actions;
+  const { deletePath, setEditMode } = dataSlice.actions;
 
   const onDeleteButtonClicked = useCallback(() => {
     dispatch(deletePath(path));
   }, [path, dispatch, deletePath]);
 
   const onEditButtonClicked = useCallback(() => {
-    dispatch(setEditPath(path));
-  }, [dispatch, path, setEditPath]);
+    dispatch(setEditMode({ path, type: EditType.Value }));
+  }, [dispatch, path, setEditMode]);
 
   return (
     <div

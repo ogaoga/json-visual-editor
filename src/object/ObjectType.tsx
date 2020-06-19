@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useMemo } from 'react';
 import _ from 'lodash';
 import BooleanType from './BooleanType';
 import NumberType from './NumberType';
@@ -28,23 +28,23 @@ const ObjectType: React.FC<Props> = ({ data, path, insert = true }) => {
   };
 
   // for editing
-  const editPath = useSelector((state: RootState) => state.data.editPath);
+  const editMode = useSelector((state: RootState) => state.data.editMode);
 
   const dispatch = useDispatch();
-  const { setEditPath, updateDataOfPath, duplicatePath } = dataSlice.actions;
+  const { setEditMode, updateDataOfPath, duplicatePath } = dataSlice.actions;
   const onUpdate = useCallback(
     (path, data) => {
       // update the value
       dispatch(updateDataOfPath({ path, data }));
       // close
-      dispatch(setEditPath(null));
+      dispatch(setEditMode(null));
     },
-    [dispatch, setEditPath, updateDataOfPath]
+    [dispatch, setEditMode, updateDataOfPath]
   );
   const onCancel = useCallback(() => {
     // close
-    dispatch(setEditPath(null));
-  }, [dispatch, setEditPath]);
+    dispatch(setEditMode(null));
+  }, [dispatch, setEditMode]);
 
   const onAddButtonClicked = useCallback(
     (event) => {
@@ -78,7 +78,7 @@ const ObjectType: React.FC<Props> = ({ data, path, insert = true }) => {
               <KeyEditButtons
                 data={data}
                 path={newPath}
-                hidden={editPath !== null}
+                hidden={editMode !== null}
               />
               <span className="key-label" title={newPath.join('.')}>
                 {name}
@@ -88,7 +88,7 @@ const ObjectType: React.FC<Props> = ({ data, path, insert = true }) => {
           <td>
             <div className="d-flex">
               <div className="flex-grow-1">
-                {_.isEqual(newPath, editPath) ? (
+                {editMode !== null && _.isEqual(newPath, editMode.path) ? (
                   <ValueEditor
                     path={newPath}
                     defaultValue={data[name]}
@@ -99,11 +99,11 @@ const ObjectType: React.FC<Props> = ({ data, path, insert = true }) => {
                   <ObjectType data={data[name]} path={newPath} />
                 )}
               </div>
-              {!_.isEqual(newPath, editPath) && (
+              {editMode === null && (
                 <EditButtons
                   data={data[name]}
                   path={newPath}
-                  hidden={editPath !== null}
+                  hidden={editMode !== null}
                 />
               )}
             </div>

@@ -1,6 +1,6 @@
 import React, { useCallback } from 'react';
 import { useDispatch } from 'react-redux';
-import { Path } from '../types';
+import { Path, EditType } from '../types';
 import { dataSlice } from '../features/data/dataSlice';
 import { isObject, isArray } from 'lodash';
 
@@ -16,11 +16,11 @@ export const KeyEditButtons: React.FC<Props> = ({
   hidden = false,
 }) => {
   const dispatch = useDispatch();
-  const { setEditPath } = dataSlice.actions;
+  const { setEditMode } = dataSlice.actions;
 
   const onEditButtonClicked = useCallback(() => {
-    dispatch(setEditPath(path));
-  }, [dispatch, path, setEditPath]);
+    dispatch(setEditMode({ path, type: EditType.Key }));
+  }, [dispatch, path, setEditMode]);
 
   return (
     <div
