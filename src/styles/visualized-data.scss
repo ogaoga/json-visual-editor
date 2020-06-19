@@ -2,8 +2,7 @@
   table {
     border: 0;
     background-color: rgba(255, 255, 255, 0);
-    margin-left: 6px;
-    margin-bottom: 1rem;
+    margin: 0.5rem 0 0.5rem 6px;
     &.no-margin {
       margin: 0;
     }
@@ -16,7 +15,7 @@
     &:hover {
       background-color: #fffff0;
     }
-    div > div > .edit-buttons {
+    div > .edit-buttons {
       visibility: hidden;
       button {
         padding: 0;
@@ -27,10 +26,7 @@
         }
       }
     }
-    & > div > div > .edit-buttons {
-      visibility: hidden;
-    }
-    &:hover > div > div > .edit-buttons {
+    &:hover > div > .edit-buttons {
       visibility: visible;
       &.hidden {
         visibility: hidden;
@@ -58,6 +54,28 @@
     }
     &:active {
       color: var(--primary);
+    }
+  }
+  th {
+    div > .key-edit-buttons {
+      visibility: hidden;
+      button {
+        padding: 0;
+        width: 20px;
+        color: var(--secondary);
+        &:active i {
+          color: var(--primary);
+        }
+      }
+    }
+    &:hover > div > .key-edit-buttons {
+      visibility: visible;
+      &.hidden {
+        visibility: hidden;
+      }
+    }
+    & .key-label {
+      flex-grow: 1;
     }
   }
 }

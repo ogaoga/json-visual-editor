@@ -34,7 +34,11 @@ export const EditButtons: React.FC<Props> = ({
   }, [dispatch, path, setEditPath]);
 
   return (
-    <div className={`edit-buttons d-flex flex-row ${hidden ? 'hidden' : ''}`}>
+    <div
+      className={`edit-buttons d-flex flex-row align-items-start ${
+        hidden ? 'hidden' : ''
+      }`}
+    >
       {!isArray(data) && !isObject(data) && (
         <button
           title="Edit the value"

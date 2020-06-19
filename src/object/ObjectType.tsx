@@ -10,6 +10,7 @@ import { ValueEditor } from '../VisualizedData/ValueEditor';
 import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '..';
 import { dataSlice } from '../features/data/dataSlice';
+import { KeyEditButtons } from '../VisualizedData/KeyEditButtons';
 
 interface Props {
   data: any;
@@ -30,11 +31,7 @@ const ObjectType: React.FC<Props> = ({ data, path, insert = true }) => {
   const editPath = useSelector((state: RootState) => state.data.editPath);
 
   const dispatch = useDispatch();
-  const {
-    setEditPath,
-    updateDataOfPath,
-    duplicatePath,
-  } = dataSlice.actions;
+  const { setEditPath, updateDataOfPath, duplicatePath } = dataSlice.actions;
   const onUpdate = useCallback(
     (path, data) => {
       // update the value
@@ -77,7 +74,16 @@ const ObjectType: React.FC<Props> = ({ data, path, insert = true }) => {
             </td>
           )}
           <th>
-            <span title={newPath.join('.')}>{name}</span>
+            <div className="d-flex">
+              <KeyEditButtons
+                data={data}
+                path={newPath}
+                hidden={editPath !== null}
+              />
+              <span className="key-label" title={newPath.join('.')}>
+                {name}
+              </span>
+            </div>
           </th>
           <td>
             <div className="d-flex">
@@ -93,15 +99,13 @@ const ObjectType: React.FC<Props> = ({ data, path, insert = true }) => {
                   <ObjectType data={data[name]} path={newPath} />
                 )}
               </div>
-              <div>
-                {!_.isEqual(newPath, editPath) && (
-                  <EditButtons
-                    data={data[name]}
-                    path={newPath}
-                    hidden={editPath !== null}
-                  />
-                )}
-              </div>
+              {!_.isEqual(newPath, editPath) && (
+                <EditButtons
+                  data={data[name]}
+                  path={newPath}
+                  hidden={editPath !== null}
+                />
+              )}
             </div>
           </td>
         </tr>
