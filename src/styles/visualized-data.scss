@@ -15,6 +15,34 @@
     &:hover {
       background-color: #fffff0;
     }
+  }
+  // + buttons for array/object
+  td.button-cell {
+    border: 0;
+    background-color: rgba(255, 255, 255, 0);
+    position: relative;
+    i {
+      position: absolute;
+      bottom: -8px;
+      right: 3px;
+      color: #ccc;
+      visibility: hidden;
+      z-index: 10;
+    }
+  }
+  table:hover > * > tr > td.button-cell > i {
+    visibility: visible;
+    cursor: pointer;
+    &:hover {
+      color: var(--secondary);
+    }
+    &:active {
+      color: var(--primary);
+    }
+  }
+  // Edit Buttons
+  td,
+  th {
     div > .edit-buttons {
       visibility: hidden;
       button {
@@ -32,49 +60,9 @@
         visibility: hidden;
       }
     }
-    &.button-cell {
-      border: 0;
-      background-color: rgba(255, 255, 255, 0);
-      position: relative;
-      i {
-        position: absolute;
-        bottom: -8px;
-        right: 3px;
-        color: #ccc;
-        visibility: hidden;
-        z-index: 10;
-      }
-    }
-  }
-  table:hover > * > tr > td.button-cell > i {
-    visibility: visible;
-    cursor: pointer;
-    &:hover {
-      color: var(--secondary);
-    }
-    &:active {
-      color: var(--primary);
-    }
   }
   th {
-    div > .key-edit-buttons {
-      visibility: hidden;
-      button {
-        padding: 0;
-        width: 20px;
-        color: var(--secondary);
-        &:active i {
-          color: var(--primary);
-        }
-      }
-    }
-    &:hover > div > .key-edit-buttons {
-      visibility: visible;
-      &.hidden {
-        visibility: hidden;
-      }
-    }
-    & .key-label {
+    .key-label {
       flex-grow: 1;
     }
   }

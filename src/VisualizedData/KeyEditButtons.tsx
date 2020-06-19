@@ -24,7 +24,9 @@ export const KeyEditButtons: React.FC<Props> = ({
 
   return (
     <div
-      className={`key-edit-buttons d-flex flex-row ${hidden ? 'hidden' : ''}`}
+      className={`edit-buttons d-flex flex-row align-items-start ${
+        hidden ? 'hidden' : ''
+      }`}
     >
       {!isArray(data) && isObject(data) && (
         <button
