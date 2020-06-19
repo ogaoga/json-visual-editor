@@ -9,8 +9,6 @@ interface Props {
   defaultValue: any;
   onCancel: () => void;
   onUpdate: (path: Path, value: any) => void;
-  isKey?: boolean;
-  checkValid?: (newValue: string) => boolean;
 }
 
 export const ValueEditor: React.FC<Props> = ({
@@ -18,11 +16,7 @@ export const ValueEditor: React.FC<Props> = ({
   defaultValue,
   onCancel,
   onUpdate,
-  isKey = false,
-  checkValid,
 }) => {
-  // Validation
-  const [isValid, setValid] = useState(true);
   // Value
   const [value, setValue] = useState<any>(defaultValue);
   const onValueChanged = useCallback(
@@ -30,15 +24,6 @@ export const ValueEditor: React.FC<Props> = ({
       // set value
       const { value: newValue } = event.target;
       setValue(newValue);
-      // validation
-      if (checkValid && isKey) {
-        // check value and show
-        if (newValue === defaultValue) {
-          setValid(true);
-        } else {
-          setValid(checkValid(newValue));
-        }
-      }
     },
     [setValue]
   );
@@ -54,9 +39,7 @@ export const ValueEditor: React.FC<Props> = ({
   );
   // Buttons
   const onOKClicked = useCallback(() => {
-    if (isValid) {
-      onUpdate(path, cast(type, value));
-    }
+    onUpdate(path, cast(type, value));
   }, [onUpdate, path, type, value]);
   const onCancelClicked = useCallback(() => {
     onCancel();
@@ -82,9 +65,7 @@ export const ValueEditor: React.FC<Props> = ({
   const onKeyDown = useCallback(
     (event) => {
       if (event.key === 'Enter') {
-        if (isValid) {
-          onOKClicked();
-        }
+        onOKClicked();
         event.preventDefault();
       } else if (event.key === 'Escape' || event.keyCode === 27) {
         onCancelClicked();
@@ -97,8 +78,8 @@ export const ValueEditor: React.FC<Props> = ({
   );
 
   return (
-    <div className={`value-editor d-flex ${isKey ? 'flex-row-reverse' : ''}`}>
-      <div className={isKey ? '' : 'mr-1'}>
+    <div className="value-editor d-flex">
+      <div className="mr-1">
         {type === DataType.Object && (
           <ObjectType data={{}} path={[]} insert={false} />
         )}
@@ -108,9 +89,7 @@ export const ValueEditor: React.FC<Props> = ({
         {type === DataType.String && (
           <input
             type="text"
-            className={`text-editor form-control form-control-sm ${
-              isKey ? 'for-key' : ''
-            } ${isValid ? '' : 'is-invalid'}`}
+            className="text-editor form-control form-control-sm"
             value={value}
             onChange={onValueChanged}
             ref={textFieldRef}
@@ -136,26 +115,20 @@ export const ValueEditor: React.FC<Props> = ({
         )}
         {type === DataType.Null && <span className="null">null</span>}
       </div>
-      {!isKey && (
-        <select
-          value={type}
-          onChange={onTypeChanged}
-          className="form-control form-control-sm type-selector"
-        >
-          <option value={DataType.String}>string</option>
-          <option value={DataType.Number}>number</option>
-          <option value={DataType.Boolean}>boolean</option>
-          <option value={DataType.Null}>null</option>
-          <option value={DataType.Object}>object</option>
-          <option value={DataType.Array}>array</option>
-        </select>
-      )}
+      <select
+        value={type}
+        onChange={onTypeChanged}
+        className="form-control form-control-sm type-selector"
+      >
+        <option value={DataType.String}>string</option>
+        <option value={DataType.Number}>number</option>
+        <option value={DataType.Boolean}>boolean</option>
+        <option value={DataType.Null}>null</option>
+        <option value={DataType.Object}>object</option>
+        <option value={DataType.Array}>array</option>
+      </select>
       <span className="buttons">
-        <button
-          className="ok-button btn btn-sm btn-link"
-          onClick={onOKClicked}
-          disabled={!isValid}
-        >
+        <button className="ok-button btn btn-sm btn-link" onClick={onOKClicked}>
           <i className="fas fa-check-circle" />
         </button>
         <button

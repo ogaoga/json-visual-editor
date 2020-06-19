@@ -11,6 +11,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '..';
 import { dataSlice } from '../features/data/dataSlice';
 import { KeyEditButtons } from '../VisualizedData/KeyEditButtons';
+import { KeyEditor } from '../VisualizedData/KeyEditor';
 
 interface Props {
   data: any;
@@ -104,12 +105,11 @@ const ObjectType: React.FC<Props> = ({ data, path, insert = true }) => {
               {editMode !== null &&
               editMode.type === EditType.Key &&
               _.isEqual(newPath, editMode.path) ? (
-                <ValueEditor
+                <KeyEditor
                   path={newPath}
                   defaultValue={name}
                   onUpdate={onKeyUpdate}
                   onCancel={onCancel}
-                  isKey={true}
                   checkValid={checkValid}
                 />
               ) : (
