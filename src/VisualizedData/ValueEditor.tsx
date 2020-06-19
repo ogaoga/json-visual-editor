@@ -10,6 +10,7 @@ interface Props {
   onCancel: () => void;
   onUpdate: (path: Path, value: any) => void;
   isKey?: boolean;
+  checkValid?: (newValue: string) => boolean;
 }
 
 export const ValueEditor: React.FC<Props> = ({
@@ -18,12 +19,26 @@ export const ValueEditor: React.FC<Props> = ({
   onCancel,
   onUpdate,
   isKey = false,
+  checkValid,
 }) => {
+  // Validation
+  const [isValid, setValid] = useState(true);
   // Value
   const [value, setValue] = useState<any>(defaultValue);
   const onValueChanged = useCallback(
     (event) => {
-      setValue(event.target.value);
+      // set value
+      const { value: newValue } = event.target;
+      setValue(newValue);
+      // validation
+      if (checkValid && isKey) {
+        // check value and show
+        if (newValue === defaultValue) {
+          setValid(true);
+        } else {
+          setValid(checkValid(newValue));
+        }
+      }
     },
     [setValue]
   );
@@ -39,7 +54,9 @@ export const ValueEditor: React.FC<Props> = ({
   );
   // Buttons
   const onOKClicked = useCallback(() => {
-    onUpdate(path, cast(type, value));
+    if (isValid) {
+      onUpdate(path, cast(type, value));
+    }
   }, [onUpdate, path, type, value]);
   const onCancelClicked = useCallback(() => {
     onCancel();
@@ -65,7 +82,9 @@ export const ValueEditor: React.FC<Props> = ({
   const onKeyDown = useCallback(
     (event) => {
       if (event.key === 'Enter') {
-        onOKClicked();
+        if (isValid) {
+          onOKClicked();
+        }
         event.preventDefault();
       } else if (event.key === 'Escape' || event.keyCode === 27) {
         onCancelClicked();
@@ -91,7 +110,7 @@ export const ValueEditor: React.FC<Props> = ({
             type="text"
             className={`text-editor form-control form-control-sm ${
               isKey ? 'for-key' : ''
-            }`}
+            } ${isValid ? '' : 'is-invalid'}`}
             value={value}
             onChange={onValueChanged}
             ref={textFieldRef}
@@ -132,7 +151,11 @@ export const ValueEditor: React.FC<Props> = ({
         </select>
       )}
       <span className="buttons">
-        <button className="ok-button btn btn-sm btn-link" onClick={onOKClicked}>
+        <button
+          className="ok-button btn btn-sm btn-link"
+          onClick={onOKClicked}
+          disabled={!isValid}
+        >
           <i className="fas fa-check-circle" />
         </button>
         <button

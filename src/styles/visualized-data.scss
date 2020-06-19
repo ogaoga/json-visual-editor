@@ -72,6 +72,10 @@
     &.for-key {
       text-align: right;
       color: black;
-    }    
+    }
+    &.is-invalid {
+      background-image: none;
+      padding-right: 8px;
+    }
   }
 }

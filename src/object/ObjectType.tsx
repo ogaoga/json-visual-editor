@@ -68,6 +68,13 @@ const ObjectType: React.FC<Props> = ({ data, path, insert = true }) => {
     [path]
   );
 
+  // validation for object key name
+  const checkValid = useCallback((value) => {    
+    if (value.length === 0) return false;
+    if (Object.keys(data).includes(value)) return false;
+    return true;
+  }, [data]);
+
   let result = <></>;
   if (data === null) {
     // null
@@ -103,6 +110,7 @@ const ObjectType: React.FC<Props> = ({ data, path, insert = true }) => {
                   onUpdate={onKeyUpdate}
                   onCancel={onCancel}
                   isKey={true}
+                  checkValid={checkValid}
                 />
               ) : (
                 <span className="key-label" title={newPath.join('.')}>
