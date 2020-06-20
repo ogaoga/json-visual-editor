@@ -62,19 +62,29 @@ export const ValueEditor: React.FC<Props> = ({
   }, [textFieldRef, type]);
 
   // Keyboard handling
-  const onKeyDown = useCallback(
+  const [keyCode, setKeyCode] = useState<number | null>(null);
+  const onKeyDown = useCallback((event) => {
+    setKeyCode(event.keyCode);
+  }, []);
+  const onKeyUp = useCallback(
     (event) => {
-      if (event.key === 'Enter') {
+      if (
+        (event.key === 'Enter' || event.keyCode === 13) &&
+        keyCode === event.keyCode
+      ) {
         onOKClicked();
         event.preventDefault();
-      } else if (event.key === 'Escape' || event.keyCode === 27) {
+      } else if (
+        (event.key === 'Escape' || event.keyCode === 27) &&
+        keyCode === event.keyCode
+      ) {
         onCancelClicked();
         event.preventDefault();
       } else {
         //
       }
     },
-    [onOKClicked, onCancelClicked]
+    [onOKClicked, onCancelClicked, keyCode]
   );
 
   return (
@@ -94,6 +104,7 @@ export const ValueEditor: React.FC<Props> = ({
             onChange={onValueChanged}
             ref={textFieldRef}
             onKeyDown={onKeyDown}
+            onKeyUp={onKeyUp}
           />
         )}
         {type === DataType.Number && (
@@ -104,6 +115,7 @@ export const ValueEditor: React.FC<Props> = ({
             onChange={onValueChanged}
             ref={textFieldRef}
             onKeyDown={onKeyDown}
+            onKeyUp={onKeyUp}
           />
         )}
         {type === DataType.Boolean && (
