@@ -17,7 +17,7 @@ const OptionMenu: React.FC<Props> = ({ ariaLabelledby }) => {
   return (
     <div className="dropdown-menu" aria-labelledby={ariaLabelledby}>
       {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
-      <a className="dropdown-item" onClick={onPasteClicked}>
+      <a id="paste-sample-json-menu-item" className="dropdown-item" onClick={onPasteClicked}>
         Paste Sample JSON
       </a>
     </div>

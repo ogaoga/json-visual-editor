@@ -43,7 +43,7 @@ export const EditButtons: React.FC<Props> = ({
         <button
           title="Edit the value"
           data-value={data}
-          className="btn btn-sm btn-link ml-1"
+          className="btn btn-sm btn-link ml-1 edit-button"
           onClick={onEditButtonClicked}
         >
           <i className="far fa-edit" />
@@ -53,14 +53,14 @@ export const EditButtons: React.FC<Props> = ({
         <button
           title="Copy text"
           data-value={data}
-          className="btn btn-sm btn-link ml-1"
+          className="btn btn-sm btn-link ml-1 copy-button"
           onClick={onCopyButtonClicked}
         >
           <i className="far fa-copy" />
         </button>
       )}
       <button
-        className="btn btn-sm btn-link ml-1"
+        className="btn btn-sm btn-link ml-1 delete-button"
         onClick={onDeleteButtonClicked}
       >
         <i className="far fa-trash-alt" />

@@ -71,11 +71,14 @@ const ObjectType: React.FC<Props> = ({ data, path, insert = true }) => {
   );
 
   // validation for object key name
-  const checkValid = useCallback((value) => {    
-    if (value.length === 0) return false;
-    if (Object.keys(data).includes(value)) return false;
-    return true;
-  }, [data]);
+  const checkValid = useCallback(
+    (value) => {
+      if (value.length === 0) return false;
+      if (Object.keys(data).includes(value)) return false;
+      return true;
+    },
+    [data]
+  );
 
   let result = <></>;
   if (data === null) {
@@ -120,7 +123,7 @@ const ObjectType: React.FC<Props> = ({ data, path, insert = true }) => {
               )}
             </div>
           </th>
-          <td>
+          <td className="data-cell">
             <div className="d-flex">
               <div className="flex-grow-1">
                 {editMode !== null &&
@@ -149,7 +152,10 @@ const ObjectType: React.FC<Props> = ({ data, path, insert = true }) => {
     const typeLabel = isArray(data) ? 'Array' : 'Object';
     const headerLabel = '[' + rows.length.toString() + ']';
     result = (
-      <table className={`${insert ? '' : 'no-margin'}`}>
+      <table
+        data-path={`/${path.join('/')}`}
+        className={`${insert ? '' : 'no-margin'}`}
+      >
         <thead data-level={path.length % maxLevel}>
           <tr>
             {insert && (
