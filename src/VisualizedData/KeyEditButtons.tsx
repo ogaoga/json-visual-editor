@@ -2,7 +2,7 @@ import React, { useCallback } from 'react';
 import { useDispatch } from 'react-redux';
 import { Path, EditType } from '../types';
 import { dataSlice } from '../features/data/dataSlice';
-import { isObject, isArray } from 'lodash';
+import { isObject } from '../utils/is';
 
 interface Props {
   data: any;
@@ -28,7 +28,7 @@ export const KeyEditButtons: React.FC<Props> = ({
         hidden ? 'hidden' : ''
       }`}
     >
-      {!isArray(data) && isObject(data) && (
+      {isObject(data) && (
         <button
           title="Edit the key"
           data-value={data}

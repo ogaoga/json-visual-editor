@@ -12,6 +12,7 @@ import { RootState } from '..';
 import { dataSlice } from '../features/data/dataSlice';
 import { KeyEditButtons } from '../VisualizedData/KeyEditButtons';
 import { KeyEditor } from '../VisualizedData/KeyEditor';
+import { isArray } from '../utils/is';
 
 interface Props {
   data: any;
@@ -145,7 +146,7 @@ const ObjectType: React.FC<Props> = ({ data, path, insert = true }) => {
         </tr>
       );
     });
-    const typeLabel = Array.isArray(data) ? 'Array' : 'Object';
+    const typeLabel = isArray(data) ? 'Array' : 'Object';
     const headerLabel = '[' + rows.length.toString() + ']';
     result = (
       <table className={`${insert ? '' : 'no-margin'}`}>
