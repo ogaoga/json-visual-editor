@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import _ from 'lodash';
 import SampleJson from '../../samples/simple.json';
-import { Path, EditMode } from '../../types';
+import { Path, EditMode, EditType } from '../../types';
 import { isArray } from '../../utils/is';
 /**
  * State of dataSlice
@@ -125,6 +125,7 @@ export const dataSlice = createSlice({
         parentPath.length === 0 ? state.data : _.get(state.data, parentPath);
       // insert
       if (isArray(newData)) {
+        // array
         if (name === '') {
           newData.splice(0, 0, newData[0]);
         } else {
@@ -134,25 +135,31 @@ export const dataSlice = createSlice({
         // set
         _.set(state.data, parentPath, newData);
       } else {
+        // object
         let newObject = {};
+        const newKey = '';
         const keys = Object.keys(newData);
+        // if insert before the first element
         if (name === '') {
-          if (keys.length > 0) {
-            const key = `${keys[0]}--copy`;
-            newObject[key] = newData[keys[0]];
-          } else {
-            const key = 'key';
-            newObject[key] = null;
-          }
+          newObject[newKey] = keys.length > 0 ? newData[keys[0]] : null;
         }
         keys.forEach((key) => {
           newObject[key] = newData[key];
           if (key === name) {
-            newObject[`${key}--copy`] = newData[key];
+            newObject[newKey] = newData[key];
           }
         });
         // set
-        _.set(state.data, parentPath, newObject);
+        if (parentPath.length === 0) {
+          state.data = newObject;
+        } else {
+          _.set(state.data, parentPath, newObject);
+        }
+        // set edit mode
+        state.editMode = {
+          path: [...parentPath, newKey],
+          type: EditType.Key,
+        };
       }
     },
   },

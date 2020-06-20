@@ -1,5 +1,7 @@
 import React, { useState, useCallback, useEffect, useRef } from 'react';
 import { Path } from '../types';
+import { dataSlice } from '../features/data/dataSlice';
+import { useDispatch } from 'react-redux';
 
 interface Props {
   path: Path;
@@ -16,6 +18,8 @@ export const KeyEditor: React.FC<Props> = ({
   onUpdate,
   checkValid,
 }) => {
+  // Dispatch
+  const dispatch = useDispatch();
   // Validation
   const [isValid, setValid] = useState(true);
   // Value
@@ -37,13 +41,22 @@ export const KeyEditor: React.FC<Props> = ({
     },
     [setValue]
   );
-  // Buttons
+  // Check valid
+  useEffect(() => {
+    setValid(defaultValue.length > 0);
+  }, [defaultValue]);
+  // OK Button
   const onOKClicked = useCallback(() => {
     if (isValid) {
       onUpdate(path, value);
     }
   }, [onUpdate, path, value]);
+  // Cancel button
+  const { deletePath } = dataSlice.actions;
   const onCancelClicked = useCallback(() => {
+    if (value === '') {
+      dispatch(deletePath(path));
+    }
     onCancel();
   }, [onCancel]);
 
