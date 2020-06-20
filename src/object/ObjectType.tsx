@@ -93,7 +93,9 @@ const ObjectType: React.FC<Props> = ({ data, path, insert = true }) => {
           {insert && (
             <td className="button-cell">
               <i
-                className="fas fa-plus-circle"
+                className={`fas fa-plus-circle ${
+                  editMode !== null ? 'invisible' : ''
+                }`}
                 data-name={name}
                 onClick={onAddButtonClicked}
               />
@@ -161,7 +163,9 @@ const ObjectType: React.FC<Props> = ({ data, path, insert = true }) => {
             {insert && (
               <td className="button-cell">
                 <i
-                  className="fas fa-plus-circle"
+                  className={`fas fa-plus-circle ${
+                    editMode !== null ? 'invisible' : ''
+                  }`}
                   data-name={''}
                   onClick={onAddButtonClicked}
                 />

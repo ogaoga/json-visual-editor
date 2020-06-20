@@ -191,22 +191,25 @@ tbody {
 // Type
 
 .string-type {
-  color: #833;
+  color: #0451a5;
   font-weight: bold;
   img {
     width: 200px;
     height: auto;
   }
+  span {
+    word-break: break-all;
+  }
 }
 
 .number-type {
-  color: #338;
+  color: #098658;
   font-weight: bold;
   @extend .monospace-font;
 }
 
 .boolean-type {
-  color: #383;
+  color: #098658;
   font-weight: bold;
   white-space: nowrap;
   width: 4rem;

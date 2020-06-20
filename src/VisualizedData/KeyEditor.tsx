@@ -1,5 +1,7 @@
 import React, { useState, useCallback, useEffect, useRef } from 'react';
 import { Path } from '../types';
+import { dataSlice } from '../features/data/dataSlice';
+import { useDispatch } from 'react-redux';
 
 interface Props {
   path: Path;
@@ -16,6 +18,8 @@ export const KeyEditor: React.FC<Props> = ({
   onUpdate,
   checkValid,
 }) => {
+  // Dispatch
+  const dispatch = useDispatch();
   // Validation
   const [isValid, setValid] = useState(true);
   // Value
@@ -37,13 +41,22 @@ export const KeyEditor: React.FC<Props> = ({
     },
     [setValue]
   );
-  // Buttons
+  // Check valid
+  useEffect(() => {
+    setValid(defaultValue.length > 0);
+  }, [defaultValue]);
+  // OK Button
   const onOKClicked = useCallback(() => {
     if (isValid) {
       onUpdate(path, value);
     }
   }, [onUpdate, path, value]);
+  // Cancel button
+  const { deletePath } = dataSlice.actions;
   const onCancelClicked = useCallback(() => {
+    if (value === '') {
+      dispatch(deletePath(path));
+    }
     onCancel();
   }, [onCancel]);
 
@@ -56,21 +69,31 @@ export const KeyEditor: React.FC<Props> = ({
   }, [textFieldRef]);
 
   // Keyboard handling
-  const onKeyDown = useCallback(
+  const [keyCode, setKeyCode] = useState<number | null>(null);
+  const onKeyDown = useCallback((event) => {
+    setKeyCode(event.keyCode);
+  }, []);
+  const onKeyUp = useCallback(
     (event) => {
-      if (event.key === 'Enter') {
+      if (
+        (event.key === 'Enter' || event.keyCode === 13) &&
+        keyCode === event.keyCode
+      ) {
         if (isValid) {
           onOKClicked();
         }
         event.preventDefault();
-      } else if (event.key === 'Escape' || event.keyCode === 27) {
+      } else if (
+        (event.key === 'Escape' || event.keyCode === 27) &&
+        keyCode === event.keyCode
+      ) {
         onCancelClicked();
         event.preventDefault();
       } else {
         //
       }
     },
-    [onOKClicked, onCancelClicked]
+    [onOKClicked, onCancelClicked, keyCode]
   );
 
   return (
@@ -84,6 +107,7 @@ export const KeyEditor: React.FC<Props> = ({
           value={value}
           onChange={onValueChanged}
           ref={textFieldRef}
+          onKeyUp={onKeyUp}
           onKeyDown={onKeyDown}
         />
       </div>
