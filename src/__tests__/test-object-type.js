@@ -43,11 +43,11 @@ const params = [
     title: 'Display array',
     actual: <ObjectType data={[null, 'abc', 123]} path={[]} />,
     expected: (
-      <table className="">
+      <table data-path="/" className="">
         <thead data-level="0">
           <tr>
             <td className="button-cell">
-              <i className="fas fa-plus-circle" data-name=""></i>
+              <i className="fas fa-plus-circle " data-name=""></i>
             </td>
             <th className="expand">
               <Expander
@@ -61,7 +61,7 @@ const params = [
         <tbody className="expanded">
           <tr>
             <td className="button-cell">
-              <i className="fas fa-plus-circle" data-name="0"></i>
+              <i className="fas fa-plus-circle " data-name="0"></i>
             </td>
             <th>
               <div className="d-flex">
@@ -71,7 +71,7 @@ const params = [
                 </span>
               </div>
             </th>
-            <td>
+            <td className="data-cell">
               <div className="d-flex">
                 <div className="flex-grow-1">
                   <ObjectType data={null} />
@@ -82,7 +82,7 @@ const params = [
           </tr>
           <tr>
             <td className="button-cell">
-              <i className="fas fa-plus-circle" data-name="1"></i>
+              <i className="fas fa-plus-circle " data-name="1"></i>
             </td>
             <th>
               <div className="d-flex">
@@ -92,7 +92,7 @@ const params = [
                 </span>
               </div>
             </th>
-            <td>
+            <td className="data-cell">
               <div className="d-flex">
                 <div className="flex-grow-1">
                   <ObjectType data={'abc'} />
@@ -103,7 +103,7 @@ const params = [
           </tr>
           <tr>
             <td className="button-cell">
-              <i className="fas fa-plus-circle" data-name="2"></i>
+              <i className="fas fa-plus-circle " data-name="2"></i>
             </td>
             <th>
               <div className="d-flex">
@@ -113,7 +113,7 @@ const params = [
                 </span>
               </div>
             </th>
-            <td>
+            <td className="data-cell">
               <div className="d-flex">
                 <div className="flex-grow-1">
                   <ObjectType data={123} />
@@ -130,7 +130,7 @@ const params = [
     title: 'Display array w/o insert buttons',
     actual: <ObjectType data={[123]} path={[]} insert={false} />,
     expected: (
-      <table className="no-margin">
+      <table data-path="/" className="no-margin">
         <thead data-level="0">
           <tr>
             <th className="expand">
@@ -152,7 +152,7 @@ const params = [
                 </span>
               </div>
             </th>
-            <td>
+            <td className="data-cell">
               <div className="d-flex">
                 <div className="flex-grow-1">
                   <ObjectType data={123} />
@@ -169,11 +169,11 @@ const params = [
     title: 'Display object',
     actual: <ObjectType data={{ abc: 123, xyz: 'abc' }} path={['path']} />,
     expected: (
-      <table className="">
+      <table data-path="/path" className="">
         <thead data-level="1">
           <tr>
             <td className="button-cell">
-              <i className="fas fa-plus-circle" data-name=""></i>
+              <i className="fas fa-plus-circle " data-name=""></i>
             </td>
             <th className="expand">
               <Expander
@@ -187,7 +187,7 @@ const params = [
         <tbody className="expanded">
           <tr>
             <td className="button-cell">
-              <i className="fas fa-plus-circle" data-name="abc"></i>
+              <i className="fas fa-plus-circle " data-name="abc"></i>
             </td>
             <th>
               <div className="d-flex">
@@ -201,7 +201,7 @@ const params = [
                 </span>
               </div>
             </th>
-            <td>
+            <td className="data-cell">
               <div className="d-flex">
                 <div className="flex-grow-1">
                   <ObjectType data={123} path={['path', 'name']} />
@@ -216,7 +216,7 @@ const params = [
           </tr>
           <tr>
             <td className="button-cell">
-              <i className="fas fa-plus-circle" data-name="xyz"></i>
+              <i className="fas fa-plus-circle " data-name="xyz"></i>
             </td>
             <th>
               <div className="d-flex">
@@ -230,7 +230,7 @@ const params = [
                 </span>
               </div>
             </th>
-            <td>
+            <td className="data-cell">
               <div className="d-flex">
                 <div className="flex-grow-1">
                   <ObjectType data={'abc'} />
@@ -251,7 +251,7 @@ const params = [
     title: 'Display object w/o insert buttons',
     actual: <ObjectType data={{ abc: 123 }} path={['path']} insert={false} />,
     expected: (
-      <table className="no-margin">
+      <table data-path="/path" className="no-margin">
         <thead data-level="1">
           <tr>
             <th className="expand">
@@ -277,7 +277,7 @@ const params = [
                 </span>
               </div>
             </th>
-            <td>
+            <td className="data-cell">
               <div className="d-flex">
                 <div className="flex-grow-1">
                   <ObjectType data={123} path={['path', 'name']} />
