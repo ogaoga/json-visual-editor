@@ -2,7 +2,7 @@ import React, { useCallback, SyntheticEvent } from 'react';
 import { useDispatch } from 'react-redux';
 import { Path, EditType } from '../types';
 import { dataSlice } from '../features/data/dataSlice';
-import { isString, isNumber, isObject, isArray } from 'lodash';
+import { isString, isNumber, isObject, isArray } from '../utils/is';
 
 interface Props {
   data: any;

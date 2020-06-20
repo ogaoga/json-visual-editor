@@ -2,7 +2,7 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import _ from 'lodash';
 import SampleJson from '../../samples/simple.json';
 import { Path, EditMode } from '../../types';
-
+import { isArray } from '../../utils/is';
 /**
  * State of dataSlice
  * @param data the data.
@@ -48,7 +48,7 @@ export const dataSlice = createSlice({
       const data = state.data;
       if (parentPath.length === 0) {
         // the traget is root object
-        if (_.isArray(data)) {
+        if (isArray(data)) {
           // Array
           state.data = data.filter((_, index) => `${index}` !== name);
         } else {
@@ -58,7 +58,7 @@ export const dataSlice = createSlice({
       } else {
         // the traget is not root object
         const targetData = _.get(data, parentPath);
-        if (_.isArray(targetData)) {
+        if (isArray(targetData)) {
           // Array
           _.set(
             state.data,
@@ -111,7 +111,7 @@ export const dataSlice = createSlice({
       const newData =
         parentPath.length === 0 ? state.data : _.get(state.data, parentPath);
       // insert
-      if (_.isArray(newData)) {
+      if (isArray(newData)) {
         const newName = name === '' ? 0 : parseInt(name) + 1;
         newData.splice(newName, 0, null);
       }
@@ -124,7 +124,7 @@ export const dataSlice = createSlice({
       const newData =
         parentPath.length === 0 ? state.data : _.get(state.data, parentPath);
       // insert
-      if (_.isArray(newData)) {
+      if (isArray(newData)) {
         if (name === '') {
           newData.splice(0, 0, newData[0]);
         } else {

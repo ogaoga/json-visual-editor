@@ -1,4 +1,4 @@
-import { isArray, isNumber, isString, isBoolean, isNull } from 'lodash';
+import { isArray, isNumber, isString, isBoolean, isNull } from '../utils/is';
 
 export enum DataType {
   Object = 'object',
