@@ -2,7 +2,7 @@
   "name": "json-visual-editor",
   "version": "1.0.0",
   "description": "Web based JSON Editor powered by React.",
-  "author": "Tsutomu Ogasawara (ogaoga)",
+  "author": "Tsutomu Ogasawara (@ogaoga)",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/ogaoga/json-visual-editor/issues"
@@ -39,7 +39,7 @@
     "build": "react-app-rewired build",
     "test": "react-app-rewired test --env=jsdom",
     "cy:open": "cypress open",
-    "deploy": "npm run build && gh-pages -d build"
+    "deploy": "npm test && npm run build && gh-pages -d build"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -84,5 +84,10 @@
     "monaco-editor-webpack-plugin": "^1.9.0",
     "node-sass": "^4.14.1",
     "react-app-rewired": "^2.1.6"
+  },
+  "husky": {
+    "hooks": {
+      "pre-push": "npm test"
+    }
   }
 }
