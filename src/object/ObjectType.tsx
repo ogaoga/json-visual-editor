@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useMemo } from 'react';
+import React, { useState, useCallback } from 'react';
 import _ from 'lodash';
 import BooleanType from './BooleanType';
 import NumberType from './NumberType';
@@ -55,7 +55,7 @@ const ObjectType: React.FC<Props> = ({ data, path, insert = true }) => {
       // close
       dispatch(setEditMode(null));
     },
-    [dispatch, setEditMode, updateDataOfPath]
+    [dispatch, setEditMode, updateKeyOfPath]
   );
   const onCancel = useCallback(() => {
     // close
@@ -67,7 +67,7 @@ const ObjectType: React.FC<Props> = ({ data, path, insert = true }) => {
       const name = event.target.dataset.name;
       dispatch(duplicatePath([...path, name]));
     },
-    [path]
+    [dispatch, duplicatePath, path]
   );
 
   // validation for object key name

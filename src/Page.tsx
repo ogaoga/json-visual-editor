@@ -1,4 +1,4 @@
-import React, { useState, useMemo, useCallback } from 'react';
+import React, { useMemo, useCallback } from 'react';
 import TextArea from './TextArea';
 import VisualizedData from './VisualizedData/VisualizedData';
 import { Footer } from './Footer';

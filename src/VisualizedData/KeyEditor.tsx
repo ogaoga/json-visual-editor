@@ -39,7 +39,7 @@ export const KeyEditor: React.FC<Props> = ({
         }
       }
     },
-    [setValue]
+    [checkValid, defaultValue]
   );
   // Check valid
   useEffect(() => {
@@ -50,7 +50,7 @@ export const KeyEditor: React.FC<Props> = ({
     if (isValid) {
       onUpdate(path, value);
     }
-  }, [onUpdate, path, value]);
+  }, [isValid, onUpdate, path, value]);
   // Cancel button
   const { deletePath } = dataSlice.actions;
   const onCancelClicked = useCallback(() => {
@@ -58,7 +58,7 @@ export const KeyEditor: React.FC<Props> = ({
       dispatch(deletePath(path));
     }
     onCancel();
-  }, [onCancel]);
+  }, [deletePath, dispatch, onCancel, path, value]);
 
   // Focus on editing
   const textFieldRef = useRef<HTMLInputElement>(null);
@@ -93,7 +93,7 @@ export const KeyEditor: React.FC<Props> = ({
         //
       }
     },
-    [onOKClicked, onCancelClicked, keyCode]
+    [keyCode, isValid, onOKClicked, onCancelClicked]
   );
 
   return (
