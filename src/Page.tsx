@@ -1,21 +1,55 @@
-import React from 'react';
+import React, { useState, useMemo, useCallback } from 'react';
 import TextArea from './TextArea';
 import VisualizedData from './VisualizedData/VisualizedData';
 import { Footer } from './Footer';
 import { Header } from './Header';
 
+const minFrameWidth = 100;
+const initialFrameWidth = 400;
+
 export const Page: React.FC = () => {
+  const [dragging, setDragging] = useState(false);
+  const [width, setWidth] = useState(initialFrameWidth);
+  const onMouseDown = useCallback(() => {
+    setDragging(true);
+  }, [setDragging]);
+  const onMouseUpOrLeave = useCallback(() => {
+    setDragging(false);
+  }, [setDragging]);
+  const onMouseMove = useCallback(
+    (event: React.MouseEvent) => {
+      if (dragging) {
+        const newWidth = event.clientX;
+        if (newWidth > minFrameWidth) {
+          setWidth(newWidth);
+        }
+      }
+    },
+    [dragging, setWidth]
+  );
+
+  const leadingStyle = useMemo(() => {
+    return {
+      width: width,
+    };
+  }, [width]);
+
   return (
     <>
       <Header />
-      <main className="d-flex flex-row flex-grow-1">
-        <div className="leading-side d-flex flex-column">
+      <main
+        className="d-flex flex-row flex-grow-1"
+        onMouseMove={onMouseMove}
+        onMouseUp={onMouseUpOrLeave}
+        onMouseLeave={onMouseUpOrLeave}
+      >
+        <div className="leading-side d-flex flex-column" style={leadingStyle}>
           <section className="flex-grow-1">
             <TextArea />
           </section>
         </div>
-        <div className="adjuster"></div>
-        <div className="trailing-side d-flex flex-column">
+        <div className="adjuster" onMouseDown={onMouseDown}></div>
+        <div className="trailing-side d-flex flex-column flex-grow-1 pr-2 pl-1">
           <div className="flex-grow-1">
             <div className="scroll-wrapper">
               <VisualizedData />

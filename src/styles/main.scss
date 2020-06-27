@@ -59,15 +59,6 @@ input[type='checkbox'] {
 //
 // Main area
 //
-$leading-side-width: 30%;
-.leading-side {
-  width: $leading-side-width;
-}
-
-.trailing-side {
-  width: 100% - $leading-side-width;
-  padding: 10px;
-}
 
 //
 // Leading side
