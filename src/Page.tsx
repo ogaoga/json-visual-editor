@@ -48,7 +48,12 @@ export const Page: React.FC = () => {
             <TextArea />
           </section>
         </div>
-        <div className="adjuster" onMouseDown={onMouseDown}></div>
+        <div
+          className="adjuster d-flex justify-content-center align-items-center"
+          onMouseDown={onMouseDown}
+        >
+          <i className="fas fa-ellipsis-v" />
+        </div>
         <div className="trailing-side d-flex flex-column flex-grow-1 pr-2 pl-1">
           <div className="flex-grow-1">
             <div className="scroll-wrapper">

@@ -82,10 +82,17 @@ input[type='checkbox'] {
 }
 
 .adjuster {
-  width: 10px;
+  width: 8px;
   height: 100%;
   cursor: col-resize;
   background: #eee;
+  transition: background 0.2s;
+  &:hover {
+    background: #ddd;
+  }
+  i {
+    color: #999;
+  }
 }
 
 .monospace-font {

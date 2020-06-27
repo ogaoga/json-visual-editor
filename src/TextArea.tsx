@@ -80,6 +80,9 @@ const TextArea: React.FC = () => {
             quickSuggestions: false,
             scrollBeyondLastLine: false,
             snippetSuggestions: 'none',
+            minimap: {
+              enabled: false,
+            },          
           }}
         />
       </div>
