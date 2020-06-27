@@ -6,16 +6,22 @@ export enum ValidityType {
   None = 'none',
 }
 
+const InitialFrameWidth = 400;
+
 interface State {
   isTextareaClose: boolean;
   localText: string;
   validity: ValidityType;
+  width: number;
+  isDragging: boolean;
 }
 
 const initialState: State = {
   isTextareaClose: false,
   localText: '',
   validity: ValidityType.None,
+  width: InitialFrameWidth,
+  isDragging: false,
 };
 
 export const textareaSlice = createSlice({
@@ -38,6 +44,12 @@ export const textareaSlice = createSlice({
       } else {
         state.validity = ValidityType.None;
       }
+    },
+    setWidth: (state: State, action: PayloadAction<number>) => {
+      state.width = action.payload;
+    },
+    setDragging: (state: State, action: PayloadAction<boolean>) => {
+      state.isDragging = action.payload;
     },
   },
 });

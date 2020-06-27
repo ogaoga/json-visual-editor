@@ -59,15 +59,6 @@ input[type='checkbox'] {
 //
 // Main area
 //
-$leading-side-width: 30%;
-.leading-side {
-  width: $leading-side-width;
-}
-
-.trailing-side {
-  width: 100% - $leading-side-width;
-  padding: 10px;
-}
 
 //
 // Leading side
@@ -91,10 +82,17 @@ $leading-side-width: 30%;
 }
 
 .adjuster {
-  width: 10px;
+  width: 8px;
   height: 100%;
   cursor: col-resize;
   background: #eee;
+  transition: background 0.2s;
+  &:hover {
+    background: #ddd;
+  }
+  i {
+    color: #999;
+  }
 }
 
 .monospace-font {
