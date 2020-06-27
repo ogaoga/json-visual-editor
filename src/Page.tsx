@@ -3,13 +3,19 @@ import TextArea from './TextArea';
 import VisualizedData from './VisualizedData/VisualizedData';
 import { Footer } from './Footer';
 import { Header } from './Header';
+import { useSelector, useDispatch } from 'react-redux';
+import { RootState } from '.';
+import { textareaSlice } from './features/textarea/textareaSlice';
 
 const minFrameWidth = 100;
-const initialFrameWidth = 400;
 
 export const Page: React.FC = () => {
   const [dragging, setDragging] = useState(false);
-  const [width, setWidth] = useState(initialFrameWidth);
+  const width = useSelector((state: RootState) => state.textarea.width);
+
+  const { setWidth } = textareaSlice.actions;
+  const dispatch = useDispatch();
+
   const onMouseDown = useCallback(() => {
     setDragging(true);
   }, [setDragging]);
@@ -21,7 +27,7 @@ export const Page: React.FC = () => {
       if (dragging) {
         const newWidth = event.clientX;
         if (newWidth > minFrameWidth) {
-          setWidth(newWidth);
+          dispatch(setWidth(newWidth));
         }
       }
     },
