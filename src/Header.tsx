@@ -7,7 +7,7 @@ export const Header: React.FC = () => {
         className="navbar-brand"
         href="https://ogaoga.github.io/json-visual-editor/"
       >
-        JSON Visual Editor
+        JSON Visual Editor <span className="badge badge-secondary">v2</span>
       </a>
       <ul className="nav justify-content-end">
         <li>

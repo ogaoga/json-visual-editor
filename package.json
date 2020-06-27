@@ -1,6 +1,6 @@
 {
   "name": "json-visual-editor",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "Web based JSON Editor powered by React.",
   "author": "Tsutomu Ogasawara (@ogaoga)",
   "license": "MIT",
@@ -41,9 +41,6 @@
     "test:ci": "CI=true react-app-rewired test --env=jsdom",
     "cy:open": "cypress open",
     "deploy": "npm run test:ci && npm run build && gh-pages -d build"
-  },
-  "eslintConfig": {
-    "extends": "react-app"
   },
   "browserslist": {
     "production": [
