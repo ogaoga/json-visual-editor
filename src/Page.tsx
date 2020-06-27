@@ -1,4 +1,4 @@
-import React, { useMemo, useCallback } from 'react';
+import React, { useMemo, useCallback, useEffect } from 'react';
 import TextArea from './TextArea';
 import VisualizedData from './VisualizedData/VisualizedData';
 import { Footer } from './Footer';
@@ -42,16 +42,25 @@ export const Page: React.FC = () => {
     };
   }, [width]);
 
+  useEffect(() => {
+    if (window.innerWidth < 576) {
+      dispatch(setWidth(window.innerWidth));
+    }
+  }, [dispatch, setWidth]);
+
   return (
     <>
       <Header />
       <main
-        className="d-flex flex-row flex-grow-1 h-100"
+        className="d-flex flex-sm-row flex-column flex-grow-1 h-100"
         onMouseMove={onMouseMove}
         onMouseUp={onMouseUpOrLeave}
         onMouseLeave={onMouseUpOrLeave}
       >
-        <div className="leading-side d-flex flex-column p-2" style={leadingStyle}>
+        <div
+          className="leading-side d-flex flex-column p-2"
+          style={leadingStyle}
+        >
           <TextArea />
         </div>
         <div
