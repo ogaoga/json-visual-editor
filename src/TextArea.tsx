@@ -1,4 +1,10 @@
-import React, { useState, useCallback, useEffect, useMemo } from 'react';
+import React, {
+  useState,
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+} from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import MonacoEditor from 'react-monaco-editor';
 import ControlsArea from './ControlsArea';
@@ -61,6 +67,17 @@ const TextArea: React.FC = () => {
     [dispatch, setLocalText]
   );
 
+  // for updating layout of the editor
+  const isDragging = useSelector(
+    (state: RootState) => state.textarea.isDragging
+  );
+  const editor = useRef<MonacoEditor>(null);
+  useEffect(() => {
+    if (!isDragging) {
+      editor.current?.editor?.layout();
+    }
+  }, [isDragging, editor]);
+
   return (
     <div className="textarea-column d-flex flex-column h-100">
       <ControlsArea />
@@ -69,6 +86,7 @@ const TextArea: React.FC = () => {
           language="json"
           theme="vs"
           value={localText}
+          ref={editor}
           onChange={onChange}
           options={{
             automaticLayout: true,
@@ -82,7 +100,7 @@ const TextArea: React.FC = () => {
             snippetSuggestions: 'none',
             minimap: {
               enabled: false,
-            },          
+            },
           }}
         />
       </div>

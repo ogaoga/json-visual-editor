@@ -10,28 +10,30 @@ import { textareaSlice } from './features/textarea/textareaSlice';
 const minFrameWidth = 100;
 
 export const Page: React.FC = () => {
-  const [dragging, setDragging] = useState(false);
+  const isDragging = useSelector(
+    (state: RootState) => state.textarea.isDragging
+  );
   const width = useSelector((state: RootState) => state.textarea.width);
 
-  const { setWidth } = textareaSlice.actions;
+  const { setWidth, setDragging } = textareaSlice.actions;
   const dispatch = useDispatch();
 
   const onMouseDown = useCallback(() => {
-    setDragging(true);
-  }, [setDragging]);
+    dispatch(setDragging(true));
+  }, [setDragging, dispatch]);
   const onMouseUpOrLeave = useCallback(() => {
-    setDragging(false);
-  }, [setDragging]);
+    dispatch(setDragging(false));
+  }, [setDragging, dispatch]);
   const onMouseMove = useCallback(
     (event: React.MouseEvent) => {
-      if (dragging) {
+      if (isDragging) {
         const newWidth = event.clientX;
         if (newWidth > minFrameWidth) {
           dispatch(setWidth(newWidth));
         }
       }
     },
-    [dragging, setWidth]
+    [isDragging, setWidth, dispatch]
   );
 
   const leadingStyle = useMemo(() => {
