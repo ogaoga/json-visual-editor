@@ -1,6 +1,4 @@
-# JSON Visual Editor
-
-⚠️⚠️⚠️ Now work in progress for version 2 ⚠️⚠️⚠️
+# JSON Visual Editor v2
 
 > Web based JSON Editor powered by React.
 > https://ogaoga.github.io/json-visual-editor/
@@ -39,23 +37,14 @@ Licensed under the [MIT License](LICENSE).
 
 ### for version 2.0.0
 
-- [ ] Fix some remaining issues
 - [ ] E2E test
-- [x] Fix eslint error on build
-- [x] Setup GitHub Acitons
-- [x] Replace the environment with create-react-app
-- [x] Use latest packages to fix vulnerability
-- [x] Use TypeScript
-- [x] Use Redux Toolkit
-- [x] Use Prettier
-- [x] Translate test codes
 
 ### issues and features to be implemented
 
 - [ ] Fix a bug of drop area indicator.
 - [ ] Show level of depth.
 - [ ] Timestamp translation.
-- [ ] Edit feature.
 - [ ] VS Code Extension.
+- [ ] Chrome Extension.
 - [ ] Insert version number.
 - [ ] bug: Height of &lt;textarea&gt; is not enough in except Chrome.
