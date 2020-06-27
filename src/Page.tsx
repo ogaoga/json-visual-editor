@@ -46,15 +46,13 @@ export const Page: React.FC = () => {
     <>
       <Header />
       <main
-        className="d-flex flex-row flex-grow-1"
+        className="d-flex flex-row flex-grow-1 h-100"
         onMouseMove={onMouseMove}
         onMouseUp={onMouseUpOrLeave}
         onMouseLeave={onMouseUpOrLeave}
       >
-        <div className="leading-side d-flex flex-column" style={leadingStyle}>
-          <section className="flex-grow-1">
-            <TextArea />
-          </section>
+        <div className="leading-side d-flex flex-column p-2" style={leadingStyle}>
+          <TextArea />
         </div>
         <div
           className="adjuster d-flex justify-content-center align-items-center"
