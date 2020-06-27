@@ -4,7 +4,7 @@
 name: Deploy to GitHub Pages on merging to `master`
 
 on:
-  pull_request:
+  push:
     branches: [master]
 
 jobs:
