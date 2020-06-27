@@ -1,0 +1,81 @@
+.visualized-data {
+  table {
+    border: 0;
+    background-color: rgba(255, 255, 255, 0);
+    margin: 0.5rem 0 0.5rem 6px;
+    &.no-margin {
+      margin: 0;
+    }
+  }
+  .placeholder {
+    font-style: italic;
+    color: var(--gray);
+  }
+  td {
+    &:hover {
+      background-color: #fffff0;
+    }
+  }
+  // + buttons for array/object
+  td.button-cell {
+    border: 0;
+    background-color: rgba(255, 255, 255, 0);
+    position: relative;
+    i {
+      position: absolute;
+      bottom: -8px;
+      right: 3px;
+      color: #ccc;
+      visibility: hidden;
+      z-index: 10;
+    }
+  }
+  table:hover > * > tr > td.button-cell > i {
+    visibility: visible;
+    cursor: pointer;
+    &:hover {
+      color: var(--secondary);
+    }
+    &:active {
+      color: var(--primary);
+    }
+  }
+  // Edit Buttons
+  td,
+  th {
+    div > .edit-buttons {
+      visibility: hidden;
+      button {
+        padding: 0;
+        width: 20px;
+        color: var(--secondary);
+        &:active i {
+          color: var(--primary);
+        }
+      }
+    }
+    &:hover > div > .edit-buttons {
+      visibility: visible;
+      &.hidden {
+        visibility: hidden;
+      }
+    }
+  }
+  th {
+    .key-label {
+      flex-grow: 1;
+    }
+  }
+  // text field
+  .text-editor.form-control.for-key {
+    min-width: 5rem;
+    &.for-key {
+      text-align: right;
+      color: black;
+    }
+    &.is-invalid {
+      background-image: none;
+      padding-right: 8px;
+    }
+  }
+}

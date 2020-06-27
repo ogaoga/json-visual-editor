@@ -1,0 +1,52 @@
+.value-editor {
+  .type-selector {
+    width: inherit;
+    font-size: 0.6rem;
+    font-weight: bold;
+    &:focus {
+      box-shadow: none;
+    }
+  }
+  .text-editor {
+    height: 1.5rem;
+    &[type='text'] {
+      @extend .string-type;
+    }
+    &[type='number'] {
+      @extend .number-type;
+      text-align: right;
+    }
+    &:focus {
+      box-shadow: none;
+    }
+  }
+  .buttons {
+    margin-left: 6px;
+    white-space: nowrap;
+    button {
+      padding: 0;
+      margin: 0 2px;
+      &.ok-button {
+        i {
+          color: #9a9;
+        }
+        &:hover i,
+        &:focus i {
+          color: #696;
+        }
+      }
+      &.cancel-button {
+        i {
+          color: #a99;
+        }
+        &:hover i,
+        &:focus i {
+          color: #966;
+        }
+      }
+      &:focus {
+        box-shadow: none;
+      }
+    }
+  }
+}

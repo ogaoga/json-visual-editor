@@ -1,7 +1,7 @@
 import React from 'react';
 import Enzyme from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
-import Expander from '../Expander.jsx';
+import Expander from '../Expander';
 
 Enzyme.configure({ adapter: new Adapter() });
 
@@ -14,12 +14,12 @@ let params = [
         className={[
           'component-expander',
           'expanded',
-          'mdl-button',
-          'mdl-js-button',
+          'btn',
+          'btn-link'
         ].join(' ')}
         onClick={function onClick() {}}
       >
-        <i className="material-icons">expand_more</i>
+        <i className="fas fa-chevron-down" />
       </button>
     ),
   },
@@ -31,12 +31,12 @@ let params = [
         className={[
           'component-expander',
           '',
-          'mdl-button',
-          'mdl-js-button',
+          'btn',
+          'btn-link'
         ].join(' ')}
         onClick={function onClick() {}}
       >
-        <i className="material-icons">expand_more</i>
+        <i className="fas fa-chevron-down" />
       </button>
     ),
   },

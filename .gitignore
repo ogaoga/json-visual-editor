@@ -36,3 +36,5 @@ public/bundle.js*
 .env.production.local
 
 npm-debug.log*
+
+*.org

@@ -26,9 +26,3 @@ jobs:
           node-version: ${{ matrix.node-version }}
       - run: npm ci
       - run: npm test
-      - run: npm run build
-      - name: Deploy
-        uses: peaceiris/actions-gh-pages@v3.6.1
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./build

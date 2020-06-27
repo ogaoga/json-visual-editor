@@ -17,7 +17,7 @@ Please contribute to the project if you think this can be done better in anyway 
 
 ### `master`
 
-Release branch. Merge stable codes from onlyh `develop` branch. After merging via a pull request from `develop`, automatically deploy to [the GitHub page](https://ogaoga.github.io/json-visual-editor/).
+Release branch. Merge stable codes from only `develop` branch. After merging via a pull request from `develop`, automatically deploy to [the GitHub page](https://ogaoga.github.io/json-visual-editor/).
 
 ### `develop`
 
@@ -35,17 +35,18 @@ Develop branch. Topic branches are merged into the branch via pull request or di
 Copyright (c) 2016 - 2020 ogaoga.org
 Licensed under the [MIT License](LICENSE).
 
-[travis-image]: https://img.shields.io/travis/ogaoga/json-visual-editor/develop.svg?style=flat
-[travis-url]: https://travis-ci.org/ogaoga/json-visual-editor
-
 ## ToDo
 
 ### for version 2.0.0
 
+- [ ] Fix some remaining issues
+- [ ] E2E test
+- [x] Fix eslint error on build
+- [x] Setup GitHub Acitons
 - [x] Replace the environment with create-react-app
 - [x] Use latest packages to fix vulnerability
-- [ ] Use TypeScript
-- [ ] Use Redux Toolkit
+- [x] Use TypeScript
+- [x] Use Redux Toolkit
 - [x] Use Prettier
 - [x] Translate test codes
 
@@ -55,7 +56,6 @@ Licensed under the [MIT License](LICENSE).
 - [ ] Show level of depth.
 - [ ] Timestamp translation.
 - [ ] Edit feature.
-- [ ] Chrome Web Store app build.
-- [ ] React Native
+- [ ] VS Code Extension.
 - [ ] Insert version number.
-- [ ] bug: Height of &lt;textarea&gt; is not enough in Firefox.
+- [ ] bug: Height of &lt;textarea&gt; is not enough in except Chrome.

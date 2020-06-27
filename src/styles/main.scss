@@ -1,24 +1,98 @@
 body {
-  background: #fafafa;
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-// common
-
-.fillbox {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
+// disable go back/forward by swiping
+html,
+body {
+  overscroll-behavior-x: none;
 }
 
-.float-left {
-  float: left;
-  margin-right: 10px;
+// to expand the content area to the browser height
+html,
+body {
+  height: 100%;
 }
-.float-right {
-  float: right;
-  margin-left: 10px;
+
+* {
+  box-sizing: border-box;
+}
+
+.container {
+  width: 100%;
+  height: 100%;
+  max-width: 100%;
+  padding: 0;
+}
+
+section,
+nav {
+  padding: 10px;
+  overflow: hidden;
+}
+
+//
+// Footer
+//
+footer {
+  color: #ccc;
+  font-size: 0.8rem;
+  text-align: center;
+  padding: 10px 0;
+}
+
+// other elements
+
+label {
+  margin: 0;
+}
+
+input[type='checkbox'] {
+  vertical-align: middle;
+}
+
+//
+// Main area
+//
+
+//
+// Leading side
+//
+.vertical-fixed-area {
+  height: 50px; // fixed height
+  background: #eeeeee;
+}
+
+//
+// nav
+//
+
+.trailing-side div.flex-grow-1 {
+  // to be scrollable
+  overflow-y: scroll;
+  position: relative;
+  .scroll-wrapper {
+    position: absolute;
+  }
+}
+
+.adjuster {
+  width: 8px;
+  height: 100%;
+  cursor: col-resize;
+  background: #eee;
+  transition: background 0.2s;
+  &:hover {
+    background: #ddd;
+  }
+  i {
+    color: #999;
+  }
 }
 
 .monospace-font {
@@ -32,86 +106,21 @@ input[readonly] {
   }
 }
 
-// Layout
-
-main {
-  & > div {
-    @extend .fillbox;
-  }
+.monaco-wrapper {
+  $monaco-wapper-color: rgba(200, 200, 200, 0.4);
+  padding: 4px;
+  box-shadow: 2px 2px 2px 0 $monaco-wapper-color inset;
+  border: 1px solid $monaco-wapper-color;
 }
 
-header {
-  .mdl-layout__header-row {
-    padding: 0 20px;
-  }
-}
-
-body.dragging {
-  .json-text {
-    textarea {
-      border: 6px dotted #cce;
-      border-radius: 12px;
-      padding: 3px;
-    }
-  }
-}
-
-section {
-  &.json-text {
-    $controlAreaHeight: 48px;
-    display: flex;
-    align-items: center;
-    position: relative;
-    .textarea-column {
-      width: 100%;
-      height: 100%;
-      textarea {
-        position: absolute;
-        top: 0;
-        bottom: $controlAreaHeight;
-        left: 0;
-        right: 20px;
-        resize: none;
-        width: 100%;
-        box-sizing: border-box;
-        padding: 8px;
-        border: 1px solid #ddd;
-        box-shadow: 2px 2px 2px 0 rgba(200, 200, 200, 0.2) inset;
-        font-family: Consolas, 'Courier New', Courier, Monaco, monospace;
-        font-size: 14px;
-        background-color: #ffffff;
-        &.valid {
-          animation: validFrames 1s ease-in-out;
-        }
-        &.invalid {
-          animation: invalidFrames 1s ease-in-out;
-        }
-      }
-    }
-    .controls-area {
-      position: absolute;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      .control-count {
-        color: #ccc;
-        font-size: 16px;
-        font-weight: bold;
-        line-height: 32px;
-      }
-    }
-  }
-
-  &.visualized-data {
-    overflow: scroll;
-  }
-}
-
-footer {
-  text-align: center;
-  padding: 10px 0;
+// Count
+.text-count {
   color: #ccc;
-  background: #222;
+  font-size: 16px;
+  font-weight: bold;
+  &.invalid {
+    color: var(--danger);
+  }
 }
 
 // Table
@@ -121,6 +130,7 @@ table {
   background-color: #f0f0ff;
   border: 1px solid #669;
   border-collapse: collapse;
+  font-size: 0.9rem;
 }
 
 td,
@@ -156,9 +166,14 @@ thead {
   }
 }
 
-$colorPalette: #c5bee4, #becde4, #c5e4be, #dbe4be, #e4d5be, #e4bebe;
+$colorPalette: rgb(229, 215, 238), rgb(243, 209, 229), rgb(249, 223, 213),
+  rgb(255, 251, 213), rgb(209, 241, 204), rgb(201, 232, 241), rgb(213, 224, 241),
+  rgb(237, 208, 229), rgb(244, 210, 222), rgb(252, 241, 211), rgb(248, 250, 212),
+  rgb(198, 237, 219), rgb(202, 231, 242), rgb(222, 223, 239), rgb(240, 208, 228),
+  rgb(246, 212, 216), rgb(254, 247, 213), rgb(238, 245, 211), rgb(200, 239, 234),
+  rgb(203, 230, 243);
 
-@for $i from 1 to 5 {
+@for $i from 1 to length($colorPalette) + 1 {
   thead[data-level='#{$i}'] tr th {
     background: nth($colorPalette, $i);
   }
@@ -174,28 +189,32 @@ tbody {
 // Type
 
 .string-type {
-  color: #833;
+  color: #0451a5;
+  font-weight: bold;
   img {
     width: 200px;
     height: auto;
   }
+  span {
+    word-break: break-all;
+  }
 }
 
 .number-type {
-  color: #338;
+  color: #098658;
   font-weight: bold;
   @extend .monospace-font;
 }
 
 .boolean-type {
-  color: #383;
+  color: #098658;
   font-weight: bold;
+  white-space: nowrap;
+  width: 4rem;
+  margin-right: 0.5rem;
   @extend .monospace-font;
   input {
-    margin-right: 4px;
-  }
-  span {
-    font-size: 14px;
+    margin: 0 4px 0 3px;
   }
 }
 
@@ -204,33 +223,10 @@ tbody {
 }
 
 .null {
-  color: #999;
+  color: var(--gray);
   @extend .monospace-font;
   font-style: italic;
-}
-
-@keyframes validFrames {
-  0% {
-    background-color: #ffffff;
-  }
-  10% {
-    background-color: #f0f0ff;
-  }
-  100% {
-    background-color: #ffffff;
-  }
-}
-
-@keyframes invalidFrames {
-  0% {
-    background-color: #ffffff;
-  }
-  10% {
-    background-color: #fff6fc;
-  }
-  100% {
-    background-color: #ffffff;
-  }
+  font-weight: bold;
 }
 
 // Components
