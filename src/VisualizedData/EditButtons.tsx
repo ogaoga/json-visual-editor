@@ -2,7 +2,7 @@ import React, { useCallback, SyntheticEvent } from 'react';
 import { useDispatch } from 'react-redux';
 import { Path, EditType } from '../types';
 import { dataSlice } from '../features/data/dataSlice';
-import { isString, isNumber, isObject, isArray } from '../utils/is';
+import { isString, isNumber } from '../utils/is';
 
 interface Props {
   data: any;
@@ -39,16 +39,14 @@ export const EditButtons: React.FC<Props> = ({
         hidden ? 'hidden' : ''
       }`}
     >
-      {!isArray(data) && !isObject(data) && (
-        <button
-          title="Edit the value"
-          data-value={data}
-          className="btn btn-sm btn-link ml-1 edit-button"
-          onClick={onEditButtonClicked}
-        >
-          <i className="far fa-edit" />
-        </button>
-      )}
+      <button
+        title="Edit the value"
+        data-value={data}
+        className="btn btn-sm btn-link ml-1 edit-button"
+        onClick={onEditButtonClicked}
+      >
+        <i className="far fa-edit" />
+      </button>
       {navigator.clipboard && (isString(data) || isNumber(data)) && (
         <button
           title="Copy text"

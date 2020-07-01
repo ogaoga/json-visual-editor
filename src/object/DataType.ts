@@ -37,9 +37,9 @@ export const cast = (type: DataType, value: any): any => {
         case DataType.Null:
           return null;
         case DataType.Array:
-          return [];
+          return [value];
         case DataType.Object:
-          return {};
+          return { string: value };
         default:
           return value;
       }
@@ -52,9 +52,9 @@ export const cast = (type: DataType, value: any): any => {
         case DataType.Null:
           return null;
         case DataType.Array:
-          return [];
+          return [value];
         case DataType.Object:
-          return {};
+          return { number: value };
         default:
           return value;
       }
@@ -67,9 +67,9 @@ export const cast = (type: DataType, value: any): any => {
         case DataType.Null:
           return null;
         case DataType.Array:
-          return [];
+          return [value];
         case DataType.Object:
-          return {};
+          return { boolean: value };
         default:
           return value;
       }
@@ -82,9 +82,9 @@ export const cast = (type: DataType, value: any): any => {
         case DataType.Boolean:
           return false;
         case DataType.Array:
-          return [];
+          return [null];
         case DataType.Object:
-          return {};
+          return { null: null };
         default:
           return value;
       }
@@ -99,7 +99,7 @@ export const cast = (type: DataType, value: any): any => {
         case DataType.Null:
           return null;
         case DataType.Array:
-          return [];
+          return Object.values(value);
         default:
           return value;
       }
@@ -114,7 +114,7 @@ export const cast = (type: DataType, value: any): any => {
         case DataType.Null:
           return null;
         case DataType.Object:
-          return {};
+          return { ...value };
         default:
           return value;
       }
