@@ -95,6 +95,23 @@ input[type='checkbox'] {
   }
 }
 
+@media (max-width: 575px) {
+  .leading-side {
+    height: 300px;
+    width: 100%;
+  }
+  .adjuster {
+    visibility: hidden;
+    display: none;
+    height: 8px;
+    width: 100%;
+    cursor: row-resize;
+    i {
+      transform: rotate(90deg);
+    }
+  }
+}
+
 .monospace-font {
   font-family: Consolas, 'Courier New', Courier, Monaco, monospace;
 }

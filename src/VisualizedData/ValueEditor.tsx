@@ -91,16 +91,24 @@ export const ValueEditor: React.FC<Props> = ({
     <div className="value-editor d-flex">
       <div className="mr-1">
         {type === DataType.Object && (
-          <ObjectType data={{}} path={[]} insert={false} />
+          <ObjectType
+            data={cast(type, defaultValue)}
+            path={[]}
+            insert={false}
+          />
         )}
         {type === DataType.Array && (
-          <ObjectType data={[]} path={[]} insert={false} />
+          <ObjectType
+            data={cast(type, defaultValue)}
+            path={[]}
+            insert={false}
+          />
         )}
         {type === DataType.String && (
           <input
             type="text"
             className="text-editor form-control form-control-sm"
-            value={value}
+            value={cast(type, value)}
             onChange={onValueChanged}
             ref={textFieldRef}
             onKeyDown={onKeyDown}
@@ -111,7 +119,7 @@ export const ValueEditor: React.FC<Props> = ({
           <input
             type="number"
             className="text-editor form-control form-control-sm"
-            value={value}
+            value={cast(type, value)}
             onChange={onValueChanged}
             ref={textFieldRef}
             onKeyDown={onKeyDown}
@@ -120,7 +128,7 @@ export const ValueEditor: React.FC<Props> = ({
         )}
         {type === DataType.Boolean && (
           <BooleanType
-            data={value}
+            data={cast(type, value)}
             readOnly={false}
             onChange={onCheckboxClicked}
           />
